@@ -2,8 +2,8 @@
 title: AmberScript Transcription API
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - java: Java
   - javascript: NodeJS
+  - java: Java
   - python: Python
   - shell: cURL
 
@@ -144,7 +144,7 @@ callbackUrl (OPTIONAL)| NONE | `YOUR_CALLBACK_URL`
 ### Uploading With `callbackUrl`
 
 1. When you make a request with a `callbackUrl`, we send the final status of your upload to this url.
-2. When processing is complete, this status is sent via a `POST` request (see Example A in right pane).
+2. When processing is complete, this status is sent via a `POST` request (see `Example A` in right pane).
    - `status` can either be `DONE` or `ERROR`.
 3. Your `callbackUrl` endpoint should respond with any `2xx` if you successfully receive the status.
 
@@ -157,7 +157,7 @@ callbackUrl (OPTIONAL)| NONE | `YOUR_CALLBACK_URL`
 </aside>
 
 ### Uploading Without `callbackUrl`
-1. When you make a request without the `callbackUrl`, store the value of the `jobId` returned upon a successful call (see Example B in right pane).
+1. When you make a request without the `callbackUrl`, store the value of the `jobId` returned upon a successful call (see `Example B` in right pane).
 2. Use the `jobId` to periodically check the [status](#getting-the-status-of-a-transcription) of the upload request (e.g. every 5 mins).
    - `status` can either be `OPEN`, `DONE` or `ERROR`.
 
