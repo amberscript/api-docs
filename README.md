@@ -1,4 +1,4 @@
-# The AmberScript Transcription API Documentation
+# AmberScript Transcription API Documentation
 
 This repository contains the documentation for the AmberScript Transcription API
 
