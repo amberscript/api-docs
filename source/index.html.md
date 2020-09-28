@@ -1,14 +1,14 @@
 ---
-title: API Reference
+title: AmberScript Transcription API
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - java: Java
+  - javascript: NodeJS
+  - python: Python
+  - shell: cURL
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://www.amberscript.com/en/speech-to-text-api'>Sign Up for our Transcription API</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -21,221 +21,882 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to AmberScript's Transcription API!
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We will provide you with an `API_KEY` required to access our endpoints.
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+When you [upload](#uploading-a-file) a file, our transcribers or automatic speech recognition platform will get to work and create a transcription.
 
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+* Direct transcriptions are usually ready within an hour, perfect ones within 5 business days.
+* You can check the status of a job using the [status](#getting-the-status-of-a-transcription) endpoint.
+* When the status is `DONE`, a job is finished and you can download the file using our [export](#export-to-stl) endpoints.
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+    Valid job status values: OPEN, ERROR, DONE
 </aside>
 
-# Kittens
+## Authentication
 
-## Get All Kittens
+<aside class="notice">
+    Remember to authenticate requests by providing the <code>apiKey</code> as a query parameter.
+</aside>
 
-```ruby
-require 'kittn'
+## Uploading A File
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+```java
+HttpResponse<String> response = Unirest.post("https://qs.amberscript.com/jobs/upload-media?transcriptionType=transcription&jobType=direct&language=nl&apiKey={{YOUR_API_KEY}}")
+  .asString();
 ```
 
 ```javascript
-const kittn = require('kittn');
+const request = require('request');
+const fs = require('fs');
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+let options = {
+  method: 'POST',
+  url: 'https://qs.amberscript.com/jobs/upload-media',
+  qs: {
+    apiKey: 'YOUR_API_KEY',
+    transcriptionType: 'transcription',
+    jobType: 'direct',
+    language: 'nl',
+    numberOfSpeakers: '2'
+  },
+  headers: {'content-type': 'multipart/form-data'},
+  formData: {file: fs.createReadStream("./path/to/my_file.mp3")}
+};
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
 
-> The above command returns JSON structured like this:
+```python
+import requests
+
+url = 'https://qs.amberscript.com/jobs/upload-media'
+filepath = '/Users/userA/Downloads/my-file.mp3'
+querystring = {"jobType":"direct","language":"nl","transcriptionType":"transcription","apiKey":"YOUR_API_KEY"}
+files = {'file': open(filepath, 'rb')}
+
+response = requests.post(url, files=files, verify=False, params=querystring)
+
+print(response.status_code)
+print(response.text)
+```
+
+```shell
+curl --request POST --url 'https://qs.amberscript.com/jobs/upload-media?transcriptionType=transcription&jobType=direct&language=nl&apiKey={{YOUR_API_KEY}}' --form file=@./my-file.mp3
+```
+
+
+> Example response sent when no `callbackUrl` is specified:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+{
+  "jobStatus": {    
+    "jobId": "{{JOB_ID}}",
+    "created": 1553871202831,
+    "language": "nl",
+    "status": "OPEN",
+    "jobType": "direct",
+    "nrAudioSeconds": 0,
+    "transcriptionType": "transcription",
+    "filename": "FILE_NAME"
   }
-]
+}
 ```
 
-This endpoint retrieves all kittens.
+> Example of POST request sent to `callbackUrl`:
+
+```json
+
+{
+  "jobStatus": {    
+    "jobId": "{{JOB_ID}}",
+    "created": 1553871202831,
+    "language": "nl",
+    "status": "DONE",
+    "jobType": "direct",
+    "nrAudioSeconds": 0,
+    "transcriptionType": "transcription",
+    "filename": "FILE_NAME"
+  }
+}
+```
+
+Upload a file for transcription.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST /jobs/upload-media`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Default | Description/Example
+----------| ------- | -----------
+language | NONE | `nl`, `en`, `de`, `fr`, `da`, `sv`, `fi`, `no`, `es`
+transcriptionType | NONE | `transcription`, `translation`
+jobType   | NONE | `perfect`, `direct`
+numberOfSpeakers | NONE | `1`, `2`, `3`, `4`, `5`
+callbackUrl (OPTIONAL)| NONE | `YOUR_CALLBACK_URL`
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+### Uploading With `callbackUrl`
+
+1. When you make a request with a `callbackUrl`, we send the final status of your upload to this url.
+2. When processing is complete, this status is sent via a `POST` request.
+   - `status` can either be `DONE` or `ERROR`.
+3. Your `callbackUrl` endpoint should respond with any `2xx` if you successfully receive the status.
+
+<aside class="notice">
+   What if a callback fails?
+    <ul>
+      <li>When a callback fails, we retry sending the status update every hour.</li>
+      <li>The maximum number of retry attempts is 10.</li>
+    </ul>
 </aside>
 
-## Get a Specific Kitten
+### Uploading Without `callbackUrl`
+1. When you make a request without the `callbackUrl`, store the value of the `jobId` returned upon a successful call.
+2. Use the `jobId` to periodically check the [status]() of the upload request (e.g. every 5 mins).
+   - `status` can either be `OPEN`, `DONE` or `ERROR`.
 
-```ruby
-require 'kittn'
+### File requirements:
+- max 4GB
+- audio or video file
+- supported formats: wav, mp3, m4a, aac, wma, mov, m4v, mp4, opus, ogg, flac
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+_If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com_
 
-```python
-import kittn
+## Getting The Status Of A Transcription
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+```java
+HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/status?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+  .asString();
 ```
 
 ```javascript
-const kittn = require('kittn');
+var request = require("request");
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+var options = { method: 'GET',
+  url: 'https://qs.amberscript.com/jobs/status',
+  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://qs.amberscript.com/jobs/status"
+
+querystring = {"jobId":"JOB_ID","apiKey":"YOUR_API_KEY"}
+
+payload = ""
+response = requests.request("GET", url, data=payload, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET --url 'https://qs.amberscript.com/jobs/status?jobId=JOB_ID&apiKey=YOUR_API_KEY'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "jobStatus": {
+    "jobId": "{{JOB_ID}}",
+    "created": 1553871202831,
+    "language": "nl",
+    "status": "OPEN",
+    "jobType": "perfect",
+    "nrAudioSeconds": 0,
+    "transcriptionType": "transcription",
+    "filename": "FILE_NAME"
+  }
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Retrieve the status of a specific job.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET /jobs/status`
 
-### URL Parameters
+### Query Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Default | Description/Example
+----------| ------- | -----------
+jobId | NONE | YOUR_JOB_ID
 
-## Delete a Specific Kitten
+## Exporting A Finished File
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
+```java
+HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/status?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+  .asString();
 ```
 
 ```javascript
-const kittn = require('kittn');
+ var request = require("request");
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+var options = { method: 'GET',
+  url: 'https://qs.amberscript.com/jobs/export',
+  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY', format: 'json' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
 ```
+
+```python
+import requests
+
+url = "https://qs.amberscript.com/jobs/export"
+
+querystring = {"jobId":"JOB_ID","apiKey":"YOUR_API_KEY","format":"json"}
+
+payload = ""
+response = requests.request("GET", url, data=payload, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET --url 'https://qs.amberscript.com/jobs/export?jobId=JOB_ID&apiKey=YOUR_API_KEY&format=json'
+ ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "id": "5c9e45057103e464a4c6f477",
+  "recordId": "RECORD_ID",
+  "speakers": [
+    {
+      "spkid": "spk1",
+      "name": "Speaker 1"
+    },
+    {
+      "spkid": "spk2",
+      "name": "Speaker 2"
+    },
+    {
+      "spkid": "spk3",
+      "name": "Speaker 3"
+    }
+  ],
+  "segments": [
+    {
+      "speaker": "spk1",
+      "words": [
+        {
+          "text": "Goedemiddag",
+          "start": 2.11,
+          "end": 2.68,
+          "duration": null,
+          "conf": null
+        },
+        {
+          "text": "welkom",
+          "start": 2.68,
+          "end": 3.01,
+          "duration": null,
+          "conf": null
+        }
+      ]
+    },
+    {
+      "speaker": "spk2",
+      "words": [
+        {
+          "text": "Vragen",
+          "start": 4.14,
+          "end": 4.9,
+          "duration": null,
+          "conf": null
+        },
+        {
+          "text": "uur.",
+          "start": 4.98,
+          "end": 5.4,
+          "duration": null,
+          "conf": null
+        }
+      ]
+    }
+  ]
 }
 ```
+<aside class="warning">DEPRECATED</aside>
 
-This endpoint deletes a specific kitten.
+Export a finished file to several formats.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`GET /jobs/export`
 
-### URL Parameters
+### Query Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+Parameter | Default | Description/Example
+----------| ------- | -----------
+jobId | NONE | YOUR_JOB_ID
+format | NONE | `xml`, `json`, `srt`
+maxCharsPerSubtitle (OPTIONAL) | 50 | Determines the maximum number of characters per subtitle frame. A subtitle frame has two lines. (srt only)
+subtitleDurationMax (OPTIONAL) | 4500 | Determines the max duration (in milliseconds) a single subtitle frame should be shown. (srt only)
 
+## Export To STL
+
+```java
+HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/export-stl?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+  .asString();
+```
+
+```javascript
+ var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://qs.amberscript.com/jobs/export-stl',
+  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://qs.amberscript.com/jobs/export-stl"
+
+querystring = {"jobId":"JOB_ID" "apiKey":"YOUR_API_KEY"}
+
+payload = ""
+response = requests.request("GET", url, data=payload, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET --url 'https://qs.amberscript.com/jobs/export-stl?jobId=JOB_ID&apiKey=YOUR_API_KEY'
+ ```
+
+> The above command returns a JSON downloadUrl structured like this:
+
+```json
+{
+    "downloadUrl": "https://PROD-SERVER/ebu-stl/FILENAME?X-Amz-Algorithm=HASH_ALGORITHM&X-Amz-Date=CURRENT_DATE&X-Amz-SignedHeaders=host&X-Amz-Expires=TIME_TO_EXPIRATION&X-Amz-Credential=AMZ_CREDENTIAL&X-Amz-Signature=AMZ_SIGNATURE"
+}
+```
+
+Export a finished file to STL.
+
+### HTTP Request
+
+`GET /jobs/export-stl`
+
+### Query Parameters
+
+Parameter | Default | Description/Example
+----------| ------- | -----------
+jobId | NONE | YOUR_JOB_ID
+maxNumberOfRows (OPTIONAL) | 2 | Integer between `1` and `2` which sets the maximum number of rows for each subtitle.
+maxScreenTimePerRowSeconds (OPTIONAL) | 2 | Float which sets the maximum number of seconds given for each row of subtitles.
+
+## Export To SRT
+ 
+```java
+HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/export-srt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+  .asString();
+```
+
+```javascript
+ var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://qs.amberscript.com/jobs/export-srt',
+  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://qs.amberscript.com/jobs/export-srt"
+
+querystring = {"jobId":"JOB_ID" "apiKey":"YOUR_API_KEY"}
+
+payload = ""
+response = requests.request("GET", url, data=payload, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET --url 'https://qs.amberscript.com/jobs/export-srt?jobId=JOB_ID&apiKey=YOUR_API_KEY'
+ ```
+
+> The command returns SRT structured like this:
+
+```
+1
+00:00:00,449 --> 00:00:03,769
+Hi, welcome to Amber script, in this short
+
+2
+00:00:03,869 --> 00:00:07,400
+video, we would like to show you how
+you can use Amber script at its full
+
+3
+00:00:07,500 --> 00:00:10,189
+potential. The first
+function we would like to show
+
+4
+00:00:10,289 --> 00:00:13,639
+you is the edit function.
+This allows you to edit errors
+```
+
+Export a finished file to SRT.
+
+### HTTP Request
+
+`GET /jobs/export-srt`
+
+### Query Parameters
+
+Parameter | Default | Description/Example
+----------| ------- | -----------
+jobId | NONE | YOUR_JOB_ID
+maxCharsPerRow (OPTIONAL) | 42 | Integer between `30` and `45` which sets the maximum number of characters per row.
+maxNumberOfRows (OPTIONAL) | 2 | Integer between `1` and `2` which sets the maximum number of rows for each subtitle.
+maxScreenTimePerRowSeconds (OPTIONAL) | 2 | Float which sets the maximum number of seconds given for each row of subtitles.
+
+## Export To VTT
+ 
+```java
+HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/export-vtt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+  .asString();
+```
+
+```javascript
+ var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://qs.amberscript.com/jobs/export-vtt',
+  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://qs.amberscript.com/jobs/export-vtt"
+
+querystring = {"jobId":"JOB_ID" "apiKey":"YOUR_API_KEY"}
+
+payload = ""
+response = requests.request("GET", url, data=payload, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET --url 'https://qs.amberscript.com/jobs/export-vtt?jobId=JOB_ID&apiKey=YOUR_API_KEY'
+```
+
+> The command returns VTT structured like this:
+
+```
+WEBVTT - created by www.amberscript.com
+
+1
+00:00:00.449 --> 00:00:03.769
+Hi, welcome to Amber script, in this short
+
+2
+00:00:03.869 --> 00:00:07.400
+video, we would like to show you how
+you can use Amber script at its full
+
+3
+00:00:07.500 --> 00:00:10.189
+potential. The first
+function we would like to show
+
+4
+00:00:10.289 --> 00:00:13.639
+you is the edit function.
+This allows you to edit errors
+```
+
+Export a finished file to VTT.
+
+### HTTP Request
+
+`GET /jobs/export-vtt`
+
+### Query Parameters
+
+Parameter | Default | Description/Example
+----------| ------- | -----------
+jobId | NONE | YOUR_JOB_ID
+maxCharsPerRow (OPTIONAL) | 42 | Integer between `30` and `45` which sets the maximum number of characters per row.
+maxNumberOfRows (OPTIONAL) | 2 | Integer between `1` and `2` which sets the maximum number of rows for each subtitle.
+maxScreenTimePerRowSeconds (OPTIONAL) | 2 | Float which sets the maximum number of seconds given for each row of subtitles.
+
+## Export To TEXT
+ 
+```java
+HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/export-txt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+  .asString();
+```
+
+```javascript
+ var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://qs.amberscript.com/jobs/export-txt',
+  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://qs.amberscript.com/jobs/export-txt"
+
+querystring = {"jobId":"JOB_ID" "apiKey":"YOUR_API_KEY"}
+
+payload = ""
+response = requests.request("GET", url, data=payload, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET --url 'https://qs.amberscript.com/jobs/export-txt?jobId=JOB_ID&apiKey=YOUR_API_KEY'
+ ```
+
+> The command returns TXT structured like this:
+
+```
+00:00:00
+Speaker 1: Hi, welcome to Amber script, in this short video, we would like to show you how you can use Amber script at its full potential. The first function we would like to show you is the edit function. This allows you to edit errors
+```
+
+Export a finished file to TEXT.
+
+### HTTP Request
+
+`GET /jobs/export-txt`
+
+### Query Parameters
+
+Parameter | Default | Description/Example
+----------| ------- | -----------
+jobId | NONE | YOUR_JOB_ID
+includeTimestamps (OPTIONAL) | `true` | Boolean.
+includeSpeakers (OPTIONAL) | `true` | Boolean.
+highlightsOnly (OPTIONAL) | `false` | Boolean.
+maxCharsPerRow (OPTIONAL) | NONE | Integer which sets the maximum number of characters per row.
+
+## Export To JSON
+ 
+```java
+HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/export-json?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+  .asString();
+```
+
+```javascript
+ var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://qs.amberscript.com/jobs/export-json',
+  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://qs.amberscript.com/jobs/export-json"
+
+querystring = {"jobId":"JOB_ID" "apiKey":"YOUR_API_KEY"}
+
+payload = ""
+response = requests.request("GET", url, data=payload, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET --url 'https://qs.amberscript.com/jobs/export-json?jobId=JOB_ID&apiKey=YOUR_API_KEY'
+```
+
+> The command returns JSON structured like this:
+
+```json
+{
+  "id": "5c9e45057103e464a4c6f477",
+  "recordId": "RECORD_ID",
+  "filename": "FILENAME",
+  "startTimeOffset": 0.0,
+  "speakers": [
+    {
+      "spkid": "spk1",
+      "name": "Speaker 1"
+    }
+  ],
+  "segments": [
+    {
+      "speaker": "spk1",
+      "words": [
+        {
+          "start": 0.45,
+          "end": 1.08,
+          "duration": 0.63000005,
+          "text": "Hi,",
+          "conf": 1.0,
+          "pristine": true
+        },
+        {
+          "start": 1.11,
+          "end": 1.65,
+          "duration": 0.53999996,
+          "text": "welcome",
+          "conf": 1.0,
+          "pristine": true
+        },
+        {
+          "start": 1.65,
+          "end": 1.8,
+          "duration": 0.14999998,
+          "text": "to",
+          "conf": 1.0,
+          "pristine": true
+        },
+        {
+          "start": 1.8,
+          "end": 2.1,
+          "duration": 0.29999995,
+          "text": "AmberScript",
+          "conf": 0.65,
+          "pristine": true
+        }
+      ]
+    }
+  ],
+  "highlights": []
+}
+```
+
+Export a finished file to JSON.
+
+### HTTP Request
+
+`GET /jobs/export-json`
+
+### Query Parameters
+
+Parameter | Default | Description/Example
+----------| ------- | -----------
+jobId | NONE | YOUR_JOB_ID
+
+## Delete A Job
+ 
+```java
+HttpResponse<String> response = Unirest.delete("https://qs.amberscript.com/jobs?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+  .asString();
+```
+
+```javascript
+ var request = require("request");
+
+var options = { method: 'DELETE',
+  url: 'https://qs.amberscript.com/jobs',
+  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://qs.amberscript.com/jobs"
+
+querystring = {"jobId":"JOB_ID" "apiKey":"YOUR_API_KEY"}
+
+payload = ""
+response = requests.request("DELETE", url, data=payload, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request DELETE --url 'https://qs.amberscript.com/jobs?jobId=JOB_ID&apiKey=YOUR_API_KEY'
+```
+
+> The command returns JSON structured like this:
+
+```json
+{
+    "message": "Job deleted"
+}
+```
+
+Delete a specific job.
+
+### HTTP Request
+
+`DELETE /jobs`
+
+### Query Parameters
+
+Parameter | Default | Description/Example
+----------| ------- | -----------
+jobId | NONE | YOUR_JOB_ID
+
+## Get List Of Jobs
+ 
+```java
+HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs?apiKey=YOUR_API_KEY")
+  .asString();
+```
+
+```javascript
+ var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://qs.amberscript.com/jobs',
+  qs: { apiKey: 'YOUR_API_KEY' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://qs.amberscript.com/jobs"
+
+querystring = {"apiKey":"YOUR_API_KEY"}
+
+payload = ""
+response = requests.request("GET", url, data=payload, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET --url 'https://qs.amberscript.com/jobs?apiKey=YOUR_API_KEY'
+ ```
+
+> The command returns JSON structured like this:
+
+```json
+[
+    {
+        "jobId": "5f686d2d8c996402a02bbb92",
+        "created": 1600679213751,
+        "language": "nl",
+        "status": "DONE",
+        "nrAudioSeconds": 59,
+        "transcriptionType": "transcription",
+        "filename": "test.mp4",
+        "jobType": "perfect",
+        "jobOptions": {
+            "transcriptionStyle": "cleanread"
+        },
+        "notes": null
+    },
+    {
+        "jobId": "5f686d068c996402a02bbb85",
+        "created": 1600679174451,
+        "language": "nl",
+        "status": "DONE",
+        "nrAudioSeconds": 191,
+        "transcriptionType": "transcription",
+        "filename": "test.mp4",
+        "jobType": "perfect",
+        "jobOptions": {
+            "transcriptionStyle": "cleanread"
+        },
+        "notes": null
+    },
+    {
+        "jobId": "5f686d068c996402a02bbb82",
+        "created": 1600679174415,
+        "language": "nl",
+        "status": "DONE",
+        "nrAudioSeconds": 59,
+        "transcriptionType": "transcription",
+        "filename": "test.mp4",
+        "jobType": "perfect",
+        "jobOptions": {
+            "transcriptionStyle": "cleanread"
+        },
+        "notes": null
+    },
+]
+```
+
+Get a list of jobs.
+
+### HTTP Request
+
+`GET /jobs`
+
+### Query Parameters
+
+Parameter | Default | Description/Example
+----------| ------- | -----------
+jobId (OPTIONAL) | NONE | YOUR_JOB_ID
+jobType (OPTIONAL) | NONE | Type of the job e.g. `perfect`.
+status (OPTIONAL) | NONE | `OPEN`, `ERROR` or `DONE`.
+transcriptionType (OPTIONAL) | NONE | Type of transcription e.g. `transcription`.
+page (OPTIONAL) | `0` | Page to be retrieved.
+pageSize (OPTIONAL) | `20` | Number of records to be retrieved for each page (maximum: `100`).
+
+## Support
+If you need any technical assistance, feel free to contact `info (at) amberscript (dot) com`
