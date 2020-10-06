@@ -136,10 +136,11 @@ Upload a file for transcription.
 Parameter | Default | Description/Example
 ----------| ------- | -----------
 language | `en` | `nl`, `en`, `de`, `fr`, `da`, `sv`, `fi`, `no`, `es`, `it`, `pt`
-transcriptionType | NONE | `transcription`, `translation`
-jobType   | NONE | `perfect`, `direct`
-numberOfSpeakers | NONE | `1`, `2`, `3`, `4`, `5`
+transcriptionType | `transcription` | `transcription`, `translation`
+jobType   | `direct` | `perfect`, `direct`
+numberOfSpeakers | `2` | `1`, `2`, `3`, `4`, `5`
 callbackUrl (OPTIONAL)| NONE | `YOUR_CALLBACK_URL`
+transcriptionStyle (OPTIONAL) | `cleanread` | `cleanread`, `verbatim`
 
 ### Uploading With `callbackUrl`
 
@@ -348,7 +349,7 @@ Export a finished file to several formats.
 Parameter | Default | Description/Example
 ----------| ------- | -----------
 jobId | NONE | YOUR_JOB_ID
-format | NONE | `xml`, `json`, `srt`
+format | `json` | `xml`, `json`, `srt`
 maxCharsPerSubtitle (OPTIONAL) | 50 | Determines the maximum number of characters per subtitle frame. A subtitle frame has two lines. (srt only)
 subtitleDurationMax (OPTIONAL) | 4500 | Determines the max duration (in milliseconds) a single subtitle frame should be shown. (srt only)
 
