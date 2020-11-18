@@ -44,7 +44,7 @@ When you [upload](#uploading-a-file) a file, our transcribers or automatic speec
 ## Uploading A File
 
 ```java
-HttpResponse<String> response = Unirest.post("https://qs.amberscript.com/jobs/upload-media?transcriptionType=transcription&jobType=direct&language=nl&apiKey={{YOUR_API_KEY}}")
+HttpResponse<String> response = Unirest.post("https://api.amberscript.com/api/jobs/upload-media?transcriptionType=transcription&jobType=direct&language=nl&apiKey={{YOUR_API_KEY}}")
   .asString();
 ```
 
@@ -54,7 +54,7 @@ const fs = require('fs');
 
 let options = {
   method: 'POST',
-  url: 'https://qs.amberscript.com/jobs/upload-media',
+  url: 'https://api.amberscript.com/api/jobs/upload-media',
   qs: {
     apiKey: 'YOUR_API_KEY',
     transcriptionType: 'transcription',
@@ -76,7 +76,7 @@ request(options, function (error, response, body) {
 ```python
 import requests
 
-url = 'https://qs.amberscript.com/jobs/upload-media'
+url = 'https://api.amberscript.com/api/jobs/upload-media'
 filepath = '/Users/userA/Downloads/my-file.mp3'
 querystring = {"jobType":"direct","language":"nl","transcriptionType":"transcription","apiKey":"YOUR_API_KEY"}
 files = {'file': open(filepath, 'rb')}
@@ -88,7 +88,7 @@ print(response.text)
 ```
 
 ```shell
-curl --request POST --url 'https://qs.amberscript.com/jobs/upload-media?transcriptionType=transcription&jobType=direct&language=nl&apiKey={{YOUR_API_KEY}}' --form file=@./my-file.mp3
+curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media?transcriptionType=transcription&jobType=direct&language=nl&apiKey={{YOUR_API_KEY}}' --form file=@./my-file.mp3
 ```
 
 > Example A: POST request sent when you specify a `callbackUrl`:
@@ -172,7 +172,7 @@ _If you need support for a different file format, please get in touch with us: i
 ## Getting The Status Of A Transcription
 
 ```java
-HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/status?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/status?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -180,7 +180,7 @@ HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/sta
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://qs.amberscript.com/jobs/status',
+  url: 'https://api.amberscript.com/api/jobs/status',
   qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' } };
 
 request(options, function (error, response, body) {
@@ -193,7 +193,7 @@ request(options, function (error, response, body) {
 ```python
 import requests
 
-url = "https://qs.amberscript.com/jobs/status"
+url = "https://api.amberscript.com/api/jobs/status"
 
 querystring = {"jobId":"JOB_ID","apiKey":"YOUR_API_KEY"}
 
@@ -204,7 +204,7 @@ print(response.text)
 ```
 
 ```shell
-curl --request GET --url 'https://qs.amberscript.com/jobs/status?jobId=JOB_ID&apiKey=YOUR_API_KEY'
+curl --request GET --url 'https://api.amberscript.com/api/jobs/status?jobId=JOB_ID&apiKey=YOUR_API_KEY'
 ```
 
 > The above command returns JSON structured like this:
@@ -239,7 +239,7 @@ jobId | NONE | YOUR_JOB_ID
 ## Exporting A Finished File
 
 ```java
-HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/status?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/status?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -247,7 +247,7 @@ HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/sta
  var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://qs.amberscript.com/jobs/export',
+  url: 'https://api.amberscript.com/api/jobs/export',
   qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY', format: 'json' } };
 
 request(options, function (error, response, body) {
@@ -260,7 +260,7 @@ request(options, function (error, response, body) {
 ```python
 import requests
 
-url = "https://qs.amberscript.com/jobs/export"
+url = "https://api.amberscript.com/api/jobs/export"
 
 querystring = {"jobId":"JOB_ID","apiKey":"YOUR_API_KEY","format":"json"}
 
@@ -271,7 +271,7 @@ print(response.text)
 ```
 
 ```shell
-curl --request GET --url 'https://qs.amberscript.com/jobs/export?jobId=JOB_ID&apiKey=YOUR_API_KEY&format=json'
+curl --request GET --url 'https://api.amberscript.com/api/jobs/export?jobId=JOB_ID&apiKey=YOUR_API_KEY&format=json'
  ```
 
 > The above command returns JSON structured like this:
@@ -356,7 +356,7 @@ subtitleDurationMax (OPTIONAL) | 4500 | Determines the max duration (in millisec
 ## Export To STL
 
 ```java
-HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/export-stl?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-stl?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -364,7 +364,7 @@ HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/exp
  var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://qs.amberscript.com/jobs/export-stl',
+  url: 'https://api.amberscript.com/api/jobs/export-stl',
   qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
 
 request(options, function (error, response, body) {
@@ -377,7 +377,7 @@ request(options, function (error, response, body) {
 ```python
 import requests
 
-url = "https://qs.amberscript.com/jobs/export-stl"
+url = "https://api.amberscript.com/api/jobs/export-stl"
 
 querystring = {"jobId":"JOB_ID" "apiKey":"YOUR_API_KEY"}
 
@@ -388,7 +388,7 @@ print(response.text)
 ```
 
 ```shell
-curl --request GET --url 'https://qs.amberscript.com/jobs/export-stl?jobId=JOB_ID&apiKey=YOUR_API_KEY'
+curl --request GET --url 'https://api.amberscript.com/api/jobs/export-stl?jobId=JOB_ID&apiKey=YOUR_API_KEY'
  ```
 
 > The above command returns a JSON downloadUrl structured like this:
@@ -416,7 +416,7 @@ maxScreenTimePerRowSeconds (OPTIONAL) | 2 | Float which sets the maximum number 
 ## Export To SRT
  
 ```java
-HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/export-srt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-srt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -424,7 +424,7 @@ HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/exp
  var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://qs.amberscript.com/jobs/export-srt',
+  url: 'https://api.amberscript.com/api/jobs/export-srt',
   qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
 
 request(options, function (error, response, body) {
@@ -437,7 +437,7 @@ request(options, function (error, response, body) {
 ```python
 import requests
 
-url = "https://qs.amberscript.com/jobs/export-srt"
+url = "https://api.amberscript.com/api/jobs/export-srt"
 
 querystring = {"jobId":"JOB_ID" "apiKey":"YOUR_API_KEY"}
 
@@ -448,7 +448,7 @@ print(response.text)
 ```
 
 ```shell
-curl --request GET --url 'https://qs.amberscript.com/jobs/export-srt?jobId=JOB_ID&apiKey=YOUR_API_KEY'
+curl --request GET --url 'https://api.amberscript.com/api/jobs/export-srt?jobId=JOB_ID&apiKey=YOUR_API_KEY'
  ```
 
 > The command returns SRT structured like this:
@@ -492,7 +492,7 @@ maxScreenTimePerRowSeconds (OPTIONAL) | 2 | Float which sets the maximum number 
 ## Export To VTT
  
 ```java
-HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/export-vtt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-vtt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -500,7 +500,7 @@ HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/exp
  var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://qs.amberscript.com/jobs/export-vtt',
+  url: 'https://api.amberscript.com/api/jobs/export-vtt',
   qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
 
 request(options, function (error, response, body) {
@@ -513,7 +513,7 @@ request(options, function (error, response, body) {
 ```python
 import requests
 
-url = "https://qs.amberscript.com/jobs/export-vtt"
+url = "https://api.amberscript.com/api/jobs/export-vtt"
 
 querystring = {"jobId":"JOB_ID" "apiKey":"YOUR_API_KEY"}
 
@@ -524,7 +524,7 @@ print(response.text)
 ```
 
 ```shell
-curl --request GET --url 'https://qs.amberscript.com/jobs/export-vtt?jobId=JOB_ID&apiKey=YOUR_API_KEY'
+curl --request GET --url 'https://api.amberscript.com/api/jobs/export-vtt?jobId=JOB_ID&apiKey=YOUR_API_KEY'
 ```
 
 > The command returns VTT structured like this:
@@ -570,7 +570,7 @@ maxScreenTimePerRowSeconds (OPTIONAL) | 2 | Float which sets the maximum number 
 ## Export To TEXT
  
 ```java
-HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/export-txt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-txt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -578,7 +578,7 @@ HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/exp
  var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://qs.amberscript.com/jobs/export-txt',
+  url: 'https://api.amberscript.com/api/jobs/export-txt',
   qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
 
 request(options, function (error, response, body) {
@@ -591,7 +591,7 @@ request(options, function (error, response, body) {
 ```python
 import requests
 
-url = "https://qs.amberscript.com/jobs/export-txt"
+url = "https://api.amberscript.com/api/jobs/export-txt"
 
 querystring = {"jobId":"JOB_ID" "apiKey":"YOUR_API_KEY"}
 
@@ -602,7 +602,7 @@ print(response.text)
 ```
 
 ```shell
-curl --request GET --url 'https://qs.amberscript.com/jobs/export-txt?jobId=JOB_ID&apiKey=YOUR_API_KEY'
+curl --request GET --url 'https://api.amberscript.com/api/jobs/export-txt?jobId=JOB_ID&apiKey=YOUR_API_KEY'
  ```
 
 > The command returns TXT structured like this:
@@ -631,7 +631,7 @@ maxCharsPerRow (OPTIONAL) | NONE | Integer which sets the maximum number of char
 ## Export To JSON
  
 ```java
-HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/export-json?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-json?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -639,7 +639,7 @@ HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs/exp
  var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://qs.amberscript.com/jobs/export-json',
+  url: 'https://api.amberscript.com/api/jobs/export-json',
   qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
 
 request(options, function (error, response, body) {
@@ -652,7 +652,7 @@ request(options, function (error, response, body) {
 ```python
 import requests
 
-url = "https://qs.amberscript.com/jobs/export-json"
+url = "https://api.amberscript.com/api/jobs/export-json"
 
 querystring = {"jobId":"JOB_ID" "apiKey":"YOUR_API_KEY"}
 
@@ -663,7 +663,7 @@ print(response.text)
 ```
 
 ```shell
-curl --request GET --url 'https://qs.amberscript.com/jobs/export-json?jobId=JOB_ID&apiKey=YOUR_API_KEY'
+curl --request GET --url 'https://api.amberscript.com/api/jobs/export-json?jobId=JOB_ID&apiKey=YOUR_API_KEY'
 ```
 
 > The command returns JSON structured like this:
@@ -738,7 +738,7 @@ jobId | NONE | YOUR_JOB_ID
 ## Delete A Job
  
 ```java
-HttpResponse<String> response = Unirest.delete("https://qs.amberscript.com/jobs?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response = Unirest.delete("https://api.amberscript.com/api/jobs?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -746,7 +746,7 @@ HttpResponse<String> response = Unirest.delete("https://qs.amberscript.com/jobs?
  var request = require("request");
 
 var options = { method: 'DELETE',
-  url: 'https://qs.amberscript.com/jobs',
+  url: 'https://api.amberscript.com/api/jobs',
   qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
 
 request(options, function (error, response, body) {
@@ -759,7 +759,7 @@ request(options, function (error, response, body) {
 ```python
 import requests
 
-url = "https://qs.amberscript.com/jobs"
+url = "https://api.amberscript.com/api/jobs"
 
 querystring = {"jobId":"JOB_ID" "apiKey":"YOUR_API_KEY"}
 
@@ -770,7 +770,7 @@ print(response.text)
 ```
 
 ```shell
-curl --request DELETE --url 'https://qs.amberscript.com/jobs?jobId=JOB_ID&apiKey=YOUR_API_KEY'
+curl --request DELETE --url 'https://api.amberscript.com/api/jobs?jobId=JOB_ID&apiKey=YOUR_API_KEY'
 ```
 
 > The command returns JSON structured like this:
@@ -796,7 +796,7 @@ jobId | NONE | YOUR_JOB_ID
 ## Get List Of Jobs
  
 ```java
-HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs?apiKey=YOUR_API_KEY")
+HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs?apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -804,7 +804,7 @@ HttpResponse<String> response = Unirest.get("https://qs.amberscript.com/jobs?api
  var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://qs.amberscript.com/jobs',
+  url: 'https://api.amberscript.com/api/jobs',
   qs: { apiKey: 'YOUR_API_KEY' };
 
 request(options, function (error, response, body) {
@@ -817,7 +817,7 @@ request(options, function (error, response, body) {
 ```python
 import requests
 
-url = "https://qs.amberscript.com/jobs"
+url = "https://api.amberscript.com/api/jobs"
 
 querystring = {"apiKey":"YOUR_API_KEY"}
 
@@ -828,7 +828,7 @@ print(response.text)
 ```
 
 ```shell
-curl --request GET --url 'https://qs.amberscript.com/jobs?apiKey=YOUR_API_KEY'
+curl --request GET --url 'https://api.amberscript.com/api/jobs?apiKey=YOUR_API_KEY'
  ```
 
 > The command returns JSON structured like this:
