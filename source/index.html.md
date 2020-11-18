@@ -9,7 +9,6 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='https://www.amberscript.com/en/speech-to-text-api'>Sign Up for our Transcription API</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors

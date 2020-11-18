@@ -16,7 +16,8 @@ $ git commit -m "Update documentation"
 $ git push
 ```
 
-- Deploy the changes by running `deploy.sh` in the top level directory `api-docs`.
+- All changes to `master` branch are automatically deployed using Github Actions. No further action needed!
+- If you want to deploy another branch manually, run this locally:
 ```
 $ ./deploy.sh
 ```
