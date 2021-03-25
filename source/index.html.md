@@ -135,7 +135,7 @@ Upload a file for transcription.
 Parameter | Default | Description/Example
 ----------| ------- | -----------
 language | `en` | `nl`, `en`, `de`, `fr`, `lt`, `da`, `fi`, `sv`, `es`, `pt`, `ru`, `el`, `bg`, `no`, `ro`, `it`, `tr`, `hu`, `pl`, `hi`, `ar`, `ja`, `ko`, `ca`, `sk`, `sl`, `cmn`, `cs`, `hr`, `lv`, `ms`
-transcriptionType | `transcription` | `transcription`, `translation`
+transcriptionType | `transcription` | `transcription`, `captions`
 jobType   | `direct` | `perfect`, `direct`
 numberOfSpeakers | `2` | `1`, `2`, `3`, `4`, `5`
 callbackUrl (OPTIONAL)| NONE | `YOUR_CALLBACK_URL`
