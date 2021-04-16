@@ -140,6 +140,7 @@ jobType   | `direct` | `perfect`, `direct`
 numberOfSpeakers | `2` | `1`, `2`, `3`, `4`, `5`
 callbackUrl (OPTIONAL)| NONE | `YOUR_CALLBACK_URL`
 transcriptionStyle (OPTIONAL) | `cleanread` | `cleanread`, `verbatim`
+turnaroundTime (OPTIONAL) | `FIVE_DAYS` | `ONE_DAY`, `TWO_DAYS`, `THREE_DAYS`, `FOUR_DAYS`, `FIVE_DAYS`, `SIX_DAYS`, `SEVEN_DAYS`, `EIGHT_DAYS`, `NINE_DAYS`, `TEN_DAYS` Hint: Get in touch if you need a turnaround time other than the default one.
 
 ### Uploading With `callbackUrl`
 
