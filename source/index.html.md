@@ -47,6 +47,7 @@ When you [upload](#uploading-a-file) a file, our transcribers or automatic speec
 | ------------- | ------------- |
 | Arabic  | ar  |
 | Bulgarian | bg  |
+| Catalan | ca |
 | Chinese (Mandarin) | cmn  |
 | Croatian | hr  |
 | Czech | cs  |
