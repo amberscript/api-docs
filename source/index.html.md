@@ -34,11 +34,48 @@ When you [upload](#uploading-a-file) a file, our transcribers or automatic speec
     Valid job status values: OPEN, ERROR, DONE
 </aside>
 
+
 ## Authentication
 
 <aside class="notice">
     Remember to authenticate requests by providing the <code>apiKey</code> as a query parameter.
 </aside>
+
+## Language Codes
+
+| Language  | Code |
+| ------------- | ------------- |
+| Arabic  | ar  |
+| Bulgarian | bg  |
+| Chinese (Mandarin) | cmn  |
+| Croatian | hr  |
+| Czech | cs  |
+| Danish | da  |
+| Dutch | nl  |
+| English (all accents) | en  |
+| Finnish | fi  |
+| French | fr  |
+| German | de  |
+| Greek | el |
+| Hindi | hi |
+| Hungarian | hu |
+| Italian | it |
+| Japanese | ja |
+| Korean | ko |
+| Latvian | lv |
+| Lithuanian | lt |
+| Malay | ms |
+| Norwegian |no|
+| Polish | pl |
+| Portuguese | pt |
+| Romanian | ro |
+| Russian | ru |
+| Slovakian | sk |
+| Slovenian | sl |
+| Spanish | es |
+| Swedish | sv |
+| Turkish | tr |
+
 
 ## Uploading A File
 
