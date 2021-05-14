@@ -43,39 +43,92 @@ When you [upload](#uploading-a-file) a file, our transcribers or automatic speec
 
 ## Language Codes
 
-| Language  | Code |
-| ------------- | ------------- |
-| Arabic  | ar  |
-| Bulgarian | bg  |
-| Catalan | ca |
-| Chinese (Mandarin) | cmn  |
-| Croatian | hr  |
-| Czech | cs  |
-| Danish | da  |
-| Dutch | nl  |
-| English (all accents) | en  |
-| Finnish | fi  |
-| French | fr  |
-| German | de  |
-| Greek | el |
-| Hindi | hi |
-| Hungarian | hu |
-| Italian | it |
-| Japanese | ja |
-| Korean | ko |
-| Latvian | lv |
-| Lithuanian | lt |
-| Malay | ms |
-| Norwegian |no|
-| Polish | pl |
-| Portuguese | pt |
-| Romanian | ro |
-| Russian | ru |
-| Slovakian | sk |
-| Slovenian | sl |
-| Spanish | es |
-| Swedish | sv |
-| Turkish | tr |
+| Language                 | Code       |
+| ------------------------ | ---------- |
+| Afrikaans                | af-za      |
+| Albanian                 | sq-al      |
+| Amharic                  | am-et      |
+| Arabic                   | ar         |
+| Armenian                 | hy-am      |
+| Azerbaijani              | az-az      |
+| Bahasa Indonesia         | id-id      |
+| Basque                   | eu-es      |
+| Bengali (Bangladesh)     | bn-bd      |
+| Bengali (India)          | bn-in      |
+| Bosnian                  | bs-ba      |
+| Bulgarian                | bg         |
+| Burmese                  | my-mm      |
+| Catalan                  | ca         |
+| Chinese (Mandarin)       | cmn        |
+| Croatian                 | hr         |
+| Czech                    | cs         |
+| Danish                   | da         |
+| Dutch                    | nl         |
+| English (Australia)      | en-au      |
+| English (United Kingdom) | en-uk      |
+| English (all accents)    | en         |
+| Estonian                 | et-ee      |
+| Farsi (Iran)             | fa-ir      |
+| Filipino                 | fil-ph     |
+| Finnish                  | fi         |
+| Flemish                  | nl-be      |
+| French (Canada)          | fr-ca      |
+| French                   | fr         |
+| Galician                 | gl-es      |
+| Georgian                 | ka-ge      |
+| German (Austria)         | de-at      |
+| German (Switzerland)     | de-ch      |
+| German                   | de         |
+| Greek                    | el         |
+| Gujarati                 | gu-in      |
+| Hebrew                   | iw-il      |
+| Hindi                    | hi         |
+| Hungarian                | hu         |
+| Icelandic                | is-is      |
+| Italian                  | it         |
+| Japanese                 | ja         |
+| Javanese                 | jv-id      |
+| Kannada                  | kn-in      |
+| Khmer                    | km-kh      |
+| Korean                   | ko         |
+| Lao                      | lo-la      |
+| Latvian                  | lv         |
+| Lithuanian               | lt         |
+| Macedonian               | mk-mk      |
+| Malay                    | ms         |
+| Malayalam                | ml-in      |
+| Marathi                  | mr-in      |
+| Mongolian                | mn-mn      |
+| Nepali (Nepal)           | ne-np      |
+| Norwegian                | no         |
+| Polish                   | pl         |
+| Portuguese (Brazil)      | pt-br      |
+| Portuguese               | pt         |
+| Punjabi                  | pa-guru-in |
+| Romanian                 | ro         |
+| Russian                  | ru         |
+| Serbian                  | sr-rs      |
+| Sinhala                  | si-lk      |
+| Slovakian                | sk         |
+| Slovenian                | sl         |
+| Spanish                  | es         |
+| Sundanese                | su-id      |
+| Swahili (Kenya)          | sw-ke      |
+| Swahili (Tanzania)       | sw-tz      |
+| Swedish                  | sv         |
+| Tamil (India)            | ta-in      |
+| Tamil (Malaysia)         | ta-my      |
+| Tamil (Singapore)        | ta-sg      |
+| Tamil (Sri Lanka)        | ta-lk      |
+| Telugu                   | te-in      |
+| Thai                     | th-th      |
+| Turkish                  | tr         |
+| Ukrainian                | uk-ua      |
+| Urdu (India)             | ur-in      |
+| Urdu (Pakistan)          | ur-pk      |
+| Uzbek                    | uz-uz      |
+| Vietnamese               | vi-vn      |
+| Zulu                     | zu-za      |
 
 
 ## Uploading A File
@@ -172,7 +225,7 @@ Upload a file for transcription.
 
 Parameter | Default | Description/Example
 ----------| ------- | -----------
-language | `en` | `nl`, `en`, `de`, `fr`, `lt`, `da`, `fi`, `sv`, `es`, `pt`, `ru`, `el`, `bg`, `no`, `ro`, `it`, `tr`, `hu`, `pl`, `hi`, `ar`, `ja`, `ko`, `ca`, `sk`, `sl`, `cmn`, `cs`, `hr`, `lv`, `ms`
+language | `en` | `af-za`, `sq-al`, `am-et`, `ar`, `hy-am`, `az-az`, `id-id`, `eu-es`, `bn-bd`, `bn-in`, `bs-ba`, `bg`, `my-mm`, `ca`, `cmn`, `hr`, `cs`, `da`, `nl`, `en-au`, `en-uk`, `en`, `et-ee`, `fa-ir`, `fil-ph`, `fi`, `nl-be`, `fr-ca`, `fr`, `gl-es`, `ka-ge`, `de-at`, `de-ch`, `de`, `el`, `gu-in`, `iw-il`, `hi`, `hu`, `is-is`, `it`, `ja`, `jv-id`, `kn-in`, `km-kh`, `ko`, `lo-la`, `lv`, `lt`, `mk-mk`, `ms`, `ml-in`, `mr-in`, `mn-mn`, `ne-np`, `no`, `pl`, `pt-br`, `pt`, `pa-guru-in`, `ro`, `ru`, `sr-rs`, `si-lk`, `sk`, `sl`, `es`, `su-id`, `sw-ke`, `sw-tz`, `sv`, `ta-in`, `ta-my`, `ta-sg`, `ta-lk`, `te-in`, `th-th`, `tr`, `uk-ua`, `ur-in`, `ur-pk`, `uz-uz`, `vi-vn`, `zu-za`
 transcriptionType | `transcription` | `transcription`, `captions`
 jobType   | `direct` | `perfect`, `direct`
 numberOfSpeakers | `2` | `1`, `2`, `3`, `4`, `5`
