@@ -254,7 +254,7 @@ turnaroundTime (OPTIONAL) | `FIVE_DAYS` | `ONE_DAY`, `TWO_DAYS`, `THREE_DAYS`, `
    - `status` can either be `OPEN`, `DONE` or `ERROR`.
 
 ### File requirements:
-- max 4GB
+- max 6GB
 - audio or video file
 - supported formats: wav, mp3, m4a, aac, wma, mov, m4v, mp4, opus, ogg, flac
 
