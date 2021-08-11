@@ -1,5 +1,5 @@
 ---
-title: AmberScript Transcription API
+title: Amberscript Transcription API
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript: NodeJS
@@ -20,7 +20,7 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to AmberScript's Transcription API!
+Welcome to Amberscript's Transcription API
 
 We will provide you with an `API_KEY` required to access our endpoints.
 
@@ -803,7 +803,7 @@ curl --request GET --url 'https://api.amberscript.com/api/jobs/export-json?jobId
           "start": 1.8,
           "end": 2.1,
           "duration": 0.29999995,
-          "text": "AmberScript",
+          "text": "Amberscript",
           "conf": 0.65,
           "pristine": true
         }
