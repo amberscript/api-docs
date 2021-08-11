@@ -1,6 +1,6 @@
-# AmberScript Transcription API Documentation
+# Amberscript Transcription API Documentation
 
-This repository contains the documentation for the AmberScript Transcription API
+This repository contains the documentation for the Amberscript Transcription API
 
 This website is powered by [slate](https://github.com/slatedocs/slate).
 
