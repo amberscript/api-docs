@@ -20,11 +20,16 @@ code_clipboard: true
 
 # Introduction
 
+Automatic transcripts and subtitles are usually ready within an hour, manually perfected ones take more time, dependent on the delivery time chosen.
+Indicate jobType ‘direct’ for automatic and ‘jobType’ perfect for manual jobs
+You can check the status of a job using the status endpoint.
+When the status is DONE, a job is finished and you can download the file using our export endpoints.
+
 Welcome to Amberscript's Transcription API
 
 We will provide you with an `API_KEY` required to access our endpoints.
 
-When you [upload](#uploading-a-file) a file, our transcribers or automatic speech recognition platform will get to work and create a transcription.
+When you [upload](#uploading-a-file) a file, our transcribers or automatic speech recognition engines will get to work and create a transcript or subtitles.
 
 * Direct transcriptions are usually ready within an hour, perfect ones within 5 business days.
 * You can check the status of a job using the [status](#getting-the-status-of-a-transcription) endpoint.
