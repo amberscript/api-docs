@@ -264,7 +264,7 @@ targetLanguage (OPTIONAL) | NONE | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`,
 
 _If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com_
 
-## Requesting for translated subtitles
+## Request for translated subtitles for an existing manual captions job
 
 ```java
 HttpResponse<String> response = Unirest.post("https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=SOURCE_JOB_ID&targetLanguage=nl&apiKey=YOUR_API_KEY")
@@ -320,7 +320,7 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/translatedSubtit
 }
 ```
 
-Request for translated subtitles for uploaded file.
+Request for translated subtitles with uploaded file.
 
 ### HTTP Request
 
