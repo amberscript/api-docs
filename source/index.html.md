@@ -320,7 +320,7 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/translatedSubtit
 }
 ```
 
-Request for translated subtitles with uploaded file.
+Request for translated subtitles with uploaded file. Note that this service is to be used in case a file has already been uploaded to the platform (hence a source job_id already exists).
 
 ### HTTP Request
 
@@ -402,6 +402,10 @@ Retrieve the status of a specific job.
 Parameter | Default | Description/Example
 ----------| ------- | -----------
 jobId | NONE | YOUR_JOB_ID
+
+### Errors while processing
+
+It could be that processing of a file failed. Potential reasons for this issue are the lack of audio in a file, corrupted file formats, unrecognisable audio and more. If an error occurred while processing a file, the status field will show `ERROR` and an `errorMsg` field will be added to the response. The `errorMsg` field will highlight the issue that occurred while processing the file.
 
 ## Exporting A Finished File
 
