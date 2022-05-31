@@ -194,7 +194,8 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media?tra
     "jobType": "direct",
     "nrAudioSeconds": 0,
     "transcriptionType": "transcription",
-    "filename": "FILE_NAME"
+    "filename": "FILE_NAME",
+    "sourceJobId": "sourceJobId" // OPTIONAL, translatedSubtitles only
   }
 }
 ```
@@ -211,7 +212,8 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media?tra
     "jobType": "direct",
     "nrAudioSeconds": 0,
     "transcriptionType": "transcription",
-    "filename": "FILE_NAME"
+    "filename": "FILE_NAME",
+    "sourceJobId": "sourceJobId" // OPTIONAL, translatedSubtitles only
   }
 }
 ```
@@ -227,12 +229,13 @@ Upload a file for transcription.
 Parameter | Default | Description/Example
 ----------| ------- | -----------
 language | `en` | `af-za`, `sq-al`, `am-et`, `ar`, `hy-am`, `az-az`, `id-id`, `eu-es`, `bn-bd`, `bn-in`, `bs-ba`, `bg`, `my-mm`, `ca`, `cmn`, `hr`, `cs`, `da`, `nl`, `en-au`, `en-uk`, `en`, `et-ee`, `fa-ir`, `fil-ph`, `fi`, `nl-be`, `fr-ca`, `fr`, `gl-es`, `ka-ge`, `de-at`, `de-ch`, `de`, `el`, `gu-in`, `iw-il`, `hi`, `hu`, `is-is`, `it`, `ja`, `jv-id`, `kn-in`, `km-kh`, `ko`, `lo-la`, `lv`, `lt`, `mk-mk`, `ms`, `ml-in`, `mr-in`, `mn-mn`, `ne-np`, `no`, `pl`, `pt-br`, `pt`, `pa-guru-in`, `ro`, `ru`, `sr-rs`, `si-lk`, `sk`, `sl`, `es`, `su-id`, `sw-ke`, `sw-tz`, `sv`, `ta-in`, `ta-my`, `ta-sg`, `ta-lk`, `te-in`, `th-th`, `tr`, `uk-ua`, `ur-in`, `ur-pk`, `uz-uz`, `vi-vn`, `zu-za`
-transcriptionType | `transcription` | `transcription`, `captions`
+transcriptionType | `transcription` | `transcription`, `captions`, `translatedSubtitles`
 jobType   | `direct` | `perfect`, `direct`
 numberOfSpeakers | `2` | `1`, `2`, `3`, `4`, `5`
 callbackUrl (OPTIONAL)| NONE | `YOUR_CALLBACK_URL`
 transcriptionStyle (OPTIONAL) | `cleanread` | `cleanread`, `verbatim`
-turnaroundTime (OPTIONAL) | `FIVE_DAYS` | `ONE_DAY`, `TWO_DAYS`, `THREE_DAYS`, `FOUR_DAYS`, `FIVE_DAYS`, `SIX_DAYS`, `SEVEN_DAYS`, `EIGHT_DAYS`, `NINE_DAYS`, `TEN_DAYS` Hint: Get in touch if you need a turnaround time other than the default one.
+turnaroundTime (OPTIONAL) | `FIVE_DAYS` - `transcription`/`captions`, `EIGHT_DAYS` - `translatedSubtitles` | `ONE_DAY`, `TWO_DAYS`, `THREE_DAYS`, `FOUR_DAYS`, `FIVE_DAYS`, `SIX_DAYS`, `SEVEN_DAYS`, `EIGHT_DAYS`, `NINE_DAYS`, `TEN_DAYS` Hint: Get in touch if you need a turnaround time other than the default one.
+targetLanguage (OPTIONAL) | NONE | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`
 
 ### Uploading With `callbackUrl`
 
@@ -260,6 +263,77 @@ turnaroundTime (OPTIONAL) | `FIVE_DAYS` | `ONE_DAY`, `TWO_DAYS`, `THREE_DAYS`, `
 - supported formats: wav, mp3, m4a, aac, wma, mov, m4v, mp4, opus, ogg, flac
 
 _If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com_
+
+## Request for translated subtitles for an existing manual captions job
+
+```java
+HttpResponse<String> response = Unirest.post("https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=SOURCE_JOB_ID&targetLanguage=nl&apiKey=YOUR_API_KEY")
+  .asString();
+```
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://api.amberscript.com/api/jobs/translatedSubtitles',
+  qs: { sourceJobId: 'SOURCE_JOB_ID', targetLanguage: 'nl', apiKey: 'YOUR_API_KEY' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://api.amberscript.com/api/jobs/translatedSubtitles"
+
+querystring = {"sourceJobId":"SOURCE_JOB_ID","targetLanguage":"nl","apiKey":"YOUR_API_KEY"}
+
+payload = ""
+response = requests.request("POST", url, data=payload, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request POST --url 'https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=SOURCE_JOB_ID&targetLanguage=nl&apiKey=YOUR_API_KEY'
+ ```
+
+> The command returns JSON structured like this:
+
+```json
+{
+  "jobStatus": {
+    "jobId": "{{JOB_ID}}",
+    "created": 1553871202831,
+    "language": "nl",
+    "status": "OPEN",
+    "jobType": "perfect",
+    "nrAudioSeconds": 0,
+    "transcriptionType": "translatedSubtitles",
+    "filename": "FILE_NAME",
+    "sourceJobId": "sourceJobId"
+  }
+}
+```
+
+Request for translated subtitles with uploaded file.
+
+### HTTP Request
+
+`POST /jobs/translatedSubtitles`
+
+### Query Parameters
+
+Parameter | Default | Description/Example
+----------| ------- | -----------
+sourceJobId | NONE | `SOURCE_JOB_ID`
+targetLanguage | | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`
+turnaroundTime (OPTIONAL) | `EIGHT_DAYS` | `ONE_DAY`, `TWO_DAYS`, `THREE_DAYS`, `FOUR_DAYS`, `FIVE_DAYS`, `SIX_DAYS`, `SEVEN_DAYS`, `EIGHT_DAYS`, `NINE_DAYS`, `TEN_DAYS` Hint: Get in touch if you need a turnaround time other than the default one.
+callbackUrl (OPTIONAL)| NONE | `YOUR_CALLBACK_URL`
 
 ## Getting The Status Of A Transcription
 
@@ -311,7 +385,8 @@ curl --request GET --url 'https://api.amberscript.com/api/jobs/status?jobId=JOB_
     "jobType": "perfect",
     "nrAudioSeconds": 0,
     "transcriptionType": "transcription",
-    "filename": "FILE_NAME"
+    "filename": "FILE_NAME",
+    "sourceJobId": "sourceJobId" // OPTIONAL, translatedSubtitles only
   }
 }
 ```
