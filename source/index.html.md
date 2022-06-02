@@ -191,15 +191,15 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media?tra
 ```json
 {
   "jobStatus": {
-    "jobId": "{{JOB_ID}}",
-    "created": "{creation-timestamp}",
+    "jobId": "JOB_ID",
+    "created": 82800000,
     "language": "en",
     "status": "OPEN",
     "nrAudioSeconds": 45,
     "transcriptionType": "translatedSubtitles",
-    "filename": "{{filename-of-your-upload}}",
-    "jobType": "direct",
-    "sourceJobId": "{{jobIdFromParams}}" // only present for translated subtitles jobs.
+    "filename": "file_name.mp3",
+    "jobType": "perfect",
+    "sourceJobId": "SOURCE_JOB_ID" // only present for translated subtitles jobs.
   }
 }
 ```
@@ -245,15 +245,15 @@ with an ERROR status, and the content of the callback will look like this:
 
 ```json
 {
-  "jobId": "{jobId}",
-  "created": "{timestampCreation}",
-  "language": "{selectedLanguage}",
+  "jobId": "JOB_ID",
+  "created": 82800000,
+  "language": "nl",
   "status": "ERROR",
-  "nrAudioSeconds": "{lengthOfFile}",
-  "transcriptionType": "{requestedTranscriptionType}",
-  "filename": "{nameOfFileYouUploaded}",
-  "jobType": "{requestedJobType}",
-  "errorMsg": "{reasonForFailure}"
+  "nrAudioSeconds": 45,
+  "transcriptionType": "transcription",
+  "filename": "file_name.mp3",
+  "jobType": "direct",
+  "errorMsg": "No speech found"
 }
 ```
 
@@ -261,14 +261,14 @@ Otherwise, you will get a callback informing you that your job was successfully 
 
 ```json
 {
-  "jobId": "{jobId}",
-  "created": "{timestampCreation}",
-  "language": "{selectedLanguage}",
+  "jobId": "JOB_ID",
+  "created": 82800000,
+  "language": "nl",
   "status": "DONE",
-  "nrAudioSeconds": "{lengthOfFile}",
-  "transcriptionType": "{requestedTranscriptionType}",
-  "filename": "{nameOfFileYouUploaded}",
-  "jobType": "{requestedJobType}"
+  "nrAudioSeconds": 45,
+  "transcriptionType": "captions",
+  "filename": "file_name.mp3",
+  "jobType": "direct"
 }
 ```
 
@@ -334,15 +334,15 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/translatedSubtit
 ```json
 {
   "jobStatus": {
-    "jobId": "{{JOB_ID}}",
-    "created": "{creation-timestamp}",
+    "jobId": "JOB_ID",
+    "created": 82800000,
     "language": "en",
-    "status": "OPEN",
+    "status": "BUSY",
     "nrAudioSeconds": 45,
     "transcriptionType": "translatedSubtitles",
-    "filename": "{{filename-of-your-upload}}",
-    "jobType": "direct",
-    "sourceJobId": "{{jobIdFromParams}}"
+    "filename": "file_name.mp3",
+    "jobType": "perfect",
+    "sourceJobId": "SOURCE_JOB_ID"
   }
 }
 ```
@@ -407,15 +407,15 @@ curl --request GET --url 'https://api.amberscript.com/api/jobs/status?jobId=JOB_
 ```json
 {
   "jobStatus": {
-    "jobId": "{{JOB_ID}}",
-    "created": "{creation-timestamp}",
-    "language": "{{languageYouRequested}}",
+    "jobId": "JOB_ID",
+    "created": 82800000,
+    "language": "en",
     "status": "OPEN",
     "nrAudioSeconds": 45,
-    "transcriptionType": "{{typeYouRequested}}",
-    "filename": "{{filename-of-your-upload}}",
-    "jobType": "{{jobTypeYouRequested}}",
-    "sourceJobId": "sourceJobId" // OPTIONAL, translatedSubtitles only
+    "transcriptionType": "transcription",
+    "filename": "file_name.mp3",
+    "jobType": "direct",
+    "sourceJobId": "SOURCE_JOB_ID" // OPTIONAL, translatedSubtitles only
   }
 }
 ```
