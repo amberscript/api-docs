@@ -186,7 +186,7 @@ print(response.text)
 curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media?transcriptionType=transcription&jobType=direct&language=nl&apiKey={{YOUR_API_KEY}}' --form file=@./my-file.mp3
 ```
 
-> Example A: Response to a POST request:
+> Example: Response to a POST request:
 
 ```json
 {
@@ -194,6 +194,7 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media?tra
     "jobId": "JOB_ID",
     "created": 82800000,
     "language": "en",
+    "notes": null,
     "status": "OPEN",
     "nrAudioSeconds": 45,
     "transcriptionType": "translatedSubtitles",
@@ -275,7 +276,7 @@ Otherwise, you will get a callback informing you that your job was successfully 
 ### Uploading Without `callbackUrl`
 
 1. When you make a request without the `callbackUrl`, store the value of the `jobId` returned upon a successful call (
-   see `Example A` in right pane).
+   see `Example` in right pane).
 2. Use the `jobId` to periodically check the [status](#getting-the-status-of-a-transcription) of the upload request (
    e.g. every 5 mins).
 
@@ -342,7 +343,8 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/translatedSubtit
     "transcriptionType": "translatedSubtitles",
     "filename": "file_name.mp3",
     "jobType": "perfect",
-    "sourceJobId": "SOURCE_JOB_ID"
+    "sourceJobId": "SOURCE_JOB_ID",
+    "notes": null
   }
 }
 ```
