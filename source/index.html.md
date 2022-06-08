@@ -275,7 +275,7 @@ Otherwise, you will get a callback informing you that your job was successfully 
 ### Uploading Without `callbackUrl`
 
 1. When you make a request without the `callbackUrl`, store the value of the `jobId` returned upon a successful call (
-   see `Example B` in right pane).
+   see `Example A` in right pane).
 2. Use the `jobId` to periodically check the [status](#getting-the-status-of-a-transcription) of the upload request (
    e.g. every 5 mins).
 
@@ -411,11 +411,15 @@ curl --request GET --url 'https://api.amberscript.com/api/jobs/status?jobId=JOB_
     "created": 82800000,
     "language": "en",
     "status": "OPEN",
+    "jobOptions": {
+      "transcriptionStyle": "verbatim" // job options are only present if explicitly requests
+    },
     "nrAudioSeconds": 45,
     "transcriptionType": "transcription",
     "filename": "file_name.mp3",
     "jobType": "direct",
-    "sourceJobId": "SOURCE_JOB_ID" // OPTIONAL, translatedSubtitles only
+    "sourceJobId": "SOURCE_JOB_ID",    // OPTIONAL, translatedSubtitles only
+    "notes": null
   }
 }
 ```
@@ -1058,7 +1062,7 @@ curl --request GET --url 'https://api.amberscript.com/api/jobs?apiKey=YOUR_API_K
     "filename": "test.mp4",
     "jobType": "perfect",
     "jobOptions": {
-      "transcriptionStyle": "cleanread"
+      "transcriptionStyle": "cleanread" 
     },
     "notes": null
   },
