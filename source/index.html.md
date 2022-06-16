@@ -200,7 +200,8 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media?tra
     "transcriptionType": "translatedSubtitles",
     "filename": "file_name.mp3",
     "jobType": "perfect",
-    "sourceJobId": "SOURCE_JOB_ID" // only present for translated subtitles jobs.
+    "sourceJobId": "SOURCE_JOB_ID", // only present for translated subtitles jobs.
+    "targetLanguage": "nl" // OPTIONAL, translatedSubtitles only
   }
 }
 ```
@@ -344,6 +345,7 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/translatedSubtit
     "filename": "file_name.mp3",
     "jobType": "perfect",
     "sourceJobId": "SOURCE_JOB_ID",
+    "targetLanguage": "nl",
     "notes": null
   }
 }
@@ -421,6 +423,7 @@ curl --request GET --url 'https://api.amberscript.com/api/jobs/status?jobId=JOB_
     "filename": "file_name.mp3",
     "jobType": "direct",
     "sourceJobId": "SOURCE_JOB_ID",    // OPTIONAL, translatedSubtitles only
+    "targetLanguage": "nl" // OPTIONAL, translatedSubtitles only
     "notes": null
   }
 }
