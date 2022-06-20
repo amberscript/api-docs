@@ -563,6 +563,8 @@ Export a finished file to several formats.
 
 ## Export To STL
 
+<aside class="warning">DEPRECATED</aside>
+
 ```java
 HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-stl?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
