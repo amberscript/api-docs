@@ -346,7 +346,7 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/translatedSubtit
     "jobType": "perfect",
     "sourceJobId": "SOURCE_JOB_ID",
     "targetLanguage": "nl",
-    "notes": null
+    "notes": "job_notes"
   }
 }
 ```
@@ -365,6 +365,7 @@ Request for translated subtitles with uploaded file.
 | targetLanguage            |              | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es` |
 | turnaroundTime (OPTIONAL) | `SEVEN_DAYS` | Hint: Get in touch if you need a turnaround time other than the default one.                                                                                                                                 |
 | callbackUrl (OPTIONAL)    | NONE         | `YOUR_CALLBACK_URL`                                                                                                                                                                                          |
+| notes (OPTIONAL)          | NONE         | Job notes                                                                                                                                                                                                    |
 
 ## Getting The Status Of A Transcription
 
@@ -424,7 +425,7 @@ curl --request GET --url 'https://api.amberscript.com/api/jobs/status?jobId=JOB_
     "jobType": "direct",
     "sourceJobId": "SOURCE_JOB_ID",    // OPTIONAL, translatedSubtitles only
     "targetLanguage": "nl" // OPTIONAL, translatedSubtitles only
-    "notes": null
+    "notes": "job_notes"
   }
 }
 ```
