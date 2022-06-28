@@ -234,7 +234,7 @@ jobType   | `direct` | `perfect`, `direct`
 numberOfSpeakers | `2` | `1`, `2`, `3`, `4`, `5`
 callbackUrl (OPTIONAL)| NONE | `YOUR_CALLBACK_URL`
 transcriptionStyle (OPTIONAL) | `cleanread` | `cleanread`, `verbatim`
-turnaroundTime (OPTIONAL) | `FIVE_DAYS` - `transcription`/`captions`, `EIGHT_DAYS` - `translatedSubtitles` | Hint: Get in touch if you need a turnaround time other than the default one.
+turnaroundTime (OPTIONAL) | `FIVE_DAYS` - `transcription`/`captions`, `SEVEN_DAYS` - `translatedSubtitles` | Hint: Get in touch if you need a turnaround time other than the default one.
 targetLanguage (OPTIONAL) | NONE | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`
 
 ### Uploading With `callbackUrl`
@@ -332,7 +332,7 @@ Parameter | Default | Description/Example
 ----------| ------- | -----------
 sourceJobId | NONE | `SOURCE_JOB_ID`
 targetLanguage | | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`
-turnaroundTime (OPTIONAL) | `EIGHT_DAYS` | Hint: Get in touch if you need a turnaround time other than the default one.
+turnaroundTime (OPTIONAL) | `SEVEN_DAYS` | Hint: Get in touch if you need a turnaround time other than the default one.
 callbackUrl (OPTIONAL)| NONE | `YOUR_CALLBACK_URL`
 
 ## Getting The Status Of A Transcription
