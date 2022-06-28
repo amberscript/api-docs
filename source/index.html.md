@@ -2,16 +2,19 @@
 title: Amberscript Transcription API
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - javascript: NodeJS
-  - java: Java
-  - python: Python
-  - shell: cURL
+
+- javascript: NodeJS
+- java: Java
+- python: Python
+- shell: cURL
 
 toc_footers:
-  - <a href='https://www.amberscript.com/en/speech-to-text-api'>Sign Up for our Transcription API</a>
+
+- <a href='https://www.amberscript.com/en/speech-to-text-api'>Sign Up for our Transcription API</a>
 
 includes:
-  - errors
+
+- errors
 
 search: true
 
@@ -24,17 +27,19 @@ Welcome to Amberscript's Transcription API
 
 We will provide you with an `API_KEY` required to access our endpoints.
 
-When you [upload](#uploading-a-file) a file, our transcribers or automatic speech recognition engines will get to work and create a transcript or subtitles.
+When you [upload](#uploading-a-file) a file, our transcribers or automatic speech recognition engines will get to work
+and create a transcript or subtitles.
 
-* Automatic transcripts and subtitles are usually ready within an hour, manually perfected ones take more time, dependent on the delivery time chosen.
+* Automatic transcripts and subtitles are usually ready within an hour, manually perfected ones take more time,
+  dependent on the delivery time chosen.
 * Indicate jobType `direct` for automatic and jobType `perfect` for manual jobs
 * You can check the status of a job using the [status](#getting-the-status-of-a-transcription) endpoint.
-* When the status is `DONE`, a job is finished and you can download the file using our [export](#export-to-stl) endpoints.
+* When the status is `DONE`, a job is finished, and you can download the file using our [export](#export-to-stl)
+  endpoints.
 
 <aside class="notice">
     Valid job status values: OPEN, ERROR, DONE
 </aside>
-
 
 ## Authentication
 
@@ -45,7 +50,7 @@ When you [upload](#uploading-a-file) a file, our transcribers or automatic speec
 ## Language Codes
 
 | Language                 | Code       |
-| ------------------------ | ---------- |
+|--------------------------|------------|
 | Afrikaans                | af-za      |
 | Albanian                 | sq-al      |
 | Amharic                  | am-et      |
@@ -131,7 +136,6 @@ When you [upload](#uploading-a-file) a file, our transcribers or automatic speec
 | Vietnamese               | vi-vn      |
 | Zulu                     | zu-za      |
 
-
 ## Uploading A File
 
 ```java
@@ -182,38 +186,22 @@ print(response.text)
 curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media?transcriptionType=transcription&jobType=direct&language=nl&apiKey={{YOUR_API_KEY}}' --form file=@./my-file.mp3
 ```
 
-> Example A: POST request sent when you specify a `callbackUrl`:
+> Example: Response to a POST request:
 
 ```json
 {
-  "jobStatus": {    
-    "jobId": "{{JOB_ID}}",
-    "created": 1553871202831,
-    "language": "nl",
-    "status": "DONE",
-    "jobType": "direct",
-    "nrAudioSeconds": 0,
-    "transcriptionType": "transcription",
-    "filename": "FILE_NAME",
-    "sourceJobId": "sourceJobId" // OPTIONAL, translatedSubtitles only
-  }
-}
-```
-
-> Example B: Response sent when you don't specify a `callbackUrl`:
-
-```json
-{
-  "jobStatus": {    
-    "jobId": "{{JOB_ID}}",
-    "created": 1553871202831,
-    "language": "nl",
+  "jobStatus": {
+    "jobId": "JOB_ID",
+    "created": 82800000,
+    "language": "en",
+    "notes": null,
     "status": "OPEN",
-    "jobType": "direct",
-    "nrAudioSeconds": 0,
-    "transcriptionType": "transcription",
-    "filename": "FILE_NAME",
-    "sourceJobId": "sourceJobId" // OPTIONAL, translatedSubtitles only
+    "nrAudioSeconds": 45,
+    "transcriptionType": "translatedSubtitles",
+    "filename": "file_name.mp3",
+    "jobType": "perfect",
+    "sourceJobId": "SOURCE_JOB_ID", // only present for translated subtitles jobs.
+    "targetLanguage": "nl" // OPTIONAL, translatedSubtitles only
   }
 }
 ```
@@ -226,22 +214,24 @@ Upload a file for transcription.
 
 ### Query Parameters
 
-Parameter | Default | Description/Example
-----------| ------- | -----------
-language | `en` | `af-za`, `sq-al`, `am-et`, `ar`, `hy-am`, `az-az`, `id-id`, `eu-es`, `bn-bd`, `bn-in`, `bs-ba`, `bg`, `my-mm`, `ca`, `cmn`, `hr`, `cs`, `da`, `nl`, `en-au`, `en-uk`, `en`, `et-ee`, `fa-ir`, `fil-ph`, `fi`, `nl-be`, `fr-ca`, `fr`, `gl-es`, `ka-ge`, `de-at`, `de-ch`, `de`, `el`, `gu-in`, `iw-il`, `hi`, `hu`, `is-is`, `it`, `ja`, `jv-id`, `kn-in`, `km-kh`, `ko`, `lo-la`, `lv`, `lt`, `mk-mk`, `ms`, `ml-in`, `mr-in`, `mn-mn`, `ne-np`, `no`, `pl`, `pt-br`, `pt`, `pa-guru-in`, `ro`, `ru`, `sr-rs`, `si-lk`, `sk`, `sl`, `es`, `su-id`, `sw-ke`, `sw-tz`, `sv`, `ta-in`, `ta-my`, `ta-sg`, `ta-lk`, `te-in`, `th-th`, `tr`, `uk-ua`, `ur-in`, `ur-pk`, `uz-uz`, `vi-vn`, `zu-za`
-transcriptionType | `transcription` | `transcription`, `captions`, `translatedSubtitles`
-jobType   | `direct` | `perfect`, `direct`
-numberOfSpeakers | `2` | `1`, `2`, `3`, `4`, `5`
-callbackUrl (OPTIONAL)| NONE | `YOUR_CALLBACK_URL`
-transcriptionStyle (OPTIONAL) | `cleanread` | `cleanread`, `verbatim`
-turnaroundTime (OPTIONAL) | `FIVE_DAYS` - `transcription`/`captions`, `SEVEN_DAYS` - `translatedSubtitles` | Hint: Get in touch if you need a turnaround time other than the default one.
-targetLanguage (OPTIONAL) | NONE | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`
+| Parameter                     | Default                                                                        | Description/Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|-------------------------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| language                      | `en`                                                                           | `af-za`, `sq-al`, `am-et`, `ar`, `hy-am`, `az-az`, `id-id`, `eu-es`, `bn-bd`, `bn-in`, `bs-ba`, `bg`, `my-mm`, `ca`, `cmn`, `hr`, `cs`, `da`, `nl`, `en-au`, `en-uk`, `en`, `et-ee`, `fa-ir`, `fil-ph`, `fi`, `nl-be`, `fr-ca`, `fr`, `gl-es`, `ka-ge`, `de-at`, `de-ch`, `de`, `el`, `gu-in`, `iw-il`, `hi`, `hu`, `is-is`, `it`, `ja`, `jv-id`, `kn-in`, `km-kh`, `ko`, `lo-la`, `lv`, `lt`, `mk-mk`, `ms`, `ml-in`, `mr-in`, `mn-mn`, `ne-np`, `no`, `pl`, `pt-br`, `pt`, `pa-guru-in`, `ro`, `ru`, `sr-rs`, `si-lk`, `sk`, `sl`, `es`, `su-id`, `sw-ke`, `sw-tz`, `sv`, `ta-in`, `ta-my`, `ta-sg`, `ta-lk`, `te-in`, `th-th`, `tr`, `uk-ua`, `ur-in`, `ur-pk`, `uz-uz`, `vi-vn`, `zu-za` |
+| transcriptionType             | `transcription`                                                                | `transcription`, `captions`, `translatedSubtitles`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| jobType                       | `direct`                                                                       | `perfect`, `direct`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| numberOfSpeakers              | `2`                                                                            | `1`, `2`, `3`, `4`, `5`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| callbackUrl (OPTIONAL)        | NONE                                                                           | `YOUR_CALLBACK_URL`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| transcriptionStyle (OPTIONAL) | `cleanread`                                                                    | `cleanread`, `verbatim`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| turnaroundTime (OPTIONAL)     | `FIVE_DAYS` - `transcription`/`captions`, `EIGHT_DAYS` - `translatedSubtitles` | Hint: Get in touch if you need a turnaround time other than the default one.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| targetLanguage (OPTIONAL)     | NONE                                                                           | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 ### Uploading With `callbackUrl`
 
 1. When you make a request with a `callbackUrl`, we send the final status of your upload to this url.
-2. When processing is complete, this status is sent via a `POST` request (see `Example A` in right pane).
-   - `status` can either be `DONE` or `ERROR`.
+2. When processing is complete, this status is sent via a `POST` request (see below).
+
+- `status` can either be `DONE` or `ERROR`.
+
 3. Your `callbackUrl` endpoint should respond with any `2xx` if you successfully receive the status.
 
 <aside class="notice">
@@ -252,12 +242,49 @@ targetLanguage (OPTIONAL) | NONE | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`,
     </ul>
 </aside>
 
+There are times when our system can encounter issues with your job. When that is the case, the callback will be sent
+with an ERROR status, and the content of the callback will look like this:
+
+```json
+{
+  "jobId": "JOB_ID",
+  "created": 82800000,
+  "language": "nl",
+  "status": "ERROR",
+  "nrAudioSeconds": 45,
+  "transcriptionType": "transcription",
+  "filename": "file_name.mp3",
+  "jobType": "direct",
+  "errorMsg": "No speech found"
+}
+```
+
+Otherwise, you will get a callback informing you that your job was successfully transcribed.
+
+```json
+{
+  "jobId": "JOB_ID",
+  "created": 82800000,
+  "language": "nl",
+  "status": "DONE",
+  "nrAudioSeconds": 45,
+  "transcriptionType": "captions",
+  "filename": "file_name.mp3",
+  "jobType": "direct"
+}
+```
+
 ### Uploading Without `callbackUrl`
-1. When you make a request without the `callbackUrl`, store the value of the `jobId` returned upon a successful call (see `Example B` in right pane).
-2. Use the `jobId` to periodically check the [status](#getting-the-status-of-a-transcription) of the upload request (e.g. every 5 mins).
-   - `status` can either be `OPEN`, `DONE` or `ERROR`.
+
+1. When you make a request without the `callbackUrl`, store the value of the `jobId` returned upon a successful call (
+   see `Example` in right pane).
+2. Use the `jobId` to periodically check the [status](#getting-the-status-of-a-transcription) of the upload request (
+   e.g. every 5 mins).
+
+- `status` can either be `OPEN`, `DONE` or `ERROR`.
 
 ### File requirements:
+
 - max 6GB
 - audio or video file
 - supported formats: wav, mp3, m4a, aac, wma, mov, m4v, mp4, opus, ogg, flac
@@ -274,9 +301,11 @@ HttpResponse<String> response = Unirest.post("https://api.amberscript.com/api/jo
 ```javascript
 var request = require("request");
 
-var options = { method: 'POST',
+var options = {
+  method: 'POST',
   url: 'https://api.amberscript.com/api/jobs/translatedSubtitles',
-  qs: { sourceJobId: 'SOURCE_JOB_ID', targetLanguage: 'nl', apiKey: 'YOUR_API_KEY' } };
+  qs: {sourceJobId: 'SOURCE_JOB_ID', targetLanguage: 'nl', apiKey: 'YOUR_API_KEY'}
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -307,15 +336,17 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/translatedSubtit
 ```json
 {
   "jobStatus": {
-    "jobId": "{{JOB_ID}}",
-    "created": 1553871202831,
-    "language": "nl",
-    "status": "OPEN",
-    "jobType": "perfect",
-    "nrAudioSeconds": 0,
+    "jobId": "JOB_ID",
+    "created": 82800000,
+    "language": "en",
+    "status": "BUSY",
+    "nrAudioSeconds": 45,
     "transcriptionType": "translatedSubtitles",
-    "filename": "FILE_NAME",
-    "sourceJobId": "sourceJobId"
+    "filename": "file_name.mp3",
+    "jobType": "perfect",
+    "sourceJobId": "SOURCE_JOB_ID",
+    "targetLanguage": "nl",
+    "notes": null
   }
 }
 ```
@@ -328,12 +359,12 @@ Request for translated subtitles with uploaded file.
 
 ### Query Parameters
 
-Parameter | Default | Description/Example
-----------| ------- | -----------
-sourceJobId | NONE | `SOURCE_JOB_ID`
-targetLanguage | | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`
-turnaroundTime (OPTIONAL) | `SEVEN_DAYS` | Hint: Get in touch if you need a turnaround time other than the default one.
-callbackUrl (OPTIONAL)| NONE | `YOUR_CALLBACK_URL`
+| Parameter                 | Default      | Description/Example                                                                                                                                                                                          |
+|---------------------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| sourceJobId               | NONE         | `SOURCE_JOB_ID`                                                                                                                                                                                              |
+| targetLanguage            |              | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es` |
+| turnaroundTime (OPTIONAL) | `EIGHT_DAYS` | Hint: Get in touch if you need a turnaround time other than the default one.                                                                                                                                 |
+| callbackUrl (OPTIONAL)    | NONE         | `YOUR_CALLBACK_URL`                                                                                                                                                                                          |
 
 ## Getting The Status Of A Transcription
 
@@ -345,9 +376,11 @@ HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/job
 ```javascript
 var request = require("request");
 
-var options = { method: 'GET',
+var options = {
+  method: 'GET',
   url: 'https://api.amberscript.com/api/jobs/status',
-  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' } };
+  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY'}
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -378,15 +411,20 @@ curl --request GET --url 'https://api.amberscript.com/api/jobs/status?jobId=JOB_
 ```json
 {
   "jobStatus": {
-    "jobId": "{{JOB_ID}}",
-    "created": 1553871202831,
-    "language": "nl",
+    "jobId": "JOB_ID",
+    "created": 82800000,
+    "language": "en",
     "status": "OPEN",
-    "jobType": "perfect",
-    "nrAudioSeconds": 0,
+    "jobOptions": {
+      "transcriptionStyle": "verbatim" // job options are only present if explicitly requests
+    },
+    "nrAudioSeconds": 45,
     "transcriptionType": "transcription",
-    "filename": "FILE_NAME",
-    "sourceJobId": "sourceJobId" // OPTIONAL, translatedSubtitles only
+    "filename": "file_name.mp3",
+    "jobType": "direct",
+    "sourceJobId": "SOURCE_JOB_ID",    // OPTIONAL, translatedSubtitles only
+    "targetLanguage": "nl" // OPTIONAL, translatedSubtitles only
+    "notes": null
   }
 }
 ```
@@ -399,9 +437,9 @@ Retrieve the status of a specific job.
 
 ### Query Parameters
 
-Parameter | Default | Description/Example
-----------| ------- | -----------
-jobId | NONE | YOUR_JOB_ID
+| Parameter | Default | Description/Example |
+|-----------|---------|---------------------|
+| jobId     | NONE    | YOUR_JOB_ID         |
 
 ## Exporting A Finished File
 
@@ -413,9 +451,11 @@ HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/job
 ```javascript
  var request = require("request");
 
-var options = { method: 'GET',
+var options = {
+  method: 'GET',
   url: 'https://api.amberscript.com/api/jobs/export',
-  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY', format: 'json' } };
+  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY', format: 'json'}
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -503,6 +543,7 @@ curl --request GET --url 'https://api.amberscript.com/api/jobs/export?jobId=JOB_
   ]
 }
 ```
+
 <aside class="warning">DEPRECATED</aside>
 
 Export a finished file to several formats.
@@ -513,12 +554,12 @@ Export a finished file to several formats.
 
 ### Query Parameters
 
-Parameter | Default | Description/Example
-----------| ------- | -----------
-jobId | NONE | YOUR_JOB_ID
-format | `json` | `xml`, `json`, `srt`
-maxCharsPerSubtitle (OPTIONAL) | 50 | Determines the maximum number of characters per subtitle frame. A subtitle frame has two lines. (srt only)
-subtitleDurationMax (OPTIONAL) | 4500 | Determines the max duration (in milliseconds) a single subtitle frame should be shown. (srt only)
+| Parameter                      | Default | Description/Example                                                                                        |
+|--------------------------------|---------|------------------------------------------------------------------------------------------------------------|
+| jobId                          | NONE    | YOUR_JOB_ID                                                                                                |
+| format                         | `json`  | `xml`, `json`, `srt`                                                                                       |
+| maxCharsPerSubtitle (OPTIONAL) | 50      | Determines the maximum number of characters per subtitle frame. A subtitle frame has two lines. (srt only) |
+| subtitleDurationMax (OPTIONAL) | 4500    | Determines the max duration (in milliseconds) a single subtitle frame should be shown. (srt only)          |
 
 ## Export To STL
 
@@ -530,9 +571,11 @@ HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/job
 ```javascript
  var request = require("request");
 
-var options = { method: 'GET',
+var options = {
+  method: 'GET',
   url: 'https://api.amberscript.com/api/jobs/export-stl',
-  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
+  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY'}
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -562,7 +605,7 @@ curl --request GET --url 'https://api.amberscript.com/api/jobs/export-stl?jobId=
 
 ```json
 {
-    "downloadUrl": "https://PROD-SERVER/ebu-stl/FILENAME?X-Amz-Algorithm=HASH_ALGORITHM&X-Amz-Date=CURRENT_DATE&X-Amz-SignedHeaders=host&X-Amz-Expires=TIME_TO_EXPIRATION&X-Amz-Credential=AMZ_CREDENTIAL&X-Amz-Signature=AMZ_SIGNATURE"
+  "downloadUrl": "https://PROD-SERVER/ebu-stl/FILENAME?X-Amz-Algorithm=HASH_ALGORITHM&X-Amz-Date=CURRENT_DATE&X-Amz-SignedHeaders=host&X-Amz-Expires=TIME_TO_EXPIRATION&X-Amz-Credential=AMZ_CREDENTIAL&X-Amz-Signature=AMZ_SIGNATURE"
 }
 ```
 
@@ -574,14 +617,14 @@ Export a finished file to STL.
 
 ### Query Parameters
 
-Parameter | Default | Description/Example
-----------| ------- | -----------
-jobId | NONE | YOUR_JOB_ID
-maxNumberOfRows (OPTIONAL) | 2 | Integer between `1` and `2` which sets the maximum number of rows for each subtitle.
-maxScreenTimePerRowSeconds (OPTIONAL) | 2 | Float which sets the maximum number of seconds given for each row of subtitles.
+| Parameter                             | Default | Description/Example                                                                  |
+|---------------------------------------|---------|--------------------------------------------------------------------------------------|
+| jobId                                 | NONE    | YOUR_JOB_ID                                                                          |
+| maxNumberOfRows (OPTIONAL)            | 2       | Integer between `1` and `2` which sets the maximum number of rows for each subtitle. |
+| maxScreenTimePerRowSeconds (OPTIONAL) | 2       | Float which sets the maximum number of seconds given for each row of subtitles.      |
 
 ## Export To SRT
- 
+
 ```java
 HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-srt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
@@ -590,9 +633,11 @@ HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/job
 ```javascript
  var request = require("request");
 
-var options = { method: 'GET',
+var options = {
+  method: 'GET',
   url: 'https://api.amberscript.com/api/jobs/export-srt',
-  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
+  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY'}
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -649,15 +694,15 @@ Export a finished file to SRT.
 
 ### Query Parameters
 
-Parameter | Default | Description/Example
-----------| ------- | -----------
-jobId | NONE | YOUR_JOB_ID
-maxCharsPerRow (OPTIONAL) | 42 | Integer between `30` and `45` which sets the maximum number of characters per row.
-maxNumberOfRows (OPTIONAL) | 2 | Integer between `1` and `2` which sets the maximum number of rows for each subtitle.
-maxScreenTimePerRowSeconds (OPTIONAL) | 2 | Float which sets the maximum number of seconds given for each row of subtitles.
+| Parameter                             | Default | Description/Example                                                                  |
+|---------------------------------------|---------|--------------------------------------------------------------------------------------|
+| jobId                                 | NONE    | YOUR_JOB_ID                                                                          |
+| maxCharsPerRow (OPTIONAL)             | 42      | Integer between `30` and `45` which sets the maximum number of characters per row.   |
+| maxNumberOfRows (OPTIONAL)            | 2       | Integer between `1` and `2` which sets the maximum number of rows for each subtitle. |
+| maxScreenTimePerRowSeconds (OPTIONAL) | 2       | Float which sets the maximum number of seconds given for each row of subtitles.      |
 
 ## Export To VTT
- 
+
 ```java
 HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-vtt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
@@ -666,9 +711,11 @@ HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/job
 ```javascript
  var request = require("request");
 
-var options = { method: 'GET',
+var options = {
+  method: 'GET',
   url: 'https://api.amberscript.com/api/jobs/export-vtt',
-  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
+  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY'}
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -727,15 +774,15 @@ Export a finished file to VTT.
 
 ### Query Parameters
 
-Parameter | Default | Description/Example
-----------| ------- | -----------
-jobId | NONE | YOUR_JOB_ID
-maxCharsPerRow (OPTIONAL) | 42 | Integer between `30` and `45` which sets the maximum number of characters per row.
-maxNumberOfRows (OPTIONAL) | 2 | Integer between `1` and `2` which sets the maximum number of rows for each subtitle.
-maxScreenTimePerRowSeconds (OPTIONAL) | 2 | Float which sets the maximum number of seconds given for each row of subtitles.
+| Parameter                             | Default | Description/Example                                                                  |
+|---------------------------------------|---------|--------------------------------------------------------------------------------------|
+| jobId                                 | NONE    | YOUR_JOB_ID                                                                          |
+| maxCharsPerRow (OPTIONAL)             | 42      | Integer between `30` and `45` which sets the maximum number of characters per row.   |
+| maxNumberOfRows (OPTIONAL)            | 2       | Integer between `1` and `2` which sets the maximum number of rows for each subtitle. |
+| maxScreenTimePerRowSeconds (OPTIONAL) | 2       | Float which sets the maximum number of seconds given for each row of subtitles.      |
 
 ## Export To TEXT
- 
+
 ```java
 HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-txt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
@@ -744,9 +791,11 @@ HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/job
 ```javascript
  var request = require("request");
 
-var options = { method: 'GET',
+var options = {
+  method: 'GET',
   url: 'https://api.amberscript.com/api/jobs/export-txt',
-  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
+  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY'}
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -787,16 +836,16 @@ Export a finished file to TEXT.
 
 ### Query Parameters
 
-Parameter | Default | Description/Example
-----------| ------- | -----------
-jobId | NONE | YOUR_JOB_ID
-includeTimestamps (OPTIONAL) | `true` | Boolean.
-includeSpeakers (OPTIONAL) | `true` | Boolean.
-highlightsOnly (OPTIONAL) | `false` | Boolean.
-maxCharsPerRow (OPTIONAL) | NONE | Integer which sets the maximum number of characters per row.
+| Parameter                    | Default | Description/Example                                          |
+|------------------------------|---------|--------------------------------------------------------------|
+| jobId                        | NONE    | YOUR_JOB_ID                                                  |
+| includeTimestamps (OPTIONAL) | `true`  | Boolean.                                                     |
+| includeSpeakers (OPTIONAL)   | `true`  | Boolean.                                                     |
+| highlightsOnly (OPTIONAL)    | `false` | Boolean.                                                     |
+| maxCharsPerRow (OPTIONAL)    | NONE    | Integer which sets the maximum number of characters per row. |
 
 ## Export To JSON
- 
+
 ```java
 HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-json?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
@@ -805,9 +854,11 @@ HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/job
 ```javascript
  var request = require("request");
 
-var options = { method: 'GET',
+var options = {
+  method: 'GET',
   url: 'https://api.amberscript.com/api/jobs/export-json',
-  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
+  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY'}
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -898,12 +949,12 @@ Export a finished file to JSON.
 
 ### Query Parameters
 
-Parameter | Default | Description/Example
-----------| ------- | -----------
-jobId | NONE | YOUR_JOB_ID
+| Parameter | Default | Description/Example |
+|-----------|---------|---------------------|
+| jobId     | NONE    | YOUR_JOB_ID         |
 
 ## Delete A Job
- 
+
 ```java
 HttpResponse<String> response = Unirest.delete("https://api.amberscript.com/api/jobs?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
@@ -912,9 +963,11 @@ HttpResponse<String> response = Unirest.delete("https://api.amberscript.com/api/
 ```javascript
  var request = require("request");
 
-var options = { method: 'DELETE',
+var options = {
+  method: 'DELETE',
   url: 'https://api.amberscript.com/api/jobs',
-  qs: { jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY' };
+  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY'}
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -944,7 +997,7 @@ curl --request DELETE --url 'https://api.amberscript.com/api/jobs?jobId=JOB_ID&a
 
 ```json
 {
-    "message": "Job deleted"
+  "message": "Job deleted"
 }
 ```
 
@@ -956,12 +1009,12 @@ Delete a specific job.
 
 ### Query Parameters
 
-Parameter | Default | Description/Example
-----------| ------- | -----------
-jobId | NONE | YOUR_JOB_ID
+| Parameter | Default | Description/Example |
+|-----------|---------|---------------------|
+| jobId     | NONE    | YOUR_JOB_ID         |
 
 ## Get List Of Jobs
- 
+
 ```java
 HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs?apiKey=YOUR_API_KEY")
   .asString();
@@ -970,9 +1023,11 @@ HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/job
 ```javascript
  var request = require("request");
 
-var options = { method: 'GET',
+var options = {
+  method: 'GET',
   url: 'https://api.amberscript.com/api/jobs',
-  qs: { apiKey: 'YOUR_API_KEY' };
+  qs: {apiKey: 'YOUR_API_KEY'}
+};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -1002,48 +1057,48 @@ curl --request GET --url 'https://api.amberscript.com/api/jobs?apiKey=YOUR_API_K
 
 ```json
 [
-    {
-        "jobId": "5f686d2d8c996402a02bbb92",
-        "created": 1600679213751,
-        "language": "nl",
-        "status": "DONE",
-        "nrAudioSeconds": 59,
-        "transcriptionType": "transcription",
-        "filename": "test.mp4",
-        "jobType": "perfect",
-        "jobOptions": {
-            "transcriptionStyle": "cleanread"
-        },
-        "notes": null
+  {
+    "jobId": "5f686d2d8c996402a02bbb92",
+    "created": 1600679213751,
+    "language": "nl",
+    "status": "DONE",
+    "nrAudioSeconds": 59,
+    "transcriptionType": "transcription",
+    "filename": "test.mp4",
+    "jobType": "perfect",
+    "jobOptions": {
+      "transcriptionStyle": "cleanread" 
     },
-    {
-        "jobId": "5f686d068c996402a02bbb85",
-        "created": 1600679174451,
-        "language": "nl",
-        "status": "DONE",
-        "nrAudioSeconds": 191,
-        "transcriptionType": "transcription",
-        "filename": "test.mp4",
-        "jobType": "perfect",
-        "jobOptions": {
-            "transcriptionStyle": "cleanread"
-        },
-        "notes": null
+    "notes": null
+  },
+  {
+    "jobId": "5f686d068c996402a02bbb85",
+    "created": 1600679174451,
+    "language": "nl",
+    "status": "DONE",
+    "nrAudioSeconds": 191,
+    "transcriptionType": "transcription",
+    "filename": "test.mp4",
+    "jobType": "perfect",
+    "jobOptions": {
+      "transcriptionStyle": "cleanread"
     },
-    {
-        "jobId": "5f686d068c996402a02bbb82",
-        "created": 1600679174415,
-        "language": "nl",
-        "status": "DONE",
-        "nrAudioSeconds": 59,
-        "transcriptionType": "transcription",
-        "filename": "test.mp4",
-        "jobType": "perfect",
-        "jobOptions": {
-            "transcriptionStyle": "cleanread"
-        },
-        "notes": null
+    "notes": null
+  },
+  {
+    "jobId": "5f686d068c996402a02bbb82",
+    "created": 1600679174415,
+    "language": "nl",
+    "status": "DONE",
+    "nrAudioSeconds": 59,
+    "transcriptionType": "transcription",
+    "filename": "test.mp4",
+    "jobType": "perfect",
+    "jobOptions": {
+      "transcriptionStyle": "cleanread"
     },
+    "notes": null
+  }
 ]
 ```
 
@@ -1055,14 +1110,15 @@ Get a list of jobs.
 
 ### Query Parameters
 
-Parameter | Default | Description/Example
-----------| ------- | -----------
-jobId (OPTIONAL) | NONE | YOUR_JOB_ID
-jobType (OPTIONAL) | NONE | Type of the job e.g. `perfect`.
-status (OPTIONAL) | NONE | `OPEN`, `ERROR` or `DONE`.
-transcriptionType (OPTIONAL) | NONE | Type of transcription e.g. `transcription`.
-page (OPTIONAL) | `0` | Page to be retrieved.
-pageSize (OPTIONAL) | `20` | Number of records to be retrieved for each page (maximum: `100`).
+| Parameter                    | Default | Description/Example                                               |
+|------------------------------|---------|-------------------------------------------------------------------|
+| jobId (OPTIONAL)             | NONE    | YOUR_JOB_ID                                                       |
+| jobType (OPTIONAL)           | NONE    | Type of the job e.g. `perfect`.                                   |
+| status (OPTIONAL)            | NONE    | `OPEN`, `ERROR` or `DONE`.                                        |
+| transcriptionType (OPTIONAL) | NONE    | Type of transcription e.g. `transcription`.                       |
+| page (OPTIONAL)              | `0`     | Page to be retrieved.                                             |
+| pageSize (OPTIONAL)          | `20`    | Number of records to be retrieved for each page (maximum: `100`). |
 
 ## Support
+
 If you need any technical assistance, feel free to contact `info (at) amberscript (dot) com`
