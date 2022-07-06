@@ -287,10 +287,12 @@ Otherwise, you will get a callback informing you that your job was successfully 
 - `status` can either be `OPEN`, `DONE` or `ERROR`.
 
 ### Uploading With `glossaryId`
-When using a `glossaryId` with your request, you first need to have created a glossary to be used. [Read here](##get-a-list-of-glossaries) for more information on how to work with glossaries. You can either:
+When using a `glossaryId` with your request, you first need to have created a glossary to be used. [Read here](#glossary) for more information on how to work with glossaries. You can either:
+
 - [Create a new glossary](##create-a-glossary) and use the `id` of the glossary as `glossaryId` in your upload request.
 
 or
+
 - [List your previously created glossaries]((##get-a-list-of-glossaries)) and pick an `id` of the glossary that you want to use as `glossaryId` in your upload request.
 
 ### File requirements:
