@@ -1141,6 +1141,7 @@ String body = "{\n" +
     "  ]\n" +
     "}";
 HttpResponse<String> response = Unirest.post("https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY")
+  .header("Content-Type", "application/json")
   .body(body)
   .asString();
 ```
@@ -1169,6 +1170,9 @@ var body = {
 var options = {
   method: 'POST',
   url: 'https://api.amberscript.com/api/glossary',
+  headers: {
+    'Content-Type': 'application/json'
+  },
   qs: {apiKey: 'YOUR_API_KEY'},
   body: body
 };
@@ -1204,13 +1208,18 @@ payload = "{\n" \
           "    }\n" \
           "  ]\n" \
           "}"
-response = requests.request("POST", url, data=payload, params=querystring)
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
 
 print(response.text)
 ```
 
 ```shell
-curl --request POST --url 'https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY' --data-raw '{
+curl --request POST --url 'https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY' --header 'Content-Type: application/json' --data-raw '{
     "name":"Name of first glossary",
     "names": [
       "Test name one",
@@ -1295,6 +1304,7 @@ String body = "{\n" +
     "  ]\n" +
     "}";
 HttpResponse<String> response = Unirest.put("https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY")
+  .header("Content-Type", "application/json")
   .body(body)
   .asString();
 ```
@@ -1323,6 +1333,9 @@ var body = {
 var options = {
   method: 'PUT',
   url: 'https://api.amberscript.com/api/glossary/GLOSSARY_ID',
+  headers: {
+    'Content-Type': 'application/json'
+  },
   qs: {apiKey: 'YOUR_API_KEY'},
   body: body
 };
@@ -1358,13 +1371,18 @@ payload = "{\n" \
           "    }\n" \
           "  ]\n" \
           "}"
-response = requests.request("PUT", url, data=payload, params=querystring)
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("PUT", url, data=payload, headers=headers, params=querystring)
 
 print(response.text)
 ```
 
 ```shell
-curl --request PUT --url 'https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY' --data-raw '{
+curl --request PUT --url 'https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY' --header 'Content-Type: application/json' --data-raw '{
     "name":"Name of first glossary",
     "names": [
       "Test name one",
