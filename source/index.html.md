@@ -136,6 +136,8 @@ and create a transcript or subtitles.
 | Vietnamese               | vi-vn      |
 | Zulu                     | zu-za      |
 
+# Uploading and status
+
 ## Uploading A File
 
 ```java
@@ -224,6 +226,7 @@ Upload a file for transcription.
 | transcriptionStyle (OPTIONAL) | `cleanread`                                                                    | `cleanread`, `verbatim`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | turnaroundTime (OPTIONAL)     | `FIVE_DAYS` - `transcription`/`captions`, `SEVEN_DAYS` - `translatedSubtitles` | Hint: Get in touch if you need a turnaround time other than the default one.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | targetLanguage (OPTIONAL)     | NONE                                                                           | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| glossaryId (OPTIONAL) | NONE | `YOUR_GLOSSARY_ID`
 
 ### Uploading With `callbackUrl`
 
@@ -282,6 +285,13 @@ Otherwise, you will get a callback informing you that your job was successfully 
    e.g. every 5 mins).
 
 - `status` can either be `OPEN`, `DONE` or `ERROR`.
+
+### Uploading With `glossaryId`
+When using a `glossaryId` with your request, you first need to have created a glossary to be used. [Read here](##get-a-list-of-glossaries) for more information on how to work with glossaries. You can either:
+- [Create a new glossary](##create-a-glossary) and use the `id` of the glossary as `glossaryId` in your upload request.
+
+or
+- [List your previously created glossaries]((##get-a-list-of-glossaries)) and pick an `id` of the glossary that you want to use as `glossaryId` in your upload request.
 
 ### File requirements:
 
@@ -442,125 +452,7 @@ Retrieve the status of a specific job.
 |-----------|---------|---------------------|
 | jobId     | NONE    | YOUR_JOB_ID         |
 
-## Exporting A Finished File
-
-```java
-HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/status?jobId=JOB_ID&apiKey=YOUR_API_KEY")
-  .asString();
-```
-
-```javascript
- var request = require("request");
-
-var options = {
-  method: 'GET',
-  url: 'https://api.amberscript.com/api/jobs/export',
-  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY', format: 'json'}
-};
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
-```
-
-```python
-import requests
-
-url = "https://api.amberscript.com/api/jobs/export"
-
-querystring = {"jobId":"JOB_ID","apiKey":"YOUR_API_KEY","format":"json"}
-
-payload = ""
-response = requests.request("GET", url, data=payload, params=querystring)
-
-print(response.text)
-```
-
-```shell
-curl --request GET --url 'https://api.amberscript.com/api/jobs/export?jobId=JOB_ID&apiKey=YOUR_API_KEY&format=json'
- ```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": "5c9e45057103e464a4c6f477",
-  "recordId": "RECORD_ID",
-  "speakers": [
-    {
-      "spkid": "spk1",
-      "name": "Speaker 1"
-    },
-    {
-      "spkid": "spk2",
-      "name": "Speaker 2"
-    },
-    {
-      "spkid": "spk3",
-      "name": "Speaker 3"
-    }
-  ],
-  "segments": [
-    {
-      "speaker": "spk1",
-      "words": [
-        {
-          "text": "Goedemiddag",
-          "start": 2.11,
-          "end": 2.68,
-          "duration": null,
-          "conf": null
-        },
-        {
-          "text": "welkom",
-          "start": 2.68,
-          "end": 3.01,
-          "duration": null,
-          "conf": null
-        }
-      ]
-    },
-    {
-      "speaker": "spk2",
-      "words": [
-        {
-          "text": "Vragen",
-          "start": 4.14,
-          "end": 4.9,
-          "duration": null,
-          "conf": null
-        },
-        {
-          "text": "uur.",
-          "start": 4.98,
-          "end": 5.4,
-          "duration": null,
-          "conf": null
-        }
-      ]
-    }
-  ]
-}
-```
-
-<aside class="warning">DEPRECATED</aside>
-
-Export a finished file to several formats.
-
-### HTTP Request
-
-`GET /jobs/export`
-
-### Query Parameters
-
-| Parameter                      | Default | Description/Example                                                                                        |
-|--------------------------------|---------|------------------------------------------------------------------------------------------------------------|
-| jobId                          | NONE    | YOUR_JOB_ID                                                                                                |
-| format                         | `json`  | `xml`, `json`, `srt`                                                                                       |
-| maxCharsPerSubtitle (OPTIONAL) | 50      | Determines the maximum number of characters per subtitle frame. A subtitle frame has two lines. (srt only) |
-| subtitleDurationMax (OPTIONAL) | 4500    | Determines the max duration (in milliseconds) a single subtitle frame should be shown. (srt only)          |
+# Exporting
 
 ## Export To STL
 
@@ -956,6 +848,8 @@ Export a finished file to JSON.
 |-----------|---------|---------------------|
 | jobId     | NONE    | YOUR_JOB_ID         |
 
+# Listing and deleting jobs
+
 ## Delete A Job
 
 ```java
@@ -1122,6 +1016,482 @@ Get a list of jobs.
 | page (OPTIONAL)              | `0`     | Page to be retrieved.                                             |
 | pageSize (OPTIONAL)          | `20`    | Number of records to be retrieved for each page (maximum: `100`). |
 
-## Support
+# Glossary
+
+You can make use of a glossary to help improve the quality of your transcription, captions and translated subtitles. Note that a glossary is only used for perfect jobs, as special instructions to transcribers.
+
+## Get a list of glossaries
+
+```java
+HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY")
+  .asString();
+```
+
+```javascript
+var request = require("request");
+
+var options = {
+  method: 'GET',
+  url: 'https://api.amberscript.com/api/glossary',
+  qs: {apiKey: 'YOUR_API_KEY'}
+};
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://api.amberscript.com/api/glossary"
+
+querystring = {"apiKey":"YOUR_API_KEY"}
+
+payload = ""
+response = requests.request("GET", url, data=payload, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET --url 'https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY'
+ ```
+
+ > The command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": "5f686d068c996402a02bbb85",
+    "userName": "YOUR_USERNAME",
+    "name": "Name of first glossary",
+    "names": [
+      "Test name one",
+      "Test name two"
+    ],
+    "items":[
+      {
+        "name": "Item one name",
+        "description": "description of item one"
+      },
+      {
+        "name": "Item two name",
+        "description": "description of item two"
+      }
+    ],
+    "created": 1600679174451
+  },
+  {
+    "id": "5f686d068c996402a02bbb86",
+    "userName": "YOUR_USERNAME",
+    "name": "Name of second glossary",
+    "names": [
+      "Test name one",
+      "Test name two"
+    ],
+    "items":[
+      {
+        "name": "Item one name",
+        "description": "description of item one"
+      },
+      {
+        "name": "Item two name",
+        "description": "description of item two"
+      }
+    ],
+    "created": 1600679175000
+  }
+]
+```
+
+Get a list of glossaries.
+
+### HTTP Request
+
+`GET /glossary`
+
+### Query Parameters
+
+| Parameter                    | Default | Description/Example                                               |
+|------------------------------|---------|-------------------------------------------------------------------|
+| sortBy (OPTIONAL)            | "created" | Field by which to sort the resulting list of glossaries.        |
+| sortDirection (OPTIONAL)     | `DESC`  | `DESC` or `ASC` |
+
+## Create a glossary
+
+```java
+String body = "{\n" +
+    "  \"name\": \"Name of first glossary\",\n" +
+    "  \"names\": [\n" +
+    "    \"Test name one\",\n" +
+    "    \"Test name two\"\n" +
+    "  ],\n" +
+    "  \"items\": [\n" +
+    "    {\n" +
+    "      \"name\": \"Item one name\",\n" +
+    "      \"description\": \"description of item one\"\n" +
+    "    },\n" +
+    "    {\n" +
+    "      \"name\": \"Item two name\",\n" +
+    "      \"description\": \"description of item two\"\n" +
+    "    }\n" +
+    "  ]\n" +
+    "}";
+HttpResponse<String> response = Unirest.post("https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY")
+  .header("Content-Type", "application/json")
+  .body(body)
+  .asString();
+```
+
+```javascript
+var request = require("request");
+
+var body = {
+  "name": "Name of first glossary",
+  "names": [
+    "Test name one",
+    "Test name two"
+  ],
+  "items": [
+    {
+      "name": "Item one name",
+      "description": "description of item one"
+    },
+    {
+      "name": "Item two name",
+      "description": "description of item two"
+    }
+  ]
+}
+
+var options = {
+  method: 'POST',
+  url: 'https://api.amberscript.com/api/glossary',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  qs: {apiKey: 'YOUR_API_KEY'},
+  body: body
+};
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://api.amberscript.com/api/glossary"
+
+querystring = {"apiKey":"YOUR_API_KEY"}
+
+payload = "{\n" \
+          "  \"name\": \"Name of first glossary\",\n" \
+          "  \"names\": [\n" \
+          "    \"Test name one\",\n" \
+          "    \"Test name two\"\n" \
+          "  ],\n" \
+          "  \"items\": [\n" \
+          "    {\n" \
+          "      \"name\": \"Item one name\",\n" \
+          "      \"description\": \"description of item one\"\n" \
+          "    },\n" \
+          "    {\n" \
+          "      \"name\": \"Item two name\",\n" \
+          "      \"description\": \"description of item two\"\n" \
+          "    }\n" \
+          "  ]\n" \
+          "}"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request POST --url 'https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY' --header 'Content-Type: application/json' --data-raw '{
+    "name":"Name of first glossary",
+    "names": [
+      "Test name one",
+      "Test name two"
+    ],
+    "items":[
+        {
+            "name":{{glossaryItem1Name}},
+            "description":{{glossaryItem1Description}}
+        },
+        {
+            "name":"{{glossaryItem2Name}}",
+            "description":{{glossaryItem2Description}}
+        }
+    ]
+}'
+ ```
+
+ > The command returns JSON structured like this:
+
+```json
+{
+  "id": "5f686d068c996402a02bbb85",
+  "userName": "YOUR_USERNAME",
+  "name": "Name of first glossary",
+  "names": [
+    "Test name one",
+    "Test name two"
+  ],
+  "items":[
+    {
+      "name": "Item one name",
+      "description": "description of item one"
+    },
+    {
+      "name": "Item two name",
+      "description": "description of item two"
+    }
+  ],
+  "created": 1600679174451
+}
+```
+
+Create a glossary.
+
+### HTTP Request
+
+`POST /glossary`
+
+### Body JSON
+### UserGlossary
+| Attribute        |Type                                      | Description                    | Required |
+|------------------|------------------------------------------|--------------------------------|----------|
+| name             | string <br><small>maxLength: 60</small>  | Name of the glossary.          | Yes      |
+| names            | [string] <br><small>maxItems: 15</small> <br><small>maxItemLength: 20</small> | Array of names. | No |
+| items            | [object] <br><small>maxItems: 20</small> | Array of glossary items. [GlossaryItem](###glossaryitem) format is described in the table bellow. | No|
+
+### GlossaryItem
+| Attribute        | Type                                     | Description                    | Required |
+|------------------|------------------------------------------|--------------------------------|----------|
+| item.name        | string <br><small>maxLength: 60</small>  | Term which is being described. | Yes      |
+| item.description | string <br><small>maxLength: 200</small> | Description of the term.       | No       |
+
+## Update a glossary
+
+```java
+String body = "{\n" +
+    "  \"name\": \"Name of first glossary\",\n" +
+    "  \"names\": [\n" +
+    "    \"Test name one\",\n" +
+    "    \"Test name two\"\n" +
+    "  ],\n" +
+    "  \"items\": [\n" +
+    "    {\n" +
+    "      \"name\": \"Item one name\",\n" +
+    "      \"description\": \"description of item one\"\n" +
+    "    },\n" +
+    "    {\n" +
+    "      \"name\": \"Item two name\",\n" +
+    "      \"description\": \"description of item two\"\n" +
+    "    }\n" +
+    "  ]\n" +
+    "}";
+HttpResponse<String> response = Unirest.put("https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY")
+  .header("Content-Type", "application/json")
+  .body(body)
+  .asString();
+```
+
+```javascript
+var request = require("request");
+
+var body = {
+  "name": "Name of first glossary",
+  "names": [
+    "Test name one",
+    "Test name two"
+  ],
+  "items": [
+    {
+      "name": "Item one name",
+      "description": "description of item one"
+    },
+    {
+      "name": "Item two name",
+      "description": "description of item two"
+    }
+  ]
+}
+
+var options = {
+  method: 'PUT',
+  url: 'https://api.amberscript.com/api/glossary/GLOSSARY_ID',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  qs: {apiKey: 'YOUR_API_KEY'},
+  body: body
+};
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://api.amberscript.com/api/glossary/GLOSSARY_ID"
+
+querystring = {"apiKey":"YOUR_API_KEY"}
+
+payload = "{\n" \
+          "  \"name\": \"Name of first glossary\",\n" \
+          "  \"names\": [\n" \
+          "    \"Test name one\",\n" \
+          "    \"Test name two\"\n" \
+          "  ],\n" \
+          "  \"items\": [\n" \
+          "    {\n" \
+          "      \"name\": \"Item one name\",\n" \
+          "      \"description\": \"description of item one\"\n" \
+          "    },\n" \
+          "    {\n" \
+          "      \"name\": \"Item two name\",\n" \
+          "      \"description\": \"description of item two\"\n" \
+          "    }\n" \
+          "  ]\n" \
+          "}"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("PUT", url, data=payload, headers=headers, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request PUT --url 'https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY' --header 'Content-Type: application/json' --data-raw '{
+    "name":"Name of first glossary",
+    "names": [
+      "Test name one",
+      "Test name two"
+    ],
+    "items":[
+        {
+            "name":{{glossaryItem1Name}},
+            "description":{{glossaryItem1Description}}
+        },
+        {
+            "name":"{{glossaryItem2Name}}",
+            "description":{{glossaryItem2Description}}
+        }
+    ]
+}'
+ ```
+
+ > The command returns JSON structured like this:
+
+```json
+{
+  "id": "5f686d068c996402a02bbb85",
+  "userName": "YOUR_USERNAME",
+  "name": "Name of first glossary",
+  "names": [
+    "Test name one",
+    "Test name two"
+  ],
+  "items":[
+    {
+      "name": "Item one name",
+      "description": "description of item one"
+    },
+    {
+      "name": "Item two name",
+      "description": "description of item two"
+    }
+  ],
+  "created": 1600679174451
+}
+```
+
+Update a specific glossary.
+
+### HTTP Request
+
+`PUT /glossary/GLOSSARY_ID`
+
+### Body JSON
+### UserGlossary
+| Attribute        |Type                                      | Description                    | Required |
+|------------------|------------------------------------------|--------------------------------|----------|
+| name             | string <br><small>maxLength: 60</small>  | Name of the glossary.          | Yes      |
+| names            | [string] <br><small>maxItems: 15</small> <br><small>maxItemLength: 20</small> | Array of names. | No |
+| items            | [object] <br><small>maxItems: 20</small> | Array of glossary items. [GlossaryItem](###glossaryitem) format is described in the table bellow. | No|
+
+### GlossaryItem
+| Attribute        | Type                                     | Description                    | Required |
+|------------------|------------------------------------------|--------------------------------|----------|
+| item.name        | string <br><small>maxLength: 60</small>  | Term which is being described. | Yes      |
+| item.description | string <br><small>maxLength: 200</small> | Description of the term.       | No       |
+
+## Delete a glossary
+
+```java
+HttpResponse<String> response = Unirest.delete("https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY")
+  .asString();
+```
+
+```javascript
+var request = require("request");
+
+var options = {
+  method: 'DELETE',
+  url: 'https://api.amberscript.com/api/glossary/GLOSSARY_ID',
+  qs: {apiKey: 'YOUR_API_KEY'}
+};
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = "https://api.amberscript.com/api/glossary/GLOSSARY_ID"
+
+querystring = {"apiKey":"YOUR_API_KEY"}
+
+payload = ""
+response = requests.request("DELETE", url, data=payload, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request DELETE --url 'https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY'
+ ```
+
+Delete a specific glossary.
+
+### HTTP Request
+
+`DELETE /glossary/GLOSSARY_ID`
+
+# Support
 
 If you need any technical assistance, feel free to contact `info (at) amberscript (dot) com`
