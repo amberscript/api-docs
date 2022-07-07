@@ -1178,7 +1178,7 @@ Get a list of jobs.
 
 # Glossary
 
-You can make use of a glossary to help improve the quality of your transcription, captions and translated subtitles. Note that a glossary is only used for perfect jobs, as special instructions to transcribers.
+You can make use of a glossary to help improve the quality of your transcription, captions and translated subtitles.
 
 ## Get a list of glossaries
 
