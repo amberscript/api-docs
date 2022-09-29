@@ -328,9 +328,11 @@ import requests
 
 url = 'https://api.amberscript.com/api/jobs/upload-media-from-url'
 filepath = '/Users/userA/Downloads/my-file.mp3'
-reqBody = {"sourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4", "jobType":"direct","language":"nl","transcriptionType":"transcription", "numberOfSpeakers": "2" ,"apiKey":"YOUR_API_KEY"}
+query_string = {"apiKey": "YOUR_API_KEY"}
+body = {"sourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4", "jobType": "direct",
+        "language": "nl", "transcriptionType": "transcription", "numberOfSpeakers": "2"}
 
-response = requests.post(url, files=files, verify=False, body=reqBody)
+response = requests.post(url, verify=False, params=query_string, json=body)
 
 print(response.status_code)
 print(response.text)
