@@ -339,7 +339,6 @@ request(options, function (error, response, body) {
 import requests
 
 url = 'https://api.amberscript.com/api/jobs/upload-media-from-url'
-filepath = '/Users/userA/Downloads/my-file.mp3'
 query_string = {"apiKey": "YOUR_API_KEY"}
 body = {"sourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4", "jobType": "direct",
         "language": "nl", "transcriptionType": "transcription", "numberOfSpeakers": "2"}
@@ -380,7 +379,7 @@ Upload a audio/video media for transcription from an URL.
 
 ### HTTP Request
 
-`POST /jobs//upload-media-from-url`
+`POST /jobs/upload-media-from-url`
 
 ### Request Body Parameters
 
