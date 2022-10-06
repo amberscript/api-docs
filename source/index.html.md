@@ -303,6 +303,163 @@ or
 
 _If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com_
 
+
+```java
+HttpResponse<String> response = Unirest.post("https://api.amberscript.com/api/jobs/upload-media-from-url?apiKey={{YOUR_API_KEY}}")
+  .body("{\"sourceUrl\":\"https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4\", \"language\":\"en\", \"transcriptionType\":\"transcription\"}", \"jobType\":\"Direct\", \"numberOfSpeakers	\":\"2\")
+  .asJson();
+```
+
+```javascript
+const request = require('request');
+const fs = require('fs');
+
+let options = {
+  method: 'POST',
+  url: 'https://api.amberscript.com/api/jobs/upload-media-from-url',
+  body: {
+    "sourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+    "apiKey": "YOUR_API_KEY",
+    "transcriptionType": "transcription",
+    "jobType": "direct",
+    "language": "nl",
+    "numberOfSpeakers": "2"
+  },
+  headers: {'content-type': 'application/json'}
+};
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```python
+import requests
+
+url = 'https://api.amberscript.com/api/jobs/upload-media-from-url'
+query_string = {"apiKey": "YOUR_API_KEY"}
+body = {"sourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4", "jobType": "direct",
+        "language": "nl", "transcriptionType": "transcription", "numberOfSpeakers": "2"}
+
+response = requests.post(url, verify=False, params=query_string, json=body)
+
+print(response.status_code)
+print(response.text)
+```
+
+```shell
+curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media-from-url?apiKey={{YOUR_API_KEY}}' \
+-H "Content-Type: application/json" \
+--data '{"sourceUrl" : "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4","transcriptionType":"transcription","jobType":"direct","language":"nl"}' \
+```
+
+> Example: Response to a POST request:
+
+```json
+{
+  "jobStatus": {
+    "jobId": "JOB_ID",
+    "created": 82800000,
+    "language": "en",
+    "notes": null,
+    "status": "OPEN",
+    "nrAudioSeconds": 45,
+    "transcriptionType": "translatedSubtitles",
+    "filename": "file_name.mp3",
+    "jobType": "perfect",
+    "sourceJobId": "SOURCE_JOB_ID", // only present for translated subtitles jobs.
+    "targetLanguage": "nl" // OPTIONAL, translatedSubtitles only
+  }
+}
+```
+
+Upload a audio/video media for transcription from an URL.
+
+### HTTP Request
+
+`POST /jobs/upload-media-from-url`
+
+### Request Body Parameters
+
+| Parameter                     | Default                                                                        | Description/Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|-------------------------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| language                      | `en`                                                                           | `af-za`, `sq-al`, `am-et`, `ar`, `hy-am`, `az-az`, `id-id`, `eu-es`, `bn-bd`, `bn-in`, `bs-ba`, `bg`, `my-mm`, `ca`, `cmn`, `hr`, `cs`, `da`, `nl`, `en-au`, `en-uk`, `en`, `et-ee`, `fa-ir`, `fil-ph`, `fi`, `nl-be`, `fr-ca`, `fr`, `gl-es`, `ka-ge`, `de-at`, `de-ch`, `de`, `el`, `gu-in`, `iw-il`, `hi`, `hu`, `is-is`, `it`, `ja`, `jv-id`, `kn-in`, `km-kh`, `ko`, `lo-la`, `lv`, `lt`, `mk-mk`, `ms`, `ml-in`, `mr-in`, `mn-mn`, `ne-np`, `no`, `pl`, `pt-br`, `pt`, `pa-guru-in`, `ro`, `ru`, `sr-rs`, `si-lk`, `sk`, `sl`, `es`, `su-id`, `sw-ke`, `sw-tz`, `sv`, `ta-in`, `ta-my`, `ta-sg`, `ta-lk`, `te-in`, `th-th`, `tr`, `uk-ua`, `ur-in`, `ur-pk`, `uz-uz`, `vi-vn`, `zu-za` |
+| transcriptionType             | `transcription`                                                                | `transcription`, `captions`, `translatedSubtitles`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| jobType                       | `direct`                                                                       | `perfect`, `direct`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| numberOfSpeakers              | `2`                                                                            | `1`, `2`, `3`, `4`, `5`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| callbackUrl (OPTIONAL)        | NONE                                                                           | `YOUR_CALLBACK_URL`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| transcriptionStyle (OPTIONAL) | `cleanread`                                                                    | `cleanread`, `verbatim`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| turnaroundTime (OPTIONAL)     | `FIVE_DAYS` - `transcription`/`captions`, `SEVEN_DAYS` - `translatedSubtitles` | Hint: Get in touch if you need a turnaround time other than the default one.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| targetLanguage (OPTIONAL)     | NONE                                                                           | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+
+### Uploading With `callbackUrl`
+
+1. When you make a request with a `callbackUrl`, we send the final status of your upload to this url.
+2. When processing is complete, this status is sent via a `POST` request (see below).
+
+- `status` can either be `DONE` or `ERROR`.
+
+3. Your `callbackUrl` endpoint should respond with any `2xx` if you successfully receive the status.
+
+<aside class="notice">
+   What if a callback fails?
+    <ul>
+      <li>When a callback fails, we retry sending the status update every hour.</li>
+      <li>The maximum number of retry attempts is 10.</li>
+    </ul>
+</aside>
+
+There are times when our system can encounter issues with your job. When that is the case, the callback will be sent
+with an ERROR status, and the content of the callback will look like this:
+
+```json
+{
+  "jobId": "JOB_ID",
+  "created": 82800000,
+  "language": "nl",
+  "status": "ERROR",
+  "nrAudioSeconds": 45,
+  "transcriptionType": "transcription",
+  "filename": "file_name.mp3",
+  "jobType": "direct",
+  "errorMsg": "No speech found"
+}
+```
+
+Otherwise, you will get a callback informing you that your job was successfully transcribed.
+
+```json
+{
+  "jobId": "JOB_ID",
+  "created": 82800000,
+  "language": "nl",
+  "status": "DONE",
+  "nrAudioSeconds": 45,
+  "transcriptionType": "captions",
+  "filename": "file_name.mp3",
+  "jobType": "direct"
+}
+```
+
+### Uploading Without `callbackUrl`
+
+1. When you make a request without the `callbackUrl`, store the value of the `jobId` returned upon a successful call (
+   see `Example` in right pane).
+2. Use the `jobId` to periodically check the [status](#getting-the-status-of-a-transcription) of the upload request (
+   e.g. every 5 mins).
+
+- `status` can either be `OPEN`, `DONE` or `ERROR`.
+
+### File requirements:
+
+- max 16GB
+- audio or video file
+- supported formats: `wav`, `mp3`, `mp4`, `aac`, `m4a`, `wma`, `opus`, `ogg`, `flac`, `aac`, `dss`, `avi`, `wmv`, `mov`, `mp4`, `m4v`, `mpg`, `vob`
+
+_If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com_
+
 ## Request for translated subtitles for an existing manual captions job
 
 ```java
