@@ -226,7 +226,7 @@ Upload a file for transcription.
 | transcriptionStyle (OPTIONAL) | `cleanread`                                                                    | `cleanread`, `verbatim`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | turnaroundTime (OPTIONAL)     | `FIVE_DAYS` - `transcription`/`captions`, `SEVEN_DAYS` - `translatedSubtitles` | Hint: Get in touch if you need a turnaround time other than the default one.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | targetLanguage (OPTIONAL)     | NONE                                                                           | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| glossaryId (OPTIONAL) | NONE | `YOUR_GLOSSARY_ID`
+| glossaryId (OPTIONAL)         | NONE                                                                           | `YOUR_GLOSSARY_ID`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 ### Uploading With `callbackUrl`
 
@@ -306,7 +306,7 @@ _If you need support for a different file format, please get in touch with us: i
 
 ```java
 HttpResponse<String> response = Unirest.post("https://api.amberscript.com/api/jobs/upload-media-from-url?apiKey={{YOUR_API_KEY}}")
-  .body("{\"sourceUrl\":\"https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4\", \"language\":\"en\", \"transcriptionType\":\"transcription\"}", \"jobType\":\"Direct\", \"numberOfSpeakers	\":\"2\")
+  .body("{\"sourceUrl\":\"https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4\", \"language\":\"en\", \"transcriptionType\":\"transcription\"}", \"jobType\":\"direct\", \"numberOfSpeakers	\":\"2\")
   .asJson();
 ```
 
@@ -375,7 +375,7 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media-fro
 }
 ```
 
-Upload a audio/video media for transcription from an URL.
+## Uploading A File by URL
 
 ### HTTP Request
 
@@ -389,6 +389,7 @@ Upload a audio/video media for transcription from an URL.
 | transcriptionType             | `transcription`                                                                | `transcription`, `captions`, `translatedSubtitles`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | jobType                       | `direct`                                                                       | `perfect`, `direct`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | numberOfSpeakers              | `2`                                                                            | `1`, `2`, `3`, `4`, `5`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| sourceUrl                     | ``                                                                             | `1`, `2`, `3`, `4`, `5`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | callbackUrl (OPTIONAL)        | NONE                                                                           | `YOUR_CALLBACK_URL`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | transcriptionStyle (OPTIONAL) | `cleanread`                                                                    | `cleanread`, `verbatim`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | turnaroundTime (OPTIONAL)     | `FIVE_DAYS` - `transcription`/`captions`, `SEVEN_DAYS` - `translatedSubtitles` | Hint: Get in touch if you need a turnaround time other than the default one.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
@@ -1430,11 +1431,11 @@ Create a glossary.
 
 ### Body JSON
 ### UserGlossary
-| Attribute        |Type                                      | Description                    | Required |
-|------------------|------------------------------------------|--------------------------------|----------|
-| name             | string <br><small>maxLength: 60</small>  | Name of the glossary.          | Yes      |
-| names            | [string] <br><small>maxItems: 15</small> <br><small>maxItemLength: 20</small> | Array of names. | No |
-| items            | [object] <br><small>maxItems: 20</small> | Array of glossary items. [GlossaryItem](###glossaryitem) format is described in the table bellow. | No|
+| Attribute | Type                                                                          | Description                                                                                       | Required |
+|-----------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|----------|
+| name      | string <br><small>maxLength: 60</small>                                       | Name of the glossary.                                                                             | Yes      |
+| names     | [string] <br><small>maxItems: 15</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                                   | No       |
+| items     | [object] <br><small>maxItems: 20</small>                                      | Array of glossary items. [GlossaryItem](###glossaryitem) format is described in the table bellow. | No       |
 
 ### GlossaryItem
 | Attribute        | Type                                     | Description                    | Required |
@@ -1593,11 +1594,11 @@ Update a specific glossary.
 
 ### Body JSON
 ### UserGlossary
-| Attribute        |Type                                      | Description                    | Required |
-|------------------|------------------------------------------|--------------------------------|----------|
-| name             | string <br><small>maxLength: 60</small>  | Name of the glossary.          | Yes      |
-| names            | [string] <br><small>maxItems: 15</small> <br><small>maxItemLength: 20</small> | Array of names. | No |
-| items            | [object] <br><small>maxItems: 20</small> | Array of glossary items. [GlossaryItem](###glossaryitem) format is described in the table bellow. | No|
+| Attribute | Type                                                                          | Description                                                                                       | Required |
+|-----------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|----------|
+| name      | string <br><small>maxLength: 60</small>                                       | Name of the glossary.                                                                             | Yes      |
+| names     | [string] <br><small>maxItems: 15</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                                   | No       |
+| items     | [object] <br><small>maxItems: 20</small>                                      | Array of glossary items. [GlossaryItem](###glossaryitem) format is described in the table bellow. | No       |
 
 ### GlossaryItem
 | Attribute        | Type                                     | Description                    | Required |
