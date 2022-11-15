@@ -289,11 +289,11 @@ Otherwise, you will get a callback informing you that your job was successfully 
 ### Uploading With `glossaryId`
 When using a `glossaryId` with your request, you first need to have created a glossary to be used. [Read here](#glossary) for more information on how to work with glossaries. You can either:
 
-- [Create a new glossary](https://amberscript.github.io/api-docs/#create-a-glossary) and use the `id` of the glossary as `glossaryId` in your upload request.
+- [Create a new glossary](#create-a-glossary) and use the `id` of the glossary as `glossaryId` in your upload request.
 
 or
 
-- [List your previously created glossaries](https://amberscript.github.io/api-docs/#get-a-list-of-glossaries) and pick an `id` of the glossary that you want to use as `glossaryId` in your upload request.
+- [List your previously created glossaries](#get-a-list-of-glossaries) and pick an `id` of the glossary that you want to use as `glossaryId` in your upload request.
 
 ### Automatic language identification
 You can let the automatic speech recognition engine determine the language of uploaded media automatically. To do so, you need to set the value of `language` request parameter to `auto`.
@@ -1443,11 +1443,11 @@ Create a glossary.
 
 ### Body JSON
 ### UserGlossary
-| Attribute | Type                                                                          | Description                                                                                       | Required |
-|-----------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|----------|
-| name      | string <br><small>maxLength: 60</small>                                       | Name of the glossary.                                                                             | Yes      |
-| names     | [string] <br><small>maxItems: 15</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                                   | No       |
-| items     | [object] <br><small>maxItems: 20</small>                                      | Array of glossary items. **GlossaryItem** format is described in the table bellow.                | No       |
+| Attribute | Type                                                                          | Description                                                                                      | Required |
+|-----------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|----------|
+| name      | string <br><small>maxLength: 60</small>                                       | Name of the glossary.                                                                            | Yes      |
+| names     | [string] <br><small>maxItems: 15</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                                  | No       |
+| items     | [object] <br><small>maxItems: 20</small>                                      | Array of glossary items. **GlossaryItem** format is described in the table below.                | No       |
 
 ### GlossaryItem
 | Attribute        | Type                                     | Description                    | Required |
@@ -1606,11 +1606,11 @@ Update a specific glossary.
 
 ### Body JSON
 ### UserGlossary
-| Attribute | Type                                                                          | Description                                                                                       | Required |
-|-----------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|----------|
-| name      | string <br><small>maxLength: 60</small>                                       | Name of the glossary.                                                                             | Yes      |
-| names     | [string] <br><small>maxItems: 15</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                                   | No       |
-| items     | [object] <br><small>maxItems: 20</small>                                      | Array of glossary items. **GlossaryItem** format is described in the table bellow.                | No       |
+| Attribute | Type                                                                          | Description                                                                                      | Required |
+|-----------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|----------|
+| name      | string <br><small>maxLength: 60</small>                                       | Name of the glossary.                                                                            | Yes      |
+| names     | [string] <br><small>maxItems: 15</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                                  | No       |
+| items     | [object] <br><small>maxItems: 20</small>                                      | Array of glossary items. **GlossaryItem** format is described in the table below.                | No       |
 
 ### GlossaryItem
 | Attribute        | Type                                     | Description                    | Required |
