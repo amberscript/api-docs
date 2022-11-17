@@ -305,7 +305,7 @@ You can let the automatic speech recognition engine determine the language of up
 
 - max 6GB
 - audio or video file
-- supported formats: wav, mp3, m4a, aac, wma, mov, m4v, mp4, opus, ogg, flac
+- supported formats: `wav`, `mp3`, `m4a`, `aac`, `wma`, `mov`, `m4v`, `mp4`, `opus`, `ogg`, `flac`
 
 _If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com_
 
@@ -469,7 +469,7 @@ You can let the automatic speech recognition engine determine the language of up
 
 - max 16GB
 - audio or video file
-- supported formats: `wav`, `mp3`, `mp4`, `aac`, `m4a`, `wma`, `opus`, `ogg`, `flac`, `aac`, `dss`, `avi`, `wmv`, `mov`, `mp4`, `m4v`, `mpg`, `vob`
+- supported formats: `wav`, `mp3`, `mp4`, `aac`, `m4a`, `wma`, `opus`, `ogg`, `flac`, `dss`, `avi`, `wmv`, `mov`, `m4v`, `mpg`, `vob`
 
 _If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com_
 
