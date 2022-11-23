@@ -309,6 +309,10 @@ You can let the automatic speech recognition engine determine the language of up
 
 _If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com_
 
+## Uploading A File by URL
+Upload a file from a remote location - for example a file stored on AWS S3. The file has to be publicly accessible from a URL or it has to be presigned download URL.
+
+> Please note that this endpoint uses parameters in the body of the request.
 
 ```java
 HttpResponse<String> response = Unirest.post("https://api.amberscript.com/api/jobs/upload-media-from-url?apiKey={{YOUR_API_KEY}}")
@@ -380,8 +384,6 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media-fro
   }
 }
 ```
-
-## Uploading A File by URL
 
 ### HTTP Request
 
