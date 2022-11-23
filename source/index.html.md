@@ -1446,8 +1446,8 @@ Create a glossary.
 | Attribute | Type                                                                          | Description                                                                                      | Required |
 |-----------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|----------|
 | name      | string <br><small>maxLength: 60</small>                                       | Name of the glossary.                                                                            | Yes      |
-| names     | [string] <br><small>maxItems: 15</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                                  | No       |
-| items     | [object] <br><small>maxItems: 20</small>                                      | Array of glossary items. **GlossaryItem** format is described in the table below.                | No       |
+| names     | [string] <br><small>maxItems: 250</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                                  | No       |
+| items     | [object] <br><small>maxItems: 750</small>                                      | Array of glossary items. **GlossaryItem** format is described in the table below.                | No       |
 
 ### GlossaryItem
 | Attribute        | Type                                     | Description                    | Required |
@@ -1609,8 +1609,8 @@ Update a specific glossary.
 | Attribute | Type                                                                          | Description                                                                                      | Required |
 |-----------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|----------|
 | name      | string <br><small>maxLength: 60</small>                                       | Name of the glossary.                                                                            | Yes      |
-| names     | [string] <br><small>maxItems: 15</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                                  | No       |
-| items     | [object] <br><small>maxItems: 20</small>                                      | Array of glossary items. **GlossaryItem** format is described in the table below.                | No       |
+| names     | [string] <br><small>maxItems: 250</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                                  | No       |
+| items     | [object] <br><small>maxItems: 750</small>                                      | Array of glossary items. **GlossaryItem** format is described in the table below.                | No       |
 
 ### GlossaryItem
 | Attribute        | Type                                     | Description                    | Required |
