@@ -72,6 +72,7 @@ and create a transcript or subtitles.
 | Dutch                    | nl         |
 | English (Australia)      | en-au      |
 | English (United Kingdom) | en-uk      |
+| English (United States)  | en-us      |
 | English (all accents)    | en         |
 | Estonian                 | et-ee      |
 | Farsi (Iran)             | fa-ir      |
