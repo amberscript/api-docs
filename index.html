@@ -1802,7 +1802,7 @@ Speaker 1: Hi, welcome to Amber script, in this short video, we would like to sh
     </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test.mp4"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"perfect"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"jobOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"transcriptionStyle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cleanread"</span><span class="w"> 
+      </span><span class="nl">"transcriptionStyle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cleanread"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -1879,7 +1879,17 @@ Speaker 1: Hi, welcome to Amber script, in this short video, we would like to sh
 </tr>
 </tbody></table>
 <h1 id='glossary'>Glossary</h1>
-<p>You can make use of a glossary to help improve the quality of your transcription, captions and translated subtitles.</p>
+<p>You can make use of the glossary feature to help improve the quality of your transcription, captions, and translated subtitles.
+If you already know the names of people/places/organizations, technical terms, or domain-specific terms that are spoken in the media file, these can be added to the glossary to improve the automatic recognition of these terms. Furthermore, for manual services, the glossary is used to aid transcribers in perfecting the file.
+- The “names” attribute is used to specify names of people, places, organizations etc.
+- The “items” attribute is used to add technical or domain-specific terms along with their descriptions. By including the description of these terms, you provide more clarity and further help our transcribers in making your transcription, captions, or translated subtitles perfect.</p>
+
+<p>Best practices for creating a glossary:
+- Add the exact words that should be in the transcription to the glossary. Stems and various forms of words are not supported. For example, if the term “subtitling” is spoken in the media file, specify the term “subtitling” in the glossary, not the term “subtitle”.
+- Add the names in the same casing (lowercase/uppercase) that should appear in the transcription. For example, for a name like “Amberscript”, add the name “Amberscript” to the glossary instead of “amberscript”. Similarly, for an acronym like “RSVP”, add the name “RSVP” to the glossary, not “rsvp” or “Rsvp”.
+- Avoid including regular words in the glossary such as “the”, “of”, “and” etc., unless they are part of a name such as “University of Amsterdam”. You can add multiple words as a single entry if they belong together, e.g., “University of Amsterdam”.
+- Only add uncommon words such as names or technical terms. Common words such as “climate”, “forest” etc. can be avoided.
+- The same name or term should not be included more than once.</p>
 <h2 id='get-a-list-of-glossaries'>Get a list of glossaries</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
