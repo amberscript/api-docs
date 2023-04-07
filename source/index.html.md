@@ -1195,10 +1195,12 @@ Get a list of jobs.
 
 You can make use of the glossary feature to help improve the quality of your transcription, captions, and translated subtitles.
 If you already know the names of people/places/organizations, technical terms, or domain-specific terms that are spoken in the media file, these can be added to the glossary to improve the automatic recognition of these terms. Furthermore, for manual services, the glossary is used to aid transcribers in perfecting the file.
+
 - The “names” attribute is used to specify names of people, places, organizations etc.
 - The “items” attribute is used to add technical or domain-specific terms along with their descriptions. By including the description of these terms, you provide more clarity and further help our transcribers in making your transcription, captions, or translated subtitles perfect.
 
 Best practices for creating a glossary:
+
 - Add the exact words that should be in the transcription to the glossary. Stems and various forms of words are not supported. For example, if the term “subtitling” is spoken in the media file, specify the term “subtitling” in the glossary, not the term “subtitle”.
 - Add the names in the same casing (lowercase/uppercase) that should appear in the transcription. For example, for a name like “Amberscript”, add the name “Amberscript” to the glossary instead of “amberscript”. Similarly, for an acronym like “RSVP”, add the name “RSVP” to the glossary, not “rsvp” or “Rsvp”.
 - Avoid including regular words in the glossary such as “the”, “of”, “and” etc., unless they are part of a name such as “University of Amsterdam”. You can add multiple words as a single entry if they belong together, e.g., “University of Amsterdam”.
