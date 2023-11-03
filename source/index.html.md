@@ -3,18 +3,18 @@ title: Amberscript Transcription API
 
 language_tabs: # must be one of https://git.io/vQNgJ
 
-- javascript: NodeJS
-- java: Java
-- python: Python
-- shell: cURL
+  - javascript: NodeJS
+  - java: Java
+  - python: Python
+  - shell: cURL
 
 toc_footers:
 
-- <a href='https://www.amberscript.com/en/speech-to-text-api'>Sign Up for our Transcription API</a>
+  - <a href='https://www.amberscript.com/en/speech-to-text-api'>Sign Up for our Transcription API</a>
 
 includes:
 
-- errors
+  - errors
 
 search: true
 
@@ -142,7 +142,7 @@ and create a transcript or subtitles.
 ## Uploading A File
 
 ```java
-HttpResponse<String> response = Unirest.post("https://api.amberscript.com/api/jobs/upload-media?transcriptionType=transcription&jobType=direct&language=nl&apiKey={{YOUR_API_KEY}}")
+HttpResponse<String> response=Unirest.post("https://api.amberscript.com/api/jobs/upload-media?transcriptionType=transcription&jobType=direct&language=nl&apiKey={{YOUR_API_KEY}}")
   .asString();
 ```
 
@@ -203,8 +203,10 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media?tra
     "transcriptionType": "translatedSubtitles",
     "filename": "file_name.mp3",
     "jobType": "perfect",
-    "sourceJobId": "SOURCE_JOB_ID", // only present for translated subtitles jobs.
-    "targetLanguage": "nl" // OPTIONAL, translatedSubtitles only
+    "sourceJobId": "SOURCE_JOB_ID",
+    // only present for translated subtitles jobs.
+    "targetLanguage": "nl"
+    // OPTIONAL, translatedSubtitles only
   }
 }
 ```
@@ -217,17 +219,17 @@ Upload a file for transcription.
 
 ### Query Parameters
 
-| Parameter                     | Default                                                                        | Description/Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-|-------------------------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Parameter                     | Default                                                                        | Description/Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|-------------------------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | language                      | `en`                                                                           | `af-za`, `sq-al`, `am-et`, `ar`, `hy-am`, `az-az`, `id-id`, `eu-es`, `bn-bd`, `bn-in`, `bs-ba`, `bg`, `my-mm`, `ca`, `cmn`, `hr`, `cs`, `da`, `nl`, `en-au`, `en-uk`, `en`, `et-ee`, `fa-ir`, `fil-ph`, `fi`, `nl-be`, `fr-ca`, `fr`, `gl-es`, `ka-ge`, `de-at`, `de-ch`, `de`, `el`, `gu-in`, `iw-il`, `hi`, `hu`, `is-is`, `it`, `ja`, `jv-id`, `kn-in`, `km-kh`, `ko`, `lo-la`, `lv`, `lt`, `mk-mk`, `ms`, `ml-in`, `mr-in`, `mn-mn`, `ne-np`, `no`, `pl`, `pt-br`, `pt`, `pa-guru-in`, `ro`, `ru`, `sr-rs`, `si-lk`, `sk`, `sl`, `es`, `su-id`, `sw-ke`, `sw-tz`, `sv`, `ta-in`, `ta-my`, `ta-sg`, `ta-lk`, `te-in`, `th-th`, `tr`, `uk-ua`, `ur-in`, `ur-pk`, `uz-uz`, `vi-vn`, `zu-za`, `auto` |
-| transcriptionType             | `transcription`                                                                | `transcription`, `captions`, `translatedSubtitles`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| jobType                       | `direct`                                                                       | `perfect`, `direct`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| numberOfSpeakers              | `2`                                                                            | `1`, `2`, `3`, `4`, `5`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| callbackUrl (OPTIONAL)        | NONE                                                                           | `YOUR_CALLBACK_URL`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| transcriptionStyle (OPTIONAL) | `cleanread`                                                                    | `cleanread`, `verbatim`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| turnaroundTime (OPTIONAL)     | `FIVE_DAYS` - `transcription`/`captions`, `SEVEN_DAYS` - `translatedSubtitles` | Hint: Get in touch if you need a turnaround time other than the default one.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| targetLanguage (OPTIONAL)     | NONE                                                                           | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| glossaryId (OPTIONAL)         | NONE                                                                           | `YOUR_GLOSSARY_ID`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| transcriptionType             | `transcription`                                                                | `transcription`, `captions`, `translatedSubtitles`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| jobType                       | `direct`                                                                       | `perfect`, `direct`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| numberOfSpeakers              | `2`                                                                            | `1`, `2`, `3`, `4`, `5`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| callbackUrl (OPTIONAL)        | NONE                                                                           | `YOUR_CALLBACK_URL`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| transcriptionStyle (OPTIONAL) | `cleanread`                                                                    | `cleanread`, `verbatim`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| turnaroundTime (OPTIONAL)     | `FIVE_DAYS` - `transcription`/`captions`, `SEVEN_DAYS` - `translatedSubtitles` | Hint: Get in touch if you need a turnaround time other than the default one.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| targetLanguage (OPTIONAL)     | NONE                                                                           | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| glossaryId (OPTIONAL)         | NONE                                                                           | `YOUR_GLOSSARY_ID`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ### Uploading With `callbackUrl`
 
@@ -288,19 +290,26 @@ Otherwise, you will get a callback informing you that your job was successfully 
 - `status` can either be `OPEN`, `DONE` or `ERROR`.
 
 ### Uploading With `glossaryId`
-When using a `glossaryId` with your request, you first need to have created a glossary to be used. [Read here](#glossary) for more information on how to work with glossaries. You can either:
+
+When using a `glossaryId` with your request, you first need to have created a glossary to be
+used. [Read here](#glossary) for more information on how to work with glossaries. You can either:
 
 - [Create a new glossary](#create-a-glossary) and use the `id` of the glossary as `glossaryId` in your upload request.
 
 or
 
-- [List your previously created glossaries](#get-a-list-of-glossaries) and pick an `id` of the glossary that you want to use as `glossaryId` in your upload request.
+- [List your previously created glossaries](#get-a-list-of-glossaries) and pick an `id` of the glossary that you want to
+  use as `glossaryId` in your upload request.
 
 ### Automatic language identification
-You can let the automatic speech recognition engine determine the language of uploaded media automatically. To do so, you need to set the value of `language` request parameter to `auto`.
+
+You can let the automatic speech recognition engine determine the language of uploaded media automatically. To do so,
+you need to set the value of `language` request parameter to `auto`.
+
 - Supported languages: English, Dutch, German, French and Italian
 
-> **Note**: Automatic language predictions can be wrong and manual specification is recommended. If you need support or have an issue, please get in touch with us via info@amberscript.com.
+> **Note**: Automatic language predictions can be wrong and manual specification is recommended. If you need support or
+> have an issue, please get in touch with us via info@amberscript.com.
 
 ### File requirements:
 
@@ -311,12 +320,14 @@ You can let the automatic speech recognition engine determine the language of up
 _If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com_
 
 ## Uploading A File by URL
-Upload a file from a remote location - for example a file stored on AWS S3. The file has to be publicly accessible from a URL or it has to be presigned download URL.
+
+Upload a file from a remote location - for example a file stored on AWS S3. The file has to be publicly accessible from
+a URL or it has to be presigned download URL.
 
 > Please note that this endpoint uses parameters in the body of the request.
 
 ```java
-HttpResponse<String> response = Unirest.post("https://api.amberscript.com/api/jobs/upload-media-from-url?apiKey={{YOUR_API_KEY}}")
+HttpResponse<String> response=Unirest.post("https://api.amberscript.com/api/jobs/upload-media-from-url?apiKey={{YOUR_API_KEY}}")
   .body("{\"sourceUrl\":\"https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4\", \"language\":\"en\", \"transcriptionType\":\"transcription\"}", \"jobType\":\"direct\", \"numberOfSpeakers	\":\"2\")
   .asJson();
 ```
@@ -328,9 +339,11 @@ const fs = require('fs');
 let options = {
   method: 'POST',
   url: 'https://api.amberscript.com/api/jobs/upload-media-from-url',
+  qs: {
+    apiKey: 'YOUR_API_KEY'
+  },
   body: {
     "sourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-    "apiKey": "YOUR_API_KEY",
     "transcriptionType": "transcription",
     "jobType": "direct",
     "language": "nl",
@@ -380,8 +393,10 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media-fro
     "transcriptionType": "translatedSubtitles",
     "filename": "file_name.mp3",
     "jobType": "perfect",
-    "sourceJobId": "SOURCE_JOB_ID", // only present for translated subtitles jobs.
-    "targetLanguage": "nl" // OPTIONAL, translatedSubtitles only
+    "sourceJobId": "SOURCE_JOB_ID",
+    // only present for translated subtitles jobs.
+    "targetLanguage": "nl"
+    // OPTIONAL, translatedSubtitles only
   }
 }
 ```
@@ -392,17 +407,17 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media-fro
 
 ### Request Body Parameters
 
-| Parameter                     | Default                                                                        | Description/Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-|-------------------------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Parameter                     | Default                                                                        | Description/Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|-------------------------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | language                      | `en`                                                                           | `af-za`, `sq-al`, `am-et`, `ar`, `hy-am`, `az-az`, `id-id`, `eu-es`, `bn-bd`, `bn-in`, `bs-ba`, `bg`, `my-mm`, `ca`, `cmn`, `hr`, `cs`, `da`, `nl`, `en-au`, `en-uk`, `en`, `et-ee`, `fa-ir`, `fil-ph`, `fi`, `nl-be`, `fr-ca`, `fr`, `gl-es`, `ka-ge`, `de-at`, `de-ch`, `de`, `el`, `gu-in`, `iw-il`, `hi`, `hu`, `is-is`, `it`, `ja`, `jv-id`, `kn-in`, `km-kh`, `ko`, `lo-la`, `lv`, `lt`, `mk-mk`, `ms`, `ml-in`, `mr-in`, `mn-mn`, `ne-np`, `no`, `pl`, `pt-br`, `pt`, `pa-guru-in`, `ro`, `ru`, `sr-rs`, `si-lk`, `sk`, `sl`, `es`, `su-id`, `sw-ke`, `sw-tz`, `sv`, `ta-in`, `ta-my`, `ta-sg`, `ta-lk`, `te-in`, `th-th`, `tr`, `uk-ua`, `ur-in`, `ur-pk`, `uz-uz`, `vi-vn`, `zu-za`, `auto` |
-| transcriptionType             | `transcription`                                                                | `transcription`, `captions`, `translatedSubtitles`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| jobType                       | `direct`                                                                       | `perfect`, `direct`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| numberOfSpeakers              | `2`                                                                            | `1`, `2`, `3`, `4`, `5`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| sourceUrl                     | ``                                                                             | "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| callbackUrl (OPTIONAL)        | NONE                                                                           | `YOUR_CALLBACK_URL`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| transcriptionStyle (OPTIONAL) | `cleanread`                                                                    | `cleanread`, `verbatim`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| turnaroundTime (OPTIONAL)     | `FIVE_DAYS` - `transcription`/`captions`, `SEVEN_DAYS` - `translatedSubtitles` | Hint: Get in touch if you need a turnaround time other than the default one.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| targetLanguage (OPTIONAL)     | NONE                                                                           | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| transcriptionType             | `transcription`                                                                | `transcription`, `captions`, `translatedSubtitles`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| jobType                       | `direct`                                                                       | `perfect`, `direct`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| numberOfSpeakers              | `2`                                                                            | `1`, `2`, `3`, `4`, `5`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| sourceUrl                     | ``                                                                             | "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| callbackUrl (OPTIONAL)        | NONE                                                                           | `YOUR_CALLBACK_URL`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| transcriptionStyle (OPTIONAL) | `cleanread`                                                                    | `cleanread`, `verbatim`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| turnaroundTime (OPTIONAL)     | `FIVE_DAYS` - `transcription`/`captions`, `SEVEN_DAYS` - `translatedSubtitles` | Hint: Get in touch if you need a turnaround time other than the default one.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| targetLanguage (OPTIONAL)     | NONE                                                                           | `pl `, `en`, `ru`, `fr-ca`, `ca`, `zh`, `ga`, `hu`, `pt`, `da`, `de-at`, `fr`, `nl`, `en-au`, `ko`, `it`, `de`, `fi`, `cmn`, `ja`, `de-ch`, `en-us`, `ro`, `pt-br`, `nl-be`, `cs`, `no`, `sv`, `en-uk`, `es`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ### Uploading With `callbackUrl`
 
@@ -463,23 +478,28 @@ Otherwise, you will get a callback informing you that your job was successfully 
 - `status` can either be `OPEN`, `DONE` or `ERROR`.
 
 ### Automatic language identification
-You can let the automatic speech recognition engine determine the language of uploaded media automatically. To do so, you need to set the value of `language` request parameter to `auto`.
+
+You can let the automatic speech recognition engine determine the language of uploaded media automatically. To do so,
+you need to set the value of `language` request parameter to `auto`.
+
 - Supported languages: English, Dutch, German, French and Italian
 
-> **Note**: Automatic language predictions can be wrong and manual specification is recommended. If you need support or have an issue, please get in touch with us via info@amberscript.com.
+> **Note**: Automatic language predictions can be wrong and manual specification is recommended. If you need support or
+> have an issue, please get in touch with us via info@amberscript.com.
 
 ### File requirements:
 
 - max 16GB
 - audio or video file
-- supported formats: `wav`, `mp3`, `mp4`, `aac`, `m4a`, `wma`, `opus`, `ogg`, `flac`, `dss`, `avi`, `wmv`, `mov`, `m4v`, `mpg`, `vob`
+- supported
+  formats: `wav`, `mp3`, `mp4`, `aac`, `m4a`, `wma`, `opus`, `ogg`, `flac`, `dss`, `avi`, `wmv`, `mov`, `m4v`, `mpg`, `vob`
 
 _If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com_
 
 ## Request for translated subtitles for an existing manual captions job
 
 ```java
-HttpResponse<String> response = Unirest.post("https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=SOURCE_JOB_ID&targetLanguage=nl&apiKey=YOUR_API_KEY")
+HttpResponse<String> response=Unirest.post("https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=SOURCE_JOB_ID&targetLanguage=nl&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -555,7 +575,7 @@ Request for translated subtitles with uploaded file.
 ## Getting The Status Of A Transcription
 
 ```java
-HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/status?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs/status?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -602,14 +622,17 @@ curl --request GET --url 'https://api.amberscript.com/api/jobs/status?jobId=JOB_
     "language": "en",
     "status": "OPEN",
     "jobOptions": {
-      "transcriptionStyle": "verbatim" // job options are only present if explicitly requests
+      "transcriptionStyle": "verbatim"
+      // job options are only present if explicitly requests
     },
     "nrAudioSeconds": 45,
     "transcriptionType": "transcription",
     "filename": "file_name.mp3",
     "jobType": "direct",
-    "sourceJobId": "SOURCE_JOB_ID",    // OPTIONAL, translatedSubtitles only
-    "targetLanguage": "nl" // OPTIONAL, translatedSubtitles only
+    "sourceJobId": "SOURCE_JOB_ID",
+    // OPTIONAL, translatedSubtitles only
+    "targetLanguage": "nl"
+    // OPTIONAL, translatedSubtitles only
     "notes": "job_notes"
   }
 }
@@ -634,7 +657,7 @@ Retrieve the status of a specific job.
 <aside class="warning">DEPRECATED</aside>
 
 ```java
-HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-stl?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs/export-stl?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -696,7 +719,7 @@ Export a finished file to STL.
 ## Export To SRT
 
 ```java
-HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-srt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs/export-srt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -774,7 +797,7 @@ Export a finished file to SRT.
 ## Export To VTT
 
 ```java
-HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-vtt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs/export-vtt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -854,7 +877,7 @@ Export a finished file to VTT.
 ## Export To TEXT
 
 ```java
-HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-txt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs/export-txt?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -917,7 +940,7 @@ Export a finished file to TEXT.
 ## Export To JSON
 
 ```java
-HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs/export-json?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs/export-json?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -1028,7 +1051,7 @@ Export a finished file to JSON.
 ## Delete A Job
 
 ```java
-HttpResponse<String> response = Unirest.delete("https://api.amberscript.com/api/jobs?jobId=JOB_ID&apiKey=YOUR_API_KEY")
+HttpResponse<String> response=Unirest.delete("https://api.amberscript.com/api/jobs?jobId=JOB_ID&apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -1088,7 +1111,7 @@ Delete a specific job.
 ## Get List Of Jobs
 
 ```java
-HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/jobs?apiKey=YOUR_API_KEY")
+HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs?apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -1193,25 +1216,36 @@ Get a list of jobs.
 
 # Glossary
 
-You can make use of the glossary feature to help improve the quality of your transcription, captions, and translated subtitles.
-If you already know the names of people/places/organizations, technical terms, or domain-specific terms that are spoken in the media file, these can be added to the glossary to improve the automatic recognition of these terms. Furthermore, for manual services, the glossary is used to aid transcribers in perfecting the file.
+You can make use of the glossary feature to help improve the quality of your transcription, captions, and translated
+subtitles.
+If you already know the names of people/places/organizations, technical terms, or domain-specific terms that are spoken
+in the media file, these can be added to the glossary to improve the automatic recognition of these terms. Furthermore,
+for manual services, the glossary is used to aid transcribers in perfecting the file.
 
 - The “names” attribute is used to specify names of people, places, organizations etc.
-- The “items” attribute is used to add technical or domain-specific terms along with their descriptions. By including the description of these terms, you provide more clarity and further help our transcribers in making your transcription, captions, or translated subtitles perfect.
+- The “items” attribute is used to add technical or domain-specific terms along with their descriptions. By including
+  the description of these terms, you provide more clarity and further help our transcribers in making your
+  transcription, captions, or translated subtitles perfect.
 
 Best practices for creating a glossary:
 
-- Add the exact words that should be in the transcription to the glossary. Stems and various forms of words are not supported. For example, if the term “subtitling” is spoken in the media file, specify the term “subtitling” in the glossary, not the term “subtitle”.
-- Add the names in the same casing (lowercase/uppercase) that should appear in the transcription. For example, for a name like “Amberscript”, add the name “Amberscript” to the glossary instead of “amberscript”. Similarly, for an acronym like “RSVP”, add the name “RSVP” to the glossary, not “rsvp” or “Rsvp”.
-- Avoid including regular words in the glossary such as “the”, “of”, “and” etc., unless they are part of a name such as “University of Amsterdam”. You can add multiple words as a single entry if they belong together, e.g., “University of Amsterdam”.
-- Only add uncommon words such as names or technical terms. Common words such as “climate”, “forest” etc. can be avoided.
+- Add the exact words that should be in the transcription to the glossary. Stems and various forms of words are not
+  supported. For example, if the term “subtitling” is spoken in the media file, specify the term “subtitling” in the
+  glossary, not the term “subtitle”.
+- Add the names in the same casing (lowercase/uppercase) that should appear in the transcription. For example, for a
+  name like “Amberscript”, add the name “Amberscript” to the glossary instead of “amberscript”. Similarly, for an
+  acronym like “RSVP”, add the name “RSVP” to the glossary, not “rsvp” or “Rsvp”.
+- Avoid including regular words in the glossary such as “the”, “of”, “and” etc., unless they are part of a name such as
+  “University of Amsterdam”. You can add multiple words as a single entry if they belong together, e.g., “University of
+  Amsterdam”.
+- Only add uncommon words such as names or technical terms. Common words such as “climate”, “forest” etc. can be
+  avoided.
 - The same name or term should not be included more than once.
-
 
 ## Get a list of glossaries
 
 ```java
-HttpResponse<String> response = Unirest.get("https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY")
+HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY")
   .asString();
 ```
 
@@ -1248,7 +1282,7 @@ print(response.text)
 curl --request GET --url 'https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY'
  ```
 
- > The command returns JSON structured like this:
+> The command returns JSON structured like this:
 
 ```json
 [
@@ -1260,7 +1294,7 @@ curl --request GET --url 'https://api.amberscript.com/api/glossary?apiKey=YOUR_A
       "Test name one",
       "Test name two"
     ],
-    "items":[
+    "items": [
       {
         "name": "Item one name",
         "description": "description of item one"
@@ -1280,7 +1314,7 @@ curl --request GET --url 'https://api.amberscript.com/api/glossary?apiKey=YOUR_A
       "Test name one",
       "Test name two"
     ],
-    "items":[
+    "items": [
       {
         "name": "Item one name",
         "description": "description of item one"
@@ -1303,33 +1337,33 @@ Get a list of glossaries.
 
 ### Query Parameters
 
-| Parameter                    | Default | Description/Example                                               |
-|------------------------------|---------|-------------------------------------------------------------------|
-| sortBy (OPTIONAL)            | "created" | Field by which to sort the resulting list of glossaries.        |
-| sortDirection (OPTIONAL)     | `DESC`  | `DESC` or `ASC` |
+| Parameter                | Default   | Description/Example                                      |
+|--------------------------|-----------|----------------------------------------------------------|
+| sortBy (OPTIONAL)        | "created" | Field by which to sort the resulting list of glossaries. |
+| sortDirection (OPTIONAL) | `DESC`    | `DESC` or `ASC`                                          |
 
 ## Create a glossary
 
 ```java
-String body = "{\n" +
-    "  \"name\": \"Name of first glossary\",\n" +
-    "  \"names\": [\n" +
-    "    \"Test name one\",\n" +
-    "    \"Test name two\"\n" +
-    "  ],\n" +
-    "  \"items\": [\n" +
-    "    {\n" +
-    "      \"name\": \"Item one name\",\n" +
-    "      \"description\": \"description of item one\"\n" +
-    "    },\n" +
-    "    {\n" +
-    "      \"name\": \"Item two name\",\n" +
-    "      \"description\": \"description of item two\"\n" +
-    "    }\n" +
-    "  ]\n" +
-    "}";
-HttpResponse<String> response = Unirest.post("https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY")
-  .header("Content-Type", "application/json")
+String body="{\n"+
+  "  \"name\": \"Name of first glossary\",\n"+
+  "  \"names\": [\n"+
+  "    \"Test name one\",\n"+
+  "    \"Test name two\"\n"+
+  "  ],\n"+
+  "  \"items\": [\n"+
+  "    {\n"+
+  "      \"name\": \"Item one name\",\n"+
+  "      \"description\": \"description of item one\"\n"+
+  "    },\n"+
+  "    {\n"+
+  "      \"name\": \"Item two name\",\n"+
+  "      \"description\": \"description of item two\"\n"+
+  "    }\n"+
+  "  ]\n"+
+  "}";
+  HttpResponse<String> response=Unirest.post("https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY")
+  .header("Content-Type","application/json")
   .body(body)
   .asString();
 ```
@@ -1426,7 +1460,7 @@ curl --request POST --url 'https://api.amberscript.com/api/glossary?apiKey=YOUR_
 }'
  ```
 
- > The command returns JSON structured like this:
+> The command returns JSON structured like this:
 
 ```json
 {
@@ -1437,7 +1471,7 @@ curl --request POST --url 'https://api.amberscript.com/api/glossary?apiKey=YOUR_
     "Test name one",
     "Test name two"
   ],
-  "items":[
+  "items": [
     {
       "name": "Item one name",
       "description": "description of item one"
@@ -1458,14 +1492,17 @@ Create a glossary.
 `POST /glossary`
 
 ### Body JSON
+
 ### UserGlossary
-| Attribute | Type                                                                          | Description                                                                                      | Required |
-|-----------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|----------|
-| name      | string <br><small>maxLength: 60</small>                                       | Name of the glossary.                                                                            | Yes      |
-| names     | [string] <br><small>maxItems: 250</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                                  | No       |
-| items     | [object] <br><small>maxItems: 750</small>                                      | Array of glossary items. **GlossaryItem** format is described in the table below.                | No       |
+
+| Attribute | Type                                                                           | Description                                                                       | Required |
+|-----------|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|----------|
+| name      | string <br><small>maxLength: 60</small>                                        | Name of the glossary.                                                             | Yes      |
+| names     | [string] <br><small>maxItems: 250</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                   | No       |
+| items     | [object] <br><small>maxItems: 750</small>                                      | Array of glossary items. **GlossaryItem** format is described in the table below. | No       |
 
 ### GlossaryItem
+
 | Attribute        | Type                                     | Description                    | Required |
 |------------------|------------------------------------------|--------------------------------|----------|
 | item.name        | string <br><small>maxLength: 60</small>  | Term which is being described. | Yes      |
@@ -1474,25 +1511,25 @@ Create a glossary.
 ## Update a glossary
 
 ```java
-String body = "{\n" +
-    "  \"name\": \"Name of first glossary\",\n" +
-    "  \"names\": [\n" +
-    "    \"Test name one\",\n" +
-    "    \"Test name two\"\n" +
-    "  ],\n" +
-    "  \"items\": [\n" +
-    "    {\n" +
-    "      \"name\": \"Item one name\",\n" +
-    "      \"description\": \"description of item one\"\n" +
-    "    },\n" +
-    "    {\n" +
-    "      \"name\": \"Item two name\",\n" +
-    "      \"description\": \"description of item two\"\n" +
-    "    }\n" +
-    "  ]\n" +
-    "}";
-HttpResponse<String> response = Unirest.put("https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY")
-  .header("Content-Type", "application/json")
+String body="{\n"+
+  "  \"name\": \"Name of first glossary\",\n"+
+  "  \"names\": [\n"+
+  "    \"Test name one\",\n"+
+  "    \"Test name two\"\n"+
+  "  ],\n"+
+  "  \"items\": [\n"+
+  "    {\n"+
+  "      \"name\": \"Item one name\",\n"+
+  "      \"description\": \"description of item one\"\n"+
+  "    },\n"+
+  "    {\n"+
+  "      \"name\": \"Item two name\",\n"+
+  "      \"description\": \"description of item two\"\n"+
+  "    }\n"+
+  "  ]\n"+
+  "}";
+  HttpResponse<String> response=Unirest.put("https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY")
+  .header("Content-Type","application/json")
   .body(body)
   .asString();
 ```
@@ -1589,7 +1626,7 @@ curl --request PUT --url 'https://api.amberscript.com/api/glossary/GLOSSARY_ID?a
 }'
  ```
 
- > The command returns JSON structured like this:
+> The command returns JSON structured like this:
 
 ```json
 {
@@ -1600,7 +1637,7 @@ curl --request PUT --url 'https://api.amberscript.com/api/glossary/GLOSSARY_ID?a
     "Test name one",
     "Test name two"
   ],
-  "items":[
+  "items": [
     {
       "name": "Item one name",
       "description": "description of item one"
@@ -1621,14 +1658,17 @@ Update a specific glossary.
 `PUT /glossary/GLOSSARY_ID`
 
 ### Body JSON
+
 ### UserGlossary
-| Attribute | Type                                                                          | Description                                                                                      | Required |
-|-----------|-------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|----------|
-| name      | string <br><small>maxLength: 60</small>                                       | Name of the glossary.                                                                            | Yes      |
-| names     | [string] <br><small>maxItems: 250</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                                  | No       |
-| items     | [object] <br><small>maxItems: 750</small>                                      | Array of glossary items. **GlossaryItem** format is described in the table below.                | No       |
+
+| Attribute | Type                                                                           | Description                                                                       | Required |
+|-----------|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|----------|
+| name      | string <br><small>maxLength: 60</small>                                        | Name of the glossary.                                                             | Yes      |
+| names     | [string] <br><small>maxItems: 250</small> <br><small>maxItemLength: 20</small> | Array of names.                                                                   | No       |
+| items     | [object] <br><small>maxItems: 750</small>                                      | Array of glossary items. **GlossaryItem** format is described in the table below. | No       |
 
 ### GlossaryItem
+
 | Attribute        | Type                                     | Description                    | Required |
 |------------------|------------------------------------------|--------------------------------|----------|
 | item.name        | string <br><small>maxLength: 60</small>  | Term which is being described. | Yes      |
@@ -1637,7 +1677,7 @@ Update a specific glossary.
 ## Delete a glossary
 
 ```java
-HttpResponse<String> response = Unirest.delete("https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY")
+HttpResponse<String> response=Unirest.delete("https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY")
   .asString();
 ```
 
