@@ -773,7 +773,7 @@ endpoints.</li>
 <td>zu-za</td>
 </tr>
 </tbody></table>
-<h1 id='uploading-and-status'>Uploading and status</h1><h2 id='uploading-a-file'>Uploading A File</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/upload-media?transcriptionType=transcription&amp;jobType=direct&amp;language=nl&amp;apiKey={{YOUR_API_KEY}}"</span><span class="o">)</span>
+<h1 id='uploading-and-status'>Uploading and status</h1><h2 id='uploading-a-file'>Uploading A File</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/upload-media?transcriptionType=transcription&amp;jobType=direct&amp;language=nl&amp;apiKey={{YOUR_API_KEY}}"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">request</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">);</span>
@@ -824,8 +824,10 @@ endpoints.</li>
     </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"translatedSubtitles"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file_name.mp3"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"perfect"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sourceJobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOURCE_JOB_ID"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">present</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">translated</span><span class="w"> </span><span class="err">subtitles</span><span class="w"> </span><span class="err">jobs.</span><span class="w">
-    </span><span class="nl">"targetLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="err">translatedSubtitles</span><span class="w"> </span><span class="err">only</span><span class="w">
+    </span><span class="nl">"sourceJobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOURCE_JOB_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">present</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">translated</span><span class="w"> </span><span class="err">subtitles</span><span class="w"> </span><span class="err">jobs.</span><span class="w">
+    </span><span class="nl">"targetLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="err">translatedSubtitles</span><span class="w"> </span><span class="err">only</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -945,7 +947,8 @@ e.g. every 5 mins).</li>
 <li><code>status</code> can either be <code>OPEN</code>, <code>DONE</code> or <code>ERROR</code>.</li>
 </ul>
 <h3 id='uploading-with-glossaryid'>Uploading With <code>glossaryId</code></h3>
-<p>When using a <code>glossaryId</code> with your request, you first need to have created a glossary to be used. <a href="#glossary">Read here</a> for more information on how to work with glossaries. You can either:</p>
+<p>When using a <code>glossaryId</code> with your request, you first need to have created a glossary to be
+used. <a href="#glossary">Read here</a> for more information on how to work with glossaries. You can either:</p>
 
 <ul>
 <li><a href="#create-a-glossary">Create a new glossary</a> and use the <code>id</code> of the glossary as <code>glossaryId</code> in your upload request.</li>
@@ -954,14 +957,20 @@ e.g. every 5 mins).</li>
 <p>or</p>
 
 <ul>
-<li><a href="#get-a-list-of-glossaries">List your previously created glossaries</a> and pick an <code>id</code> of the glossary that you want to use as <code>glossaryId</code> in your upload request.</li>
+<li><a href="#get-a-list-of-glossaries">List your previously created glossaries</a> and pick an <code>id</code> of the glossary that you want to
+use as <code>glossaryId</code> in your upload request.</li>
 </ul>
 <h3 id='automatic-language-identification'>Automatic language identification</h3>
-<p>You can let the automatic speech recognition engine determine the language of uploaded media automatically. To do so, you need to set the value of <code>language</code> request parameter to <code>auto</code>.
-- Supported languages: English, Dutch, German, French and Italian</p>
+<p>You can let the automatic speech recognition engine determine the language of uploaded media automatically. To do so,
+you need to set the value of <code>language</code> request parameter to <code>auto</code>.</p>
+
+<ul>
+<li>Supported languages: English, Dutch, German, French and Italian</li>
+</ul>
 
 <blockquote>
-<p><strong>Note</strong>: Automatic language predictions can be wrong and manual specification is recommended. If you need support or have an issue, please get in touch with us via info@amberscript.com.</p>
+<p><strong>Note</strong>: Automatic language predictions can be wrong and manual specification is recommended. If you need support or
+have an issue, please get in touch with us via info@amberscript.com.</p>
 </blockquote>
 <h3 id='file-requirements'>File requirements:</h3>
 <ul>
@@ -972,12 +981,13 @@ e.g. every 5 mins).</li>
 
 <p><em>If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com</em></p>
 <h2 id='uploading-a-file-by-url'>Uploading A File by URL</h2>
-<p>Upload a file from a remote location - for example a file stored on AWS S3. The file has to be publicly accessible from a URL or it has to be presigned download URL.</p>
+<p>Upload a file from a remote location - for example a file stored on AWS S3. The file has to be publicly accessible from
+a URL or it has to be presigned download URL.</p>
 
 <blockquote>
 <p>Please note that this endpoint uses parameters in the body of the request.</p>
 </blockquote>
-<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/upload-media-from-url?apiKey={{YOUR_API_KEY}}"</span><span class="o">)</span>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/upload-media-from-url?apiKey={{YOUR_API_KEY}}"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"{\"sourceUrl\":\"https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4\", \"language\":\"en\", \"transcriptionType\":\"transcription\"}"</span><span class="o">,</span> <span class="err">\</span><span class="s">"jobType\":\"direct\", \"numberOfSpeakers    \":\"2\"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asJson</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">request</span><span class="dl">'</span><span class="p">);</span>
@@ -986,9 +996,11 @@ e.g. every 5 mins).</li>
 <span class="kd">let</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.amberscript.com/api/jobs/upload-media-from-url</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">qs</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">apiKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span>
+  <span class="p">},</span>
   <span class="na">body</span><span class="p">:</span> <span class="p">{</span>
     <span class="dl">"</span><span class="s2">sourceUrl</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4</span><span class="dl">"</span><span class="p">,</span>
-    <span class="dl">"</span><span class="s2">apiKey</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">YOUR_API_KEY</span><span class="dl">"</span><span class="p">,</span>
     <span class="dl">"</span><span class="s2">transcriptionType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">transcription</span><span class="dl">"</span><span class="p">,</span>
     <span class="dl">"</span><span class="s2">jobType</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">direct</span><span class="dl">"</span><span class="p">,</span>
     <span class="dl">"</span><span class="s2">language</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">nl</span><span class="dl">"</span><span class="p">,</span>
@@ -1031,8 +1043,10 @@ e.g. every 5 mins).</li>
     </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"translatedSubtitles"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file_name.mp3"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"perfect"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sourceJobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOURCE_JOB_ID"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">present</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">translated</span><span class="w"> </span><span class="err">subtitles</span><span class="w"> </span><span class="err">jobs.</span><span class="w">
-    </span><span class="nl">"targetLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="err">translatedSubtitles</span><span class="w"> </span><span class="err">only</span><span class="w">
+    </span><span class="nl">"sourceJobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOURCE_JOB_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">present</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">translated</span><span class="w"> </span><span class="err">subtitles</span><span class="w"> </span><span class="err">jobs.</span><span class="w">
+    </span><span class="nl">"targetLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="err">translatedSubtitles</span><span class="w"> </span><span class="err">only</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
@@ -1150,21 +1164,27 @@ e.g. every 5 mins).</li>
 <li><code>status</code> can either be <code>OPEN</code>, <code>DONE</code> or <code>ERROR</code>.</li>
 </ul>
 <h3 id='automatic-language-identification-2'>Automatic language identification</h3>
-<p>You can let the automatic speech recognition engine determine the language of uploaded media automatically. To do so, you need to set the value of <code>language</code> request parameter to <code>auto</code>.
-- Supported languages: English, Dutch, German, French and Italian</p>
+<p>You can let the automatic speech recognition engine determine the language of uploaded media automatically. To do so,
+you need to set the value of <code>language</code> request parameter to <code>auto</code>.</p>
+
+<ul>
+<li>Supported languages: English, Dutch, German, French and Italian</li>
+</ul>
 
 <blockquote>
-<p><strong>Note</strong>: Automatic language predictions can be wrong and manual specification is recommended. If you need support or have an issue, please get in touch with us via info@amberscript.com.</p>
+<p><strong>Note</strong>: Automatic language predictions can be wrong and manual specification is recommended. If you need support or
+have an issue, please get in touch with us via info@amberscript.com.</p>
 </blockquote>
 <h3 id='file-requirements-2'>File requirements:</h3>
 <ul>
 <li>max 16GB</li>
 <li>audio or video file</li>
-<li>supported formats: <code>wav</code>, <code>mp3</code>, <code>mp4</code>, <code>aac</code>, <code>m4a</code>, <code>wma</code>, <code>opus</code>, <code>ogg</code>, <code>flac</code>, <code>dss</code>, <code>avi</code>, <code>wmv</code>, <code>mov</code>, <code>m4v</code>, <code>mpg</code>, <code>vob</code></li>
+<li>supported
+formats: <code>wav</code>, <code>mp3</code>, <code>mp4</code>, <code>aac</code>, <code>m4a</code>, <code>wma</code>, <code>opus</code>, <code>ogg</code>, <code>flac</code>, <code>dss</code>, <code>avi</code>, <code>wmv</code>, <code>mov</code>, <code>m4v</code>, <code>mpg</code>, <code>vob</code></li>
 </ul>
 
 <p><em>If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com</em></p>
-<h2 id='request-for-translated-subtitles-for-an-existing-manual-captions-job'>Request for translated subtitles for an existing manual captions job</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=SOURCE_JOB_ID&amp;targetLanguage=nl&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+<h2 id='request-for-translated-subtitles-for-an-existing-manual-captions-job'>Request for translated subtitles for an existing manual captions job</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=SOURCE_JOB_ID&amp;targetLanguage=nl&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
@@ -1247,7 +1267,7 @@ e.g. every 5 mins).</li>
 <td>Job notes</td>
 </tr>
 </tbody></table>
-<h2 id='getting-the-status-of-a-transcription'>Getting The Status Of A Transcription</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/status?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+<h2 id='getting-the-status-of-a-transcription'>Getting The Status Of A Transcription</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/status?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
@@ -1284,14 +1304,17 @@ e.g. every 5 mins).</li>
     </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"jobOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"transcriptionStyle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verbatim"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">job</span><span class="w"> </span><span class="err">options</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">present</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">explicitly</span><span class="w"> </span><span class="err">requests</span><span class="w">
+      </span><span class="nl">"transcriptionStyle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verbatim"</span><span class="w">
+      </span><span class="err">//</span><span class="w"> </span><span class="err">job</span><span class="w"> </span><span class="err">options</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">present</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">explicitly</span><span class="w"> </span><span class="err">requests</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"nrAudioSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
     </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transcription"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file_name.mp3"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"direct"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sourceJobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOURCE_JOB_ID"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="err">translatedSubtitles</span><span class="w"> </span><span class="err">only</span><span class="w">
-    </span><span class="nl">"targetLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="err">translatedSubtitles</span><span class="w"> </span><span class="err">only</span><span class="w">
+    </span><span class="nl">"sourceJobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOURCE_JOB_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="err">translatedSubtitles</span><span class="w"> </span><span class="err">only</span><span class="w">
+    </span><span class="nl">"targetLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="err">translatedSubtitles</span><span class="w"> </span><span class="err">only</span><span class="w">
     </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_notes"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1315,7 +1338,7 @@ e.g. every 5 mins).</li>
 </tbody></table>
 <h1 id='exporting'>Exporting</h1><h2 id='export-to-stl'>Export To STL</h2>
 <aside class="warning">DEPRECATED</aside>
-<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-stl?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-stl?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code> <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
@@ -1376,7 +1399,7 @@ e.g. every 5 mins).</li>
 <td>Float which sets the maximum number of seconds given for each row of subtitles.</td>
 </tr>
 </tbody></table>
-<h2 id='export-to-srt'>Export To SRT</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-srt?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+<h2 id='export-to-srt'>Export To SRT</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-srt?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code> <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
@@ -1457,7 +1480,7 @@ This allows you to edit errors
 <td>Float which sets the maximum number of seconds given for each row of subtitles.</td>
 </tr>
 </tbody></table>
-<h2 id='export-to-vtt'>Export To VTT</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-vtt?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+<h2 id='export-to-vtt'>Export To VTT</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-vtt?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code> <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
@@ -1540,7 +1563,7 @@ This allows you to edit errors
 <td>Float which sets the maximum number of seconds given for each row of subtitles.</td>
 </tr>
 </tbody></table>
-<h2 id='export-to-text'>Export To TEXT</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-txt?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+<h2 id='export-to-text'>Export To TEXT</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-txt?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code> <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
@@ -1610,7 +1633,7 @@ Speaker 1: Hi, welcome to Amber script, in this short video, we would like to sh
 <td>Integer which sets the maximum number of characters per row.</td>
 </tr>
 </tbody></table>
-<h2 id='export-to-json'>Export To JSON</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-json?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+<h2 id='export-to-json'>Export To JSON</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-json?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code> <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
@@ -1710,7 +1733,7 @@ Speaker 1: Hi, welcome to Amber script, in this short video, we would like to sh
 <td>YOUR_JOB_ID</td>
 </tr>
 </tbody></table>
-<h1 id='listing-and-deleting-jobs'>Listing and deleting jobs</h1><h2 id='delete-a-job'>Delete A Job</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+<h1 id='listing-and-deleting-jobs'>Listing and deleting jobs</h1><h2 id='delete-a-job'>Delete A Job</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code> <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
@@ -1761,7 +1784,7 @@ Speaker 1: Hi, welcome to Amber script, in this short video, we would like to sh
 <td>YOUR_JOB_ID</td>
 </tr>
 </tbody></table>
-<h2 id='get-list-of-jobs'>Get List Of Jobs</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+<h2 id='get-list-of-jobs'>Get List Of Jobs</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code> <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
@@ -1879,24 +1902,36 @@ Speaker 1: Hi, welcome to Amber script, in this short video, we would like to sh
 </tr>
 </tbody></table>
 <h1 id='glossary'>Glossary</h1>
-<p>You can make use of the glossary feature to help improve the quality of your transcription, captions, and translated subtitles.
-If you already know the names of people/places/organizations, technical terms, or domain-specific terms that are spoken in the media file, these can be added to the glossary to improve the automatic recognition of these terms. Furthermore, for manual services, the glossary is used to aid transcribers in perfecting the file.</p>
+<p>You can make use of the glossary feature to help improve the quality of your transcription, captions, and translated
+subtitles.
+If you already know the names of people/places/organizations, technical terms, or domain-specific terms that are spoken
+in the media file, these can be added to the glossary to improve the automatic recognition of these terms. Furthermore,
+for manual services, the glossary is used to aid transcribers in perfecting the file.</p>
 
 <ul>
 <li>The “names” attribute is used to specify names of people, places, organizations etc.</li>
-<li>The “items” attribute is used to add technical or domain-specific terms along with their descriptions. By including the description of these terms, you provide more clarity and further help our transcribers in making your transcription, captions, or translated subtitles perfect.</li>
+<li>The “items” attribute is used to add technical or domain-specific terms along with their descriptions. By including
+the description of these terms, you provide more clarity and further help our transcribers in making your
+transcription, captions, or translated subtitles perfect.</li>
 </ul>
 
 <p>Best practices for creating a glossary:</p>
 
 <ul>
-<li>Add the exact words that should be in the transcription to the glossary. Stems and various forms of words are not supported. For example, if the term “subtitling” is spoken in the media file, specify the term “subtitling” in the glossary, not the term “subtitle”.</li>
-<li>Add the names in the same casing (lowercase/uppercase) that should appear in the transcription. For example, for a name like “Amberscript”, add the name “Amberscript” to the glossary instead of “amberscript”. Similarly, for an acronym like “RSVP”, add the name “RSVP” to the glossary, not “rsvp” or “Rsvp”.</li>
-<li>Avoid including regular words in the glossary such as “the”, “of”, “and” etc., unless they are part of a name such as “University of Amsterdam”. You can add multiple words as a single entry if they belong together, e.g., “University of Amsterdam”.</li>
-<li>Only add uncommon words such as names or technical terms. Common words such as “climate”, “forest” etc. can be avoided.</li>
+<li>Add the exact words that should be in the transcription to the glossary. Stems and various forms of words are not
+supported. For example, if the term “subtitling” is spoken in the media file, specify the term “subtitling” in the
+glossary, not the term “subtitle”.</li>
+<li>Add the names in the same casing (lowercase/uppercase) that should appear in the transcription. For example, for a
+name like “Amberscript”, add the name “Amberscript” to the glossary instead of “amberscript”. Similarly, for an
+acronym like “RSVP”, add the name “RSVP” to the glossary, not “rsvp” or “Rsvp”.</li>
+<li>Avoid including regular words in the glossary such as “the”, “of”, “and” etc., unless they are part of a name such as
+“University of Amsterdam”. You can add multiple words as a single entry if they belong together, e.g., “University of
+Amsterdam”.</li>
+<li>Only add uncommon words such as names or technical terms. Common words such as “climate”, “forest” etc. can be
+avoided.</li>
 <li>The same name or term should not be included more than once.</li>
 </ul>
-<h2 id='get-a-list-of-glossaries'>Get a list of glossaries</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+<h2 id='get-a-list-of-glossaries'>Get a list of glossaries</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
@@ -1935,7 +1970,7 @@ If you already know the names of people/places/organizations, technical terms, o
       </span><span class="s2">"Test name one"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"Test name two"</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"items"</span><span class="p">:[</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item one name"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of item one"</span><span class="w">
@@ -1955,7 +1990,7 @@ If you already know the names of people/places/organizations, technical terms, o
       </span><span class="s2">"Test name one"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"Test name two"</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"items"</span><span class="p">:[</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item one name"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of item one"</span><span class="w">
@@ -1991,25 +2026,25 @@ If you already know the names of people/places/organizations, technical terms, o
 <td><code>DESC</code> or <code>ASC</code></td>
 </tr>
 </tbody></table>
-<h2 id='create-a-glossary'>Create a glossary</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">String</span> <span class="n">body</span> <span class="o">=</span> <span class="s">"{\n"</span> <span class="o">+</span>
-    <span class="s">"  \"name\": \"Name of first glossary\",\n"</span> <span class="o">+</span>
-    <span class="s">"  \"names\": [\n"</span> <span class="o">+</span>
-    <span class="s">"    \"Test name one\",\n"</span> <span class="o">+</span>
-    <span class="s">"    \"Test name two\"\n"</span> <span class="o">+</span>
-    <span class="s">"  ],\n"</span> <span class="o">+</span>
-    <span class="s">"  \"items\": [\n"</span> <span class="o">+</span>
-    <span class="s">"    {\n"</span> <span class="o">+</span>
-    <span class="s">"      \"name\": \"Item one name\",\n"</span> <span class="o">+</span>
-    <span class="s">"      \"description\": \"description of item one\"\n"</span> <span class="o">+</span>
-    <span class="s">"    },\n"</span> <span class="o">+</span>
-    <span class="s">"    {\n"</span> <span class="o">+</span>
-    <span class="s">"      \"name\": \"Item two name\",\n"</span> <span class="o">+</span>
-    <span class="s">"      \"description\": \"description of item two\"\n"</span> <span class="o">+</span>
-    <span class="s">"    }\n"</span> <span class="o">+</span>
-    <span class="s">"  ]\n"</span> <span class="o">+</span>
-    <span class="s">"}"</span><span class="o">;</span>
-<span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
-  <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
+<h2 id='create-a-glossary'>Create a glossary</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">String</span> <span class="n">body</span><span class="o">=</span><span class="s">"{\n"</span><span class="o">+</span>
+  <span class="s">"  \"name\": \"Name of first glossary\",\n"</span><span class="o">+</span>
+  <span class="s">"  \"names\": [\n"</span><span class="o">+</span>
+  <span class="s">"    \"Test name one\",\n"</span><span class="o">+</span>
+  <span class="s">"    \"Test name two\"\n"</span><span class="o">+</span>
+  <span class="s">"  ],\n"</span><span class="o">+</span>
+  <span class="s">"  \"items\": [\n"</span><span class="o">+</span>
+  <span class="s">"    {\n"</span><span class="o">+</span>
+  <span class="s">"      \"name\": \"Item one name\",\n"</span><span class="o">+</span>
+  <span class="s">"      \"description\": \"description of item one\"\n"</span><span class="o">+</span>
+  <span class="s">"    },\n"</span><span class="o">+</span>
+  <span class="s">"    {\n"</span><span class="o">+</span>
+  <span class="s">"      \"name\": \"Item two name\",\n"</span><span class="o">+</span>
+  <span class="s">"      \"description\": \"description of item two\"\n"</span><span class="o">+</span>
+  <span class="s">"    }\n"</span><span class="o">+</span>
+  <span class="s">"  ]\n"</span><span class="o">+</span>
+  <span class="s">"}"</span><span class="o">;</span>
+  <span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span><span class="s">"application/json"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">body</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
@@ -2107,7 +2142,7 @@ If you already know the names of people/places/organizations, technical terms, o
     </span><span class="s2">"Test name one"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Test name two"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"items"</span><span class="p">:[</span><span class="w">
+  </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item one name"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of item one"</span><span class="w">
@@ -2173,25 +2208,25 @@ If you already know the names of people/places/organizations, technical terms, o
 <td>No</td>
 </tr>
 </tbody></table>
-<h2 id='update-a-glossary'>Update a glossary</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">String</span> <span class="n">body</span> <span class="o">=</span> <span class="s">"{\n"</span> <span class="o">+</span>
-    <span class="s">"  \"name\": \"Name of first glossary\",\n"</span> <span class="o">+</span>
-    <span class="s">"  \"names\": [\n"</span> <span class="o">+</span>
-    <span class="s">"    \"Test name one\",\n"</span> <span class="o">+</span>
-    <span class="s">"    \"Test name two\"\n"</span> <span class="o">+</span>
-    <span class="s">"  ],\n"</span> <span class="o">+</span>
-    <span class="s">"  \"items\": [\n"</span> <span class="o">+</span>
-    <span class="s">"    {\n"</span> <span class="o">+</span>
-    <span class="s">"      \"name\": \"Item one name\",\n"</span> <span class="o">+</span>
-    <span class="s">"      \"description\": \"description of item one\"\n"</span> <span class="o">+</span>
-    <span class="s">"    },\n"</span> <span class="o">+</span>
-    <span class="s">"    {\n"</span> <span class="o">+</span>
-    <span class="s">"      \"name\": \"Item two name\",\n"</span> <span class="o">+</span>
-    <span class="s">"      \"description\": \"description of item two\"\n"</span> <span class="o">+</span>
-    <span class="s">"    }\n"</span> <span class="o">+</span>
-    <span class="s">"  ]\n"</span> <span class="o">+</span>
-    <span class="s">"}"</span><span class="o">;</span>
-<span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
-  <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">)</span>
+<h2 id='update-a-glossary'>Update a glossary</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">String</span> <span class="n">body</span><span class="o">=</span><span class="s">"{\n"</span><span class="o">+</span>
+  <span class="s">"  \"name\": \"Name of first glossary\",\n"</span><span class="o">+</span>
+  <span class="s">"  \"names\": [\n"</span><span class="o">+</span>
+  <span class="s">"    \"Test name one\",\n"</span><span class="o">+</span>
+  <span class="s">"    \"Test name two\"\n"</span><span class="o">+</span>
+  <span class="s">"  ],\n"</span><span class="o">+</span>
+  <span class="s">"  \"items\": [\n"</span><span class="o">+</span>
+  <span class="s">"    {\n"</span><span class="o">+</span>
+  <span class="s">"      \"name\": \"Item one name\",\n"</span><span class="o">+</span>
+  <span class="s">"      \"description\": \"description of item one\"\n"</span><span class="o">+</span>
+  <span class="s">"    },\n"</span><span class="o">+</span>
+  <span class="s">"    {\n"</span><span class="o">+</span>
+  <span class="s">"      \"name\": \"Item two name\",\n"</span><span class="o">+</span>
+  <span class="s">"      \"description\": \"description of item two\"\n"</span><span class="o">+</span>
+  <span class="s">"    }\n"</span><span class="o">+</span>
+  <span class="s">"  ]\n"</span><span class="o">+</span>
+  <span class="s">"}"</span><span class="o">;</span>
+  <span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span><span class="s">"application/json"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">body</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
@@ -2289,7 +2324,7 @@ If you already know the names of people/places/organizations, technical terms, o
     </span><span class="s2">"Test name one"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Test name two"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"items"</span><span class="p">:[</span><span class="w">
+  </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item one name"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of item one"</span><span class="w">
@@ -2355,7 +2390,7 @@ If you already know the names of people/places/organizations, technical terms, o
 <td>No</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-glossary'>Delete a glossary</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="nc">Unirest</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+<h2 id='delete-a-glossary'>Delete a glossary</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
