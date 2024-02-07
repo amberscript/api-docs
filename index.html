@@ -332,7 +332,7 @@
                     <a href="#uploading-a-file-by-url" class="toc-h2 toc-link" data-title="Uploading A File by URL">Uploading A File by URL</a>
                   </li>
                   <li>
-                    <a href="#request-for-translated-subtitles-for-an-existing-manual-captions-job" class="toc-h2 toc-link" data-title="Request for translated subtitles for an existing manual captions job">Request for translated subtitles for an existing manual captions job</a>
+                    <a href="#request-translated-subtitles-for-an-existing-manual-39-perfect-39-captions-job" class="toc-h2 toc-link" data-title="Request translated subtitles for an existing manual ('perfect') captions job">Request translated subtitles for an existing manual ('perfect') captions job</a>
                   </li>
                   <li>
                     <a href="#getting-the-status-of-a-transcription" class="toc-h2 toc-link" data-title="Getting The Status Of A Transcription">Getting The Status Of A Transcription</a>
@@ -868,24 +868,24 @@ endpoints.</li>
 <td><code>YOUR_CALLBACK_URL</code></td>
 </tr>
 <tr>
-<td>transcriptionStyle (OPTIONAL)</td>
+<td>glossaryId (OPTIONAL)</td>
+<td>NONE</td>
+<td><code>YOUR_GLOSSARY_ID</code></td>
+</tr>
+<tr>
+<td>transcriptionStyle (OPTIONAL - Transcript only)</td>
 <td><code>cleanread</code></td>
 <td><code>cleanread</code>, <code>verbatim</code></td>
 </tr>
 <tr>
-<td>turnaroundTime (OPTIONAL)</td>
+<td>turnaroundTime (OPTIONAL - Perfect only)</td>
 <td><code>FIVE_DAYS</code> - <code>transcription</code>/<code>captions</code>, <code>SEVEN_DAYS</code> - <code>translatedSubtitles</code></td>
 <td>Hint: Get in touch if you need a turnaround time other than the default one.</td>
 </tr>
 <tr>
-<td>targetLanguage (OPTIONAL)</td>
+<td>targetLanguage (OPTIONAL- TranslatedSubtitle only)</td>
 <td>NONE</td>
-<td><code>pl</code>, <code>en</code>, <code>ru</code>, <code>fr-ca</code>, <code>ca</code>, <code>zh</code>, <code>ga</code>, <code>hu</code>, <code>pt</code>, <code>da</code>, <code>de-at</code>, <code>fr</code>, <code>nl</code>, <code>en-au</code>, <code>ko</code>, <code>it</code>, <code>de</code>, <code>fi</code>, <code>cmn</code>, <code>ja</code>, <code>de-ch</code>, <code>en-us</code>, <code>ro</code>, <code>pt-br</code>, <code>nl-be</code>, <code>cs</code>, <code>no</code>, <code>sv</code>, <code>en-uk</code>, <code>es</code></td>
-</tr>
-<tr>
-<td>glossaryId (OPTIONAL)</td>
-<td>NONE</td>
-<td><code>YOUR_GLOSSARY_ID</code></td>
+<td>Automatic languages (&#39;direct&#39;)&#39;: <code>da</code>, <code>en</code>, <code>es</code>, <code>fi</code>, <code>fr</code>, <code>it</code>, <code>nl</code>, <code>no</code>, <code>pt</code>, <code>ro</code>, <code>ru</code>, <code>sv</code>, <code>uk</code>   <br>Manual languages (&#39;perfect&#39;): <code>pl</code>, <code>en</code>, <code>ru</code>, <code>fr-ca</code>, <code>ca</code>, <code>zh</code>, <code>ga</code>, <code>hu</code>, <code>pt</code>, <code>da</code>, <code>de-at</code>, <code>fr</code>, <code>nl</code>, <code>en-au</code>, <code>ko</code>, <code>it</code>, <code>de</code>, <code>fi</code>, <code>cmn</code>, <code>ja</code>, <code>de-ch</code>, <code>en-us</code>, <code>ro</code>, <code>pt-br</code>, <code>nl-be</code>, <code>cs</code>, <code>no</code>, <code>sv</code>, <code>en-uk</code>, <code>es</code></td>
 </tr>
 </tbody></table>
 <h3 id='uploading-with-callbackurl'>Uploading With <code>callbackUrl</code></h3>
@@ -1090,19 +1090,24 @@ a URL or it has to be presigned download URL.</p>
 <td><code>YOUR_CALLBACK_URL</code></td>
 </tr>
 <tr>
-<td>transcriptionStyle (OPTIONAL)</td>
+<td>glossaryId (OPTIONAL)</td>
+<td>NONE</td>
+<td><code>YOUR_GLOSSARY_ID</code></td>
+</tr>
+<tr>
+<td>transcriptionStyle (OPTIONAL - Transcript only)</td>
 <td><code>cleanread</code></td>
 <td><code>cleanread</code>, <code>verbatim</code></td>
 </tr>
 <tr>
-<td>turnaroundTime (OPTIONAL)</td>
+<td>turnaroundTime (OPTIONAL - Perfect only)</td>
 <td><code>FIVE_DAYS</code> - <code>transcription</code>/<code>captions</code>, <code>SEVEN_DAYS</code> - <code>translatedSubtitles</code></td>
 <td>Hint: Get in touch if you need a turnaround time other than the default one.</td>
 </tr>
 <tr>
-<td>targetLanguage (OPTIONAL)</td>
+<td>targetLanguage (OPTIONAL- TranslatedSubtitle only)</td>
 <td>NONE</td>
-<td><code>pl</code>, <code>en</code>, <code>ru</code>, <code>fr-ca</code>, <code>ca</code>, <code>zh</code>, <code>ga</code>, <code>hu</code>, <code>pt</code>, <code>da</code>, <code>de-at</code>, <code>fr</code>, <code>nl</code>, <code>en-au</code>, <code>ko</code>, <code>it</code>, <code>de</code>, <code>fi</code>, <code>cmn</code>, <code>ja</code>, <code>de-ch</code>, <code>en-us</code>, <code>ro</code>, <code>pt-br</code>, <code>nl-be</code>, <code>cs</code>, <code>no</code>, <code>sv</code>, <code>en-uk</code>, <code>es</code></td>
+<td>Automatic languages (&#39;direct&#39;)&#39;: <code>da</code>, <code>en</code>, <code>es</code>, <code>fi</code>, <code>fr</code>, <code>it</code>, <code>nl</code>, <code>no</code>, <code>pt</code>, <code>ro</code>, <code>ru</code>, <code>sv</code>, <code>uk</code>   <br>Manual languages (&#39;perfect&#39;): <code>pl</code>, <code>en</code>, <code>ru</code>, <code>fr-ca</code>, <code>ca</code>, <code>zh</code>, <code>ga</code>, <code>hu</code>, <code>pt</code>, <code>da</code>, <code>de-at</code>, <code>fr</code>, <code>nl</code>, <code>en-au</code>, <code>ko</code>, <code>it</code>, <code>de</code>, <code>fi</code>, <code>cmn</code>, <code>ja</code>, <code>de-ch</code>, <code>en-us</code>, <code>ro</code>, <code>pt-br</code>, <code>nl-be</code>, <code>cs</code>, <code>no</code>, <code>sv</code>, <code>en-uk</code>, <code>es</code></td>
 </tr>
 </tbody></table>
 <h3 id='uploading-with-callbackurl-2'>Uploading With <code>callbackUrl</code></h3>
@@ -1184,7 +1189,7 @@ formats: <code>wav</code>, <code>mp3</code>, <code>mp4</code>, <code>aac</code>,
 </ul>
 
 <p><em>If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com</em></p>
-<h2 id='request-for-translated-subtitles-for-an-existing-manual-captions-job'>Request for translated subtitles for an existing manual captions job</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=SOURCE_JOB_ID&amp;targetLanguage=nl&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+<h2 id='request-translated-subtitles-for-an-existing-manual-39-perfect-39-captions-job'>Request translated subtitles for an existing manual (&#39;perfect&#39;) captions job</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=SOURCE_JOB_ID&amp;targetLanguage=nl&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
   <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
@@ -1230,7 +1235,8 @@ formats: <code>wav</code>, <code>mp3</code>, <code>mp4</code>, <code>aac</code>,
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Request for translated subtitles with uploaded file.</p>
+<p>Request for translated subtitles with uploaded file. This endpoint only work for manual (&#39;perfect&#39;) job. 
+Translation for Automatic (&#39;direct&#39;) captions must be requested during the initial file submission.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /jobs/translatedSubtitles</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
