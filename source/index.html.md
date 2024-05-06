@@ -147,28 +147,42 @@ HttpResponse<String> response=Unirest.post("https://api.amberscript.com/api/jobs
 ```
 
 ```javascript
-const request = require('request');
-const fs = require('fs');
+import axios from 'axios';
+import FormData from 'form-data';
+import fs from 'fs';
 
-let options = {
-  method: 'POST',
-  url: 'https://api.amberscript.com/api/jobs/upload-media',
-  qs: {
-    apiKey: 'YOUR_API_KEY',
-    transcriptionType: 'transcription',
-    jobType: 'direct',
-    language: 'nl',
-    numberOfSpeakers: '2'
-  },
-  headers: {'content-type': 'multipart/form-data'},
-  formData: {file: fs.createReadStream("./path/to/my_file.mp3")}
-};
+async function uploadMedia() {
+    const apiKey = 'YOUR_API_KEY';
+    const transcriptionType = 'transcription';
+    const jobType = 'perfect';
+    const language = 'nl';
+    const numberOfSpeakers = '2';
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
+    const formData = new FormData();
+    formData.append('file', fs.createReadStream('./path/to/my_file.mp3'));
 
-  console.log(body);
-});
+    const url = 'https://api.amberscript.com/api/jobs/upload-media';
+    const queryString = new URLSearchParams({
+        apiKey,
+        transcriptionType,
+        jobType,
+        language,
+        numberOfSpeakers
+    }).toString();
+
+    const options = {
+        headers: {
+            ...formData.getHeaders()
+        }
+    };
+
+    try {
+        const response = await axios.post(`${url}?${queryString}`, formData, options);
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error:', error.response.data)
+    }
+}
 ```
 
 ```python
@@ -333,30 +347,37 @@ HttpResponse<String> response=Unirest.post("https://api.amberscript.com/api/jobs
 ```
 
 ```javascript
-const request = require('request');
-const fs = require('fs');
+import axios from 'axios';
 
-let options = {
-  method: 'POST',
-  url: 'https://api.amberscript.com/api/jobs/upload-media-from-url',
-  qs: {
-    apiKey: 'YOUR_API_KEY'
-  },
-  body: {
-    "sourceUrl": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-    "transcriptionType": "transcription",
-    "jobType": "direct",
-    "language": "nl",
-    "numberOfSpeakers": "2"
-  },
-  headers: {'content-type': 'application/json'}
-};
+async function uploadMediaFromUrl() {
+    const apiKey = 'YOUR_API_KEY';
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
+    const url = 'https://api.amberscript.com/api/jobs/upload-media-from-url';
+    const queryString = new URLSearchParams({
+        apiKey
+    }).toString();
 
-  console.log(body);
-});
+    const body = {
+        sourceUrl: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
+        transcriptionType: 'transcription',
+        jobType: 'direct',
+        language: 'nl',
+        numberOfSpeakers: '2'
+    };
+
+    const options = {
+        headers: {
+            'content-type': 'application/json'
+        }
+    };
+
+    try {
+        const response = await axios.post(`${url}?${queryString}`, body, options);
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error:', error.response.data)
+    }
+}
 ```
 
 ```python
@@ -583,19 +604,22 @@ HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs/
 ```
 
 ```javascript
-var request = require("request");
+import axios from 'axios';
 
-var options = {
-  method: 'GET',
-  url: 'https://api.amberscript.com/api/jobs/status',
-  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY'}
-};
+async function createTranslatedSubtitles() {
+    const sourceJobId = 'SOURCE_JOB_ID';
+    const targetLanguage = 'nl';
+    const apiKey = 'YOUR_API_KEY';
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
+    const url = `https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=${sourceJobId}&targetLanguage=${targetLanguage}&apiKey=${apiKey}`;
 
-  console.log(body);
-});
+    try {
+        const response = await axios.post(url, {}, { headers: { 'content-type': 'application/json' } });
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error:', error.response.data)
+    }
+}
 ```
 
 ```python
@@ -727,19 +751,19 @@ HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs/
 ```
 
 ```javascript
- var request = require("request");
+async function exportSTL() {
+    const jobId = 'JOB_ID';
+    const apiKey = 'YOUR_API_KEY';
 
-var options = {
-  method: 'GET',
-  url: 'https://api.amberscript.com/api/jobs/export-srt',
-  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY'}
-};
+    const url = `https://api.amberscript.com/api/jobs/export-stl?jobId=${jobId}&apiKey=${apiKey}`;
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
+    try {
+        const response = await axios.get(url, { headers: { 'Content-Type': 'application/json' } });
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error:', error.response.data);
+    }
+}
 ```
 
 ```python
@@ -805,19 +829,19 @@ HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs/
 ```
 
 ```javascript
- var request = require("request");
+async function exportVTT() {
+    const jobId = 'JOB_ID';
+    const apiKey = 'YOUR_API_KEY';
 
-var options = {
-  method: 'GET',
-  url: 'https://api.amberscript.com/api/jobs/export-vtt',
-  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY'}
-};
+    const url = `https://api.amberscript.com/api/jobs/export-vtt?jobId=${jobId}&apiKey=${apiKey}`;
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
+    try {
+        const response = await axios.get(url, { headers: { 'Content-Type': 'application/json' } });
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error:', error.response.data);
+    }
+}
 ```
 
 ```python
@@ -885,19 +909,19 @@ HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs/
 ```
 
 ```javascript
- var request = require("request");
+async function exportTXT() {
+    const jobId = 'JOB_ID';
+    const apiKey = 'YOUR_API_KEY';
 
-var options = {
-  method: 'GET',
-  url: 'https://api.amberscript.com/api/jobs/export-txt',
-  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY'}
-};
+    const url = `https://api.amberscript.com/api/jobs/export-txt?jobId=${jobId}&apiKey=${apiKey}`;
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
+    try {
+        const response = await axios.get(url, { headers: { 'Content-Type': 'application/json' } });
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error:', error.response.data);
+    }
+}
 ```
 
 ```python
@@ -948,19 +972,19 @@ HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs/
 ```
 
 ```javascript
- var request = require("request");
+async function exportJSON() {
+    const jobId = 'JOB_ID';
+    const apiKey = 'YOUR_API_KEY';
 
-var options = {
-  method: 'GET',
-  url: 'https://api.amberscript.com/api/jobs/export-json',
-  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY'}
-};
+    const url = `https://api.amberscript.com/api/jobs/export-json?jobId=${jobId}&apiKey=${apiKey}`;
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
+    try {
+        const response = await axios.get(url, { headers: { 'Content-Type': 'application/json' } });
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error:', error.response.data);
+    }
+}
 ```
 
 ```python
@@ -1059,19 +1083,19 @@ HttpResponse<String> response=Unirest.delete("https://api.amberscript.com/api/jo
 ```
 
 ```javascript
- var request = require("request");
+async function deleteJob() {
+    const jobId = '6638de0ba17717297470040c';
+    const apiKey = 'YOUR_API_KEY';
 
-var options = {
-  method: 'DELETE',
-  url: 'https://api.amberscript.com/api/jobs',
-  qs: {jobId: 'JOB_ID', apiKey: 'YOUR_API_KEY'}
-};
+    const url = `https://api.amberscript.com/api/jobs?jobId=${jobId}&apiKey=${apiKey}`;
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
+    try {
+        const response = await axios.delete(url, { headers: { 'Content-Type': 'application/json' } });
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error:', error.response.data)
+    }
+}
 ```
 
 ```python
@@ -1119,19 +1143,18 @@ HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs?
 ```
 
 ```javascript
- var request = require("request");
+async function listJobs() {
+    const apiKey = 'YOUR_API_KEY';
 
-var options = {
-  method: 'GET',
-  url: 'https://api.amberscript.com/api/jobs',
-  qs: {apiKey: 'YOUR_API_KEY'}
-};
+    const url = `https://api.amberscript.com/api/jobs?apiKey=${apiKey}`;
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
+    try {
+        const response = await axios.get(url, { headers: { 'Content-Type': 'application/json' } });
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error:', error.response.data)
+    }
+}
 ```
 
 ```python
