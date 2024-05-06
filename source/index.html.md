@@ -527,19 +527,20 @@ HttpResponse<String> response=Unirest.post("https://api.amberscript.com/api/jobs
 ```
 
 ```javascript
-var request = require("request");
+async function createTranslatedSubtitles() {
+    const sourceJobId = 'SOURCE_JOB_ID';
+    const targetLanguage = 'nl';
+    const apiKey = 'YOUR_API_KEY';
 
-var options = {
-  method: 'POST',
-  url: 'https://api.amberscript.com/api/jobs/translatedSubtitles',
-  qs: {sourceJobId: 'SOURCE_JOB_ID', targetLanguage: 'nl', apiKey: 'YOUR_API_KEY'}
-};
+    const url = `https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=${sourceJobId}&targetLanguage=${targetLanguage}&apiKey=${apiKey}`;
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
+    try {
+        const response = await axios.post(url, {}, { headers: { 'content-type': 'application/json' } });
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error:', error.response.data)
+    }
+}
 ```
 
 ```python
@@ -604,17 +605,14 @@ HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs/
 ```
 
 ```javascript
-import axios from 'axios';
-
-async function createTranslatedSubtitles() {
-    const sourceJobId = 'SOURCE_JOB_ID';
-    const targetLanguage = 'nl';
+async function fetchJobStatus() {
+    const jobId = '6638de0ba17717297470040c';
     const apiKey = 'YOUR_API_KEY';
 
-    const url = `https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=${sourceJobId}&targetLanguage=${targetLanguage}&apiKey=${apiKey}`;
+    const url = `https://api.amberscript.com/api/jobs/status?jobId=${jobId}&apiKey=${apiKey}`;
 
     try {
-        const response = await axios.post(url, {}, { headers: { 'content-type': 'application/json' } });
+        const response = await axios.get(url, { headers: { 'Content-Type': 'application/json' } });
         console.log(response.data);
     } catch (error) {
         console.error('Error:', error.response.data)
@@ -751,11 +749,11 @@ HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/jobs/
 ```
 
 ```javascript
-async function exportSTL() {
+async function exportSRT() {
     const jobId = 'JOB_ID';
     const apiKey = 'YOUR_API_KEY';
 
-    const url = `https://api.amberscript.com/api/jobs/export-stl?jobId=${jobId}&apiKey=${apiKey}`;
+    const url = `https://api.amberscript.com/api/jobs/export-srt?jobId=${jobId}&apiKey=${apiKey}`;
 
     try {
         const response = await axios.get(url, { headers: { 'Content-Type': 'application/json' } });
@@ -1084,7 +1082,7 @@ HttpResponse<String> response=Unirest.delete("https://api.amberscript.com/api/jo
 
 ```javascript
 async function deleteJob() {
-    const jobId = '6638de0ba17717297470040c';
+    const jobId = 'JOB_ID';
     const apiKey = 'YOUR_API_KEY';
 
     const url = `https://api.amberscript.com/api/jobs?jobId=${jobId}&apiKey=${apiKey}`;
@@ -1276,19 +1274,28 @@ HttpResponse<String> response=Unirest.get("https://api.amberscript.com/api/gloss
 ```
 
 ```javascript
-var request = require("request");
+import fetch from 'node-fetch';
 
-var options = {
-  method: 'GET',
-  url: 'https://api.amberscript.com/api/glossary',
-  qs: {apiKey: 'YOUR_API_KEY'}
-};
+async function getGlossary() {
+    const url = 'https://api.amberscript.com/api/glossary';
+    const queryParams = new URLSearchParams({
+        apiKey: 'YOUR_API_KEY'
+    });
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
+    const options = {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+    };
 
-  console.log(body);
-});
+    try {
+        const response = await fetch(`${url}?${queryParams}`, options);
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Error:', error.response.data);
+    }
+}
+
 ```
 
 ```python
@@ -1395,41 +1402,44 @@ String body="{\n"+
 ```
 
 ```javascript
-var request = require("request");
+async function createGlossary() {
+    const url = 'https://api.amberscript.com/api/glossary';
+    const body = {
+        "name": "Name of first glossary",
+        "names": [
+            "Test name one",
+            "Test name two"
+        ],
+        "items": [
+            {
+                "name": "Item one name",
+                "description": "description of item one"
+            },
+            {
+                "name": "Item two name",
+                "description": "description of item two"
+            }
+        ]
+    };
 
-var body = {
-  "name": "Name of first glossary",
-  "names": [
-    "Test name one",
-    "Test name two"
-  ],
-  "items": [
-    {
-      "name": "Item one name",
-      "description": "description of item one"
-    },
-    {
-      "name": "Item two name",
-      "description": "description of item two"
+    const options = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(body)
+    };
+
+    const queryParams = new URLSearchParams({
+        apiKey: 'YOUR_API_KEY'
+    });
+
+    try {
+        const response = await fetch(`${url}?${queryParams}`, options);
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Error:', error.response.data);
     }
-  ]
 }
-
-var options = {
-  method: 'POST',
-  url: 'https://api.amberscript.com/api/glossary',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  qs: {apiKey: 'YOUR_API_KEY'},
-  body: body
-};
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
 ```
 
 ```python
@@ -1561,41 +1571,44 @@ String body="{\n"+
 ```
 
 ```javascript
-var request = require("request");
+async function updateGlossary() {
+    const url = 'https://api.amberscript.com/api/glossary/GLOSSARY_ID';
+    const body = {
+        "name": "Name of first glossary",
+        "names": [
+            "Test name one",
+            "Test name two"
+        ],
+        "items": [
+            {
+                "name": "Item one name",
+                "description": "description of item one"
+            },
+            {
+                "name": "Item two name",
+                "description": "description of item two"
+            }
+        ]
+    };
 
-var body = {
-  "name": "Name of first glossary",
-  "names": [
-    "Test name one",
-    "Test name two"
-  ],
-  "items": [
-    {
-      "name": "Item one name",
-      "description": "description of item one"
-    },
-    {
-      "name": "Item two name",
-      "description": "description of item two"
+    const queryParams = new URLSearchParams({
+        apiKey: 'YOUR_API_KEY'
+    });
+
+    const options = {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(body)
+    };
+
+    try {
+        const response = await fetch(`${url}?${queryParams}`, options);
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Error:', error.response.data);
     }
-  ]
 }
-
-var options = {
-  method: 'PUT',
-  url: 'https://api.amberscript.com/api/glossary/GLOSSARY_ID',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  qs: {apiKey: 'YOUR_API_KEY'},
-  body: body
-};
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
 ```
 
 ```python
@@ -1708,19 +1721,25 @@ HttpResponse<String> response=Unirest.delete("https://api.amberscript.com/api/gl
 ```
 
 ```javascript
-var request = require("request");
+async function deleteGlossary() {
+    const url = 'https://api.amberscript.com/api/glossary/6638e42835d0580edd5e35c2';
+    const queryParams = new URLSearchParams({
+        apiKey: 'YOUR_API_KEY'
+    });
 
-var options = {
-  method: 'DELETE',
-  url: 'https://api.amberscript.com/api/glossary/GLOSSARY_ID',
-  qs: {apiKey: 'YOUR_API_KEY'}
-};
+    const options = {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+    };
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
+    try {
+        const response = await fetch(`${url}?${queryParams}`, options);
+        const data = await response.text();
+        console.log(data);
+    } catch (error) {
+        console.error('Error:', error.response.data);
+    }
+}
 ```
 
 ```python
