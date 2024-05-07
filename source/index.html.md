@@ -23,7 +23,7 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to Amberscript's Transcription API
+Welcome to Amberscript's Transcription API!
 
 We will provide you with an `API_KEY` required to access our endpoints.
 
