@@ -1,0 +1,2535 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Amberscript Transcription API</title>
+
+    <style media="screen">
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #f92672;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sa {
+  color: #6c71c4;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-12b41db1.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-b12a2749.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
+  </head>
+
+  <body class="index" data-languages="[&quot;javascript&quot;,&quot;java&quot;,&quot;python&quot;,&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <a href="https://www.amberscript.com/en/products/api-custom-models/"><img src="images/logo-53669577.png" alt="Logo" class="logo" /></a>
+        <div class="lang-selector">
+              <a href="#" data-language-name="javascript">NodeJS</a>
+              <a href="#" data-language-name="java">Java</a>
+              <a href="#" data-language-name="python">Python</a>
+              <a href="#" data-language-name="shell">cURL</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#language-codes" class="toc-h2 toc-link" data-title="Language Codes">Language Codes</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#uploading-and-status" class="toc-h1 toc-link" data-title="Uploading and status">Uploading and status</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#uploading-a-file" class="toc-h2 toc-link" data-title="Uploading A File">Uploading A File</a>
+                  </li>
+                  <li>
+                    <a href="#uploading-a-file-by-url" class="toc-h2 toc-link" data-title="Uploading A File by URL">Uploading A File by URL</a>
+                  </li>
+                  <li>
+                    <a href="#request-translated-subtitles-for-an-existing-manual-39-perfect-39-captions-job" class="toc-h2 toc-link" data-title="Request translated subtitles for an existing manual ('perfect') captions job">Request translated subtitles for an existing manual ('perfect') captions job</a>
+                  </li>
+                  <li>
+                    <a href="#getting-the-status-of-a-transcription" class="toc-h2 toc-link" data-title="Getting The Status Of A Transcription">Getting The Status Of A Transcription</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#exporting" class="toc-h1 toc-link" data-title="Exporting">Exporting</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#export-to-stl" class="toc-h2 toc-link" data-title="Export To STL">Export To STL</a>
+                  </li>
+                  <li>
+                    <a href="#export-to-srt" class="toc-h2 toc-link" data-title="Export To SRT">Export To SRT</a>
+                  </li>
+                  <li>
+                    <a href="#export-to-vtt" class="toc-h2 toc-link" data-title="Export To VTT">Export To VTT</a>
+                  </li>
+                  <li>
+                    <a href="#export-to-text" class="toc-h2 toc-link" data-title="Export To TEXT">Export To TEXT</a>
+                  </li>
+                  <li>
+                    <a href="#export-to-json" class="toc-h2 toc-link" data-title="Export To JSON">Export To JSON</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#listing-and-deleting-jobs" class="toc-h1 toc-link" data-title="Listing and deleting jobs">Listing and deleting jobs</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#delete-a-job" class="toc-h2 toc-link" data-title="Delete A Job">Delete A Job</a>
+                  </li>
+                  <li>
+                    <a href="#get-list-of-jobs" class="toc-h2 toc-link" data-title="Get List Of Jobs">Get List Of Jobs</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#glossary" class="toc-h1 toc-link" data-title="Glossary">Glossary</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-a-list-of-glossaries" class="toc-h2 toc-link" data-title="Get a list of glossaries">Get a list of glossaries</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-glossary" class="toc-h2 toc-link" data-title="Create a glossary">Create a glossary</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-glossary" class="toc-h2 toc-link" data-title="Update a glossary">Update a glossary</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-glossary" class="toc-h2 toc-link" data-title="Delete a glossary">Delete a glossary</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#support" class="toc-h1 toc-link" data-title="Support">Support</a>
+          </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://www.amberscript.com/en/speech-to-text-api'>Sign Up for our Transcription API</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to Amberscript&#39;s Transcription API!</p>
+
+<p>We will provide you with an <code>API_KEY</code> required to access our endpoints.</p>
+
+<p>When you <a href="#uploading-a-file">upload</a> a file, our transcribers or automatic speech recognition engines will get to work
+and create a transcript or subtitles.</p>
+
+<ul>
+<li>Automatic transcripts and subtitles are usually ready within an hour, manually perfected ones take more time,
+dependent on the delivery time chosen.</li>
+<li>Indicate jobType <code>direct</code> for automatic and jobType <code>perfect</code> for manual jobs</li>
+<li>You can check the status of a job using the <a href="#getting-the-status-of-a-transcription">status</a> endpoint.</li>
+<li>When the status is <code>DONE</code>, a job is finished, and you can download the file using our <a href="#export-to-stl">export</a>
+endpoints.</li>
+</ul>
+
+<aside class="notice">
+    Valid job status values: OPEN, ERROR, DONE
+</aside>
+<h2 id='authentication'>Authentication</h2>
+<aside class="notice">
+    Remember to authenticate requests by providing the <code>apiKey</code> as a query parameter.
+</aside>
+<h2 id='language-codes'>Language Codes</h2>
+<table><thead>
+<tr>
+<th>Language</th>
+<th>Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Afrikaans</td>
+<td>af-za</td>
+</tr>
+<tr>
+<td>Albanian</td>
+<td>sq-al</td>
+</tr>
+<tr>
+<td>Amharic</td>
+<td>am-et</td>
+</tr>
+<tr>
+<td>Arabic</td>
+<td>ar</td>
+</tr>
+<tr>
+<td>Armenian</td>
+<td>hy-am</td>
+</tr>
+<tr>
+<td>Azerbaijani</td>
+<td>az-az</td>
+</tr>
+<tr>
+<td>Bahasa Indonesia</td>
+<td>id-id</td>
+</tr>
+<tr>
+<td>Basque</td>
+<td>eu-es</td>
+</tr>
+<tr>
+<td>Bengali (Bangladesh)</td>
+<td>bn-bd</td>
+</tr>
+<tr>
+<td>Bengali (India)</td>
+<td>bn-in</td>
+</tr>
+<tr>
+<td>Bosnian</td>
+<td>bs-ba</td>
+</tr>
+<tr>
+<td>Bulgarian</td>
+<td>bg</td>
+</tr>
+<tr>
+<td>Burmese</td>
+<td>my-mm</td>
+</tr>
+<tr>
+<td>Catalan</td>
+<td>ca</td>
+</tr>
+<tr>
+<td>Chinese (Mandarin)</td>
+<td>cmn</td>
+</tr>
+<tr>
+<td>Croatian</td>
+<td>hr</td>
+</tr>
+<tr>
+<td>Czech</td>
+<td>cs</td>
+</tr>
+<tr>
+<td>Danish</td>
+<td>da</td>
+</tr>
+<tr>
+<td>Dutch</td>
+<td>nl</td>
+</tr>
+<tr>
+<td>English (Australia)</td>
+<td>en-au</td>
+</tr>
+<tr>
+<td>English (United Kingdom)</td>
+<td>en-uk</td>
+</tr>
+<tr>
+<td>English (United States)</td>
+<td>en-us</td>
+</tr>
+<tr>
+<td>English (all accents)</td>
+<td>en</td>
+</tr>
+<tr>
+<td>Estonian</td>
+<td>et-ee</td>
+</tr>
+<tr>
+<td>Farsi (Iran)</td>
+<td>fa-ir</td>
+</tr>
+<tr>
+<td>Filipino</td>
+<td>fil-ph</td>
+</tr>
+<tr>
+<td>Finnish</td>
+<td>fi</td>
+</tr>
+<tr>
+<td>Flemish</td>
+<td>nl-be</td>
+</tr>
+<tr>
+<td>French (Canada)</td>
+<td>fr-ca</td>
+</tr>
+<tr>
+<td>French</td>
+<td>fr</td>
+</tr>
+<tr>
+<td>Galician</td>
+<td>gl-es</td>
+</tr>
+<tr>
+<td>Georgian</td>
+<td>ka-ge</td>
+</tr>
+<tr>
+<td>German (Austria)</td>
+<td>de-at</td>
+</tr>
+<tr>
+<td>German (Switzerland)</td>
+<td>de-ch</td>
+</tr>
+<tr>
+<td>German</td>
+<td>de</td>
+</tr>
+<tr>
+<td>Greek</td>
+<td>el</td>
+</tr>
+<tr>
+<td>Gujarati</td>
+<td>gu-in</td>
+</tr>
+<tr>
+<td>Hebrew</td>
+<td>iw-il</td>
+</tr>
+<tr>
+<td>Hindi</td>
+<td>hi</td>
+</tr>
+<tr>
+<td>Hungarian</td>
+<td>hu</td>
+</tr>
+<tr>
+<td>Icelandic</td>
+<td>is-is</td>
+</tr>
+<tr>
+<td>Italian</td>
+<td>it</td>
+</tr>
+<tr>
+<td>Japanese</td>
+<td>ja</td>
+</tr>
+<tr>
+<td>Javanese</td>
+<td>jv-id</td>
+</tr>
+<tr>
+<td>Kannada</td>
+<td>kn-in</td>
+</tr>
+<tr>
+<td>Khmer</td>
+<td>km-kh</td>
+</tr>
+<tr>
+<td>Korean</td>
+<td>ko</td>
+</tr>
+<tr>
+<td>Lao</td>
+<td>lo-la</td>
+</tr>
+<tr>
+<td>Latvian</td>
+<td>lv</td>
+</tr>
+<tr>
+<td>Lithuanian</td>
+<td>lt</td>
+</tr>
+<tr>
+<td>Macedonian</td>
+<td>mk-mk</td>
+</tr>
+<tr>
+<td>Malay</td>
+<td>ms</td>
+</tr>
+<tr>
+<td>Malayalam</td>
+<td>ml-in</td>
+</tr>
+<tr>
+<td>Marathi</td>
+<td>mr-in</td>
+</tr>
+<tr>
+<td>Mongolian</td>
+<td>mn-mn</td>
+</tr>
+<tr>
+<td>Nepali (Nepal)</td>
+<td>ne-np</td>
+</tr>
+<tr>
+<td>Norwegian</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Polish</td>
+<td>pl</td>
+</tr>
+<tr>
+<td>Portuguese (Brazil)</td>
+<td>pt-br</td>
+</tr>
+<tr>
+<td>Portuguese</td>
+<td>pt</td>
+</tr>
+<tr>
+<td>Punjabi</td>
+<td>pa-guru-in</td>
+</tr>
+<tr>
+<td>Romanian</td>
+<td>ro</td>
+</tr>
+<tr>
+<td>Russian</td>
+<td>ru</td>
+</tr>
+<tr>
+<td>Serbian</td>
+<td>sr-rs</td>
+</tr>
+<tr>
+<td>Sinhala</td>
+<td>si-lk</td>
+</tr>
+<tr>
+<td>Slovakian</td>
+<td>sk</td>
+</tr>
+<tr>
+<td>Slovenian</td>
+<td>sl</td>
+</tr>
+<tr>
+<td>Spanish</td>
+<td>es</td>
+</tr>
+<tr>
+<td>Sundanese</td>
+<td>su-id</td>
+</tr>
+<tr>
+<td>Swahili (Kenya)</td>
+<td>sw-ke</td>
+</tr>
+<tr>
+<td>Swahili (Tanzania)</td>
+<td>sw-tz</td>
+</tr>
+<tr>
+<td>Swedish</td>
+<td>sv</td>
+</tr>
+<tr>
+<td>Tamil (India)</td>
+<td>ta-in</td>
+</tr>
+<tr>
+<td>Tamil (Malaysia)</td>
+<td>ta-my</td>
+</tr>
+<tr>
+<td>Tamil (Singapore)</td>
+<td>ta-sg</td>
+</tr>
+<tr>
+<td>Tamil (Sri Lanka)</td>
+<td>ta-lk</td>
+</tr>
+<tr>
+<td>Telugu</td>
+<td>te-in</td>
+</tr>
+<tr>
+<td>Thai</td>
+<td>th-th</td>
+</tr>
+<tr>
+<td>Turkish</td>
+<td>tr</td>
+</tr>
+<tr>
+<td>Ukrainian</td>
+<td>uk-ua</td>
+</tr>
+<tr>
+<td>Urdu (India)</td>
+<td>ur-in</td>
+</tr>
+<tr>
+<td>Urdu (Pakistan)</td>
+<td>ur-pk</td>
+</tr>
+<tr>
+<td>Uzbek</td>
+<td>uz-uz</td>
+</tr>
+<tr>
+<td>Vietnamese</td>
+<td>vi-vn</td>
+</tr>
+<tr>
+<td>Zulu</td>
+<td>zu-za</td>
+</tr>
+</tbody></table>
+<h1 id='uploading-and-status'>Uploading and status</h1><h2 id='uploading-a-file'>Uploading A File</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/upload-media?transcriptionType=transcription&amp;jobType=direct&amp;language=nl&amp;apiKey={{YOUR_API_KEY}}"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">FormData</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">form-data</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">fs</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">uploadMedia</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">transcriptionType</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">transcription</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">jobType</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">perfect</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">language</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">nl</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">numberOfSpeakers</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">2</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">formData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
+    <span class="nx">formData</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">'</span><span class="s1">file</span><span class="dl">'</span><span class="p">,</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="dl">'</span><span class="s1">./path/to/my_file.mp3</span><span class="dl">'</span><span class="p">));</span>
+
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">https://api.amberscript.com/api/jobs/upload-media</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">queryString</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URLSearchParams</span><span class="p">({</span>
+        <span class="nx">apiKey</span><span class="p">,</span>
+        <span class="nx">transcriptionType</span><span class="p">,</span>
+        <span class="nx">jobType</span><span class="p">,</span>
+        <span class="nx">language</span><span class="p">,</span>
+        <span class="nx">numberOfSpeakers</span>
+    <span class="p">}).</span><span class="nx">toString</span><span class="p">();</span>
+
+    <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+            <span class="p">...</span><span class="nx">formData</span><span class="p">.</span><span class="nx">getHeaders</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">url</span><span class="p">}</span><span class="s2">?</span><span class="p">${</span><span class="nx">queryString</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">formData</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.amberscript.com/api/jobs/upload-media'</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="s">'/Users/userA/Downloads/my-file.mp3'</span>
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"jobType"</span><span class="p">:</span><span class="s">"direct"</span><span class="p">,</span><span class="s">"language"</span><span class="p">:</span><span class="s">"nl"</span><span class="p">,</span><span class="s">"transcriptionType"</span><span class="p">:</span><span class="s">"transcription"</span><span class="p">,</span><span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+<span class="n">files</span> <span class="o">=</span> <span class="p">{</span><span class="s">'file'</span><span class="p">:</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/jobs/upload-media?transcriptionType=transcription&amp;jobType=direct&amp;language=nl&amp;apiKey={{YOUR_API_KEY}}'</span> <span class="nt">--form</span> <span class="nv">file</span><span class="o">=</span>@./my-file.mp3
+</code></pre></div>
+<blockquote>
+<p>Example: Response to a POST request:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"jobStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"jobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JOB_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">82800000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nrAudioSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"translatedSubtitles"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file_name.mp3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"perfect"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sourceJobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOURCE_JOB_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">present</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">translated</span><span class="w"> </span><span class="err">subtitles</span><span class="w"> </span><span class="err">jobs.</span><span class="w">
+    </span><span class="nl">"targetLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="err">translatedSubtitles</span><span class="w"> </span><span class="err">only</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Upload a file for transcription.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /jobs/upload-media</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description/Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>language</td>
+<td><code>en</code></td>
+<td><code>af-za</code>, <code>sq-al</code>, <code>am-et</code>, <code>ar</code>, <code>hy-am</code>, <code>az-az</code>, <code>id-id</code>, <code>eu-es</code>, <code>bn-bd</code>, <code>bn-in</code>, <code>bs-ba</code>, <code>bg</code>, <code>my-mm</code>, <code>ca</code>, <code>cmn</code>, <code>hr</code>, <code>cs</code>, <code>da</code>, <code>nl</code>, <code>en-au</code>, <code>en-uk</code>, <code>en</code>, <code>et-ee</code>, <code>fa-ir</code>, <code>fil-ph</code>, <code>fi</code>, <code>nl-be</code>, <code>fr-ca</code>, <code>fr</code>, <code>gl-es</code>, <code>ka-ge</code>, <code>de-at</code>, <code>de-ch</code>, <code>de</code>, <code>el</code>, <code>gu-in</code>, <code>iw-il</code>, <code>hi</code>, <code>hu</code>, <code>is-is</code>, <code>it</code>, <code>ja</code>, <code>jv-id</code>, <code>kn-in</code>, <code>km-kh</code>, <code>ko</code>, <code>lo-la</code>, <code>lv</code>, <code>lt</code>, <code>mk-mk</code>, <code>ms</code>, <code>ml-in</code>, <code>mr-in</code>, <code>mn-mn</code>, <code>ne-np</code>, <code>no</code>, <code>pl</code>, <code>pt-br</code>, <code>pt</code>, <code>pa-guru-in</code>, <code>ro</code>, <code>ru</code>, <code>sr-rs</code>, <code>si-lk</code>, <code>sk</code>, <code>sl</code>, <code>es</code>, <code>su-id</code>, <code>sw-ke</code>, <code>sw-tz</code>, <code>sv</code>, <code>ta-in</code>, <code>ta-my</code>, <code>ta-sg</code>, <code>ta-lk</code>, <code>te-in</code>, <code>th-th</code>, <code>tr</code>, <code>uk-ua</code>, <code>ur-in</code>, <code>ur-pk</code>, <code>uz-uz</code>, <code>vi-vn</code>, <code>zu-za</code>, <code>auto</code></td>
+</tr>
+<tr>
+<td>transcriptionType</td>
+<td><code>transcription</code></td>
+<td><code>transcription</code>, <code>captions</code>, <code>translatedSubtitles</code></td>
+</tr>
+<tr>
+<td>jobType</td>
+<td><code>direct</code></td>
+<td><code>perfect</code>, <code>direct</code></td>
+</tr>
+<tr>
+<td>numberOfSpeakers</td>
+<td><code>2</code></td>
+<td><code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code></td>
+</tr>
+<tr>
+<td>callbackUrl (OPTIONAL)</td>
+<td>NONE</td>
+<td><code>YOUR_CALLBACK_URL</code></td>
+</tr>
+<tr>
+<td>glossaryId (OPTIONAL)</td>
+<td>NONE</td>
+<td><code>YOUR_GLOSSARY_ID</code></td>
+</tr>
+<tr>
+<td>transcriptionStyle (OPTIONAL - Transcript only)</td>
+<td><code>cleanread</code></td>
+<td><code>cleanread</code>, <code>verbatim</code></td>
+</tr>
+<tr>
+<td>turnaroundTime (OPTIONAL - Perfect only)</td>
+<td><code>FIVE_DAYS</code> - <code>transcription</code>/<code>captions</code>, <code>SEVEN_DAYS</code> - <code>translatedSubtitles</code></td>
+<td>Hint: Get in touch if you need a turnaround time other than the default one.</td>
+</tr>
+<tr>
+<td>targetLanguage (OPTIONAL- TranslatedSubtitle only)</td>
+<td>NONE</td>
+<td>Automatic languages (&#39;direct&#39;)&#39;: <code>da</code>, <code>en</code>, <code>es</code>, <code>fi</code>, <code>fr</code>, <code>it</code>, <code>nl</code>, <code>no</code>, <code>pt</code>, <code>ro</code>, <code>ru</code>, <code>sv</code>, <code>uk</code>   <br>Manual languages (&#39;perfect&#39;): <code>pl</code>, <code>en</code>, <code>ru</code>, <code>fr-ca</code>, <code>ca</code>, <code>zh</code>, <code>ga</code>, <code>hu</code>, <code>pt</code>, <code>da</code>, <code>de-at</code>, <code>fr</code>, <code>nl</code>, <code>en-au</code>, <code>ko</code>, <code>it</code>, <code>de</code>, <code>fi</code>, <code>cmn</code>, <code>ja</code>, <code>de-ch</code>, <code>en-us</code>, <code>ro</code>, <code>pt-br</code>, <code>nl-be</code>, <code>cs</code>, <code>no</code>, <code>sv</code>, <code>en-uk</code>, <code>es</code></td>
+</tr>
+</tbody></table>
+<h3 id='uploading-with-callbackurl'>Uploading With <code>callbackUrl</code></h3>
+<ol>
+<li>When you make a request with a <code>callbackUrl</code>, we send the final status of your upload to this url.</li>
+<li>When processing is complete, this status is sent via a <code>POST</code> request (see below).</li>
+</ol>
+
+<ul>
+<li><code>status</code> can either be <code>DONE</code> or <code>ERROR</code>.</li>
+</ul>
+
+<ol>
+<li>Your <code>callbackUrl</code> endpoint should respond with any <code>2xx</code> if you successfully receive the status.</li>
+</ol>
+
+<aside class="notice">
+   What if a callback fails?
+    <ul>
+      <li>When a callback fails, we retry sending the status update every hour.</li>
+      <li>The maximum number of retry attempts is 10.</li>
+    </ul>
+</aside>
+
+<p>There are times when our system can encounter issues with your job. When that is the case, the callback will be sent
+with an ERROR status, and the content of the callback will look like this:</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"jobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JOB_ID"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">82800000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERROR"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"nrAudioSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transcription"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file_name.mp3"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"direct"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"errorMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No speech found"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Otherwise, you will get a callback informing you that your job was successfully transcribed.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"jobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JOB_ID"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">82800000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DONE"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"nrAudioSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"captions"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file_name.mp3"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"direct"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='uploading-without-callbackurl'>Uploading Without <code>callbackUrl</code></h3>
+<ol>
+<li>When you make a request without the <code>callbackUrl</code>, store the value of the <code>jobId</code> returned upon a successful call (
+see <code>Example</code> in right pane).</li>
+<li>Use the <code>jobId</code> to periodically check the <a href="#getting-the-status-of-a-transcription">status</a> of the upload request (
+e.g. every 5 mins).</li>
+</ol>
+
+<ul>
+<li><code>status</code> can either be <code>OPEN</code>, <code>DONE</code> or <code>ERROR</code>.</li>
+</ul>
+<h3 id='uploading-with-glossaryid'>Uploading With <code>glossaryId</code></h3>
+<p>When using a <code>glossaryId</code> with your request, you first need to have created a glossary to be
+used. <a href="#glossary">Read here</a> for more information on how to work with glossaries. You can either:</p>
+
+<ul>
+<li><a href="#create-a-glossary">Create a new glossary</a> and use the <code>id</code> of the glossary as <code>glossaryId</code> in your upload request.</li>
+</ul>
+
+<p>or</p>
+
+<ul>
+<li><a href="#get-a-list-of-glossaries">List your previously created glossaries</a> and pick an <code>id</code> of the glossary that you want to
+use as <code>glossaryId</code> in your upload request.</li>
+</ul>
+<h3 id='automatic-language-identification'>Automatic language identification</h3>
+<p>You can let the automatic speech recognition engine determine the language of uploaded media automatically. To do so,
+you need to set the value of <code>language</code> request parameter to <code>auto</code>.</p>
+
+<ul>
+<li>Supported languages: English, Dutch, German, French and Italian</li>
+</ul>
+
+<blockquote>
+<p><strong>Note</strong>: Automatic language predictions can be wrong and manual specification is recommended. If you need support or
+have an issue, please get in touch with us via info@amberscript.com.</p>
+</blockquote>
+<h3 id='file-requirements'>File requirements:</h3>
+<ul>
+<li>max 6GB</li>
+<li>audio or video file</li>
+<li>supported formats: <code>wav</code>, <code>mp3</code>, <code>m4a</code>, <code>aac</code>, <code>wma</code>, <code>mov</code>, <code>m4v</code>, <code>mp4</code>, <code>opus</code>, <code>ogg</code>, <code>flac</code></li>
+</ul>
+
+<p><em>If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com</em></p>
+<h2 id='uploading-a-file-by-url'>Uploading A File by URL</h2>
+<p>Upload a file from a remote location - for example a file stored on AWS S3. The file has to be publicly accessible from
+a URL or it has to be presigned download URL.</p>
+
+<blockquote>
+<p>Please note that this endpoint uses parameters in the body of the request.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/upload-media-from-url?apiKey={{YOUR_API_KEY}}"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="s">"{\"sourceUrl\":\"https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4\", \"language\":\"en\", \"transcriptionType\":\"transcription\"}"</span><span class="o">,</span> <span class="err">\</span><span class="s">"jobType\":\"direct\", \"numberOfSpeakers    \":\"2\"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asJson</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">uploadMediaFromUrl</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">https://api.amberscript.com/api/jobs/upload-media-from-url</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">queryString</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URLSearchParams</span><span class="p">({</span>
+        <span class="nx">apiKey</span>
+    <span class="p">}).</span><span class="nx">toString</span><span class="p">();</span>
+
+    <span class="kd">const</span> <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">sourceUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">transcriptionType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">transcription</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">jobType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">direct</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">language</span><span class="p">:</span> <span class="dl">'</span><span class="s1">nl</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">numberOfSpeakers</span><span class="p">:</span> <span class="dl">'</span><span class="s1">2</span><span class="dl">'</span>
+    <span class="p">};</span>
+
+    <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+            <span class="dl">'</span><span class="s1">content-type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">url</span><span class="p">}</span><span class="s2">?</span><span class="p">${</span><span class="nx">queryString</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">body</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.amberscript.com/api/jobs/upload-media-from-url'</span>
+<span class="n">query_string</span> <span class="o">=</span> <span class="p">{</span><span class="s">"apiKey"</span><span class="p">:</span> <span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+<span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s">"sourceUrl"</span><span class="p">:</span> <span class="s">"https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"</span><span class="p">,</span> <span class="s">"jobType"</span><span class="p">:</span> <span class="s">"direct"</span><span class="p">,</span>
+        <span class="s">"language"</span><span class="p">:</span> <span class="s">"nl"</span><span class="p">,</span> <span class="s">"transcriptionType"</span><span class="p">:</span> <span class="s">"transcription"</span><span class="p">,</span> <span class="s">"numberOfSpeakers"</span><span class="p">:</span> <span class="s">"2"</span><span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">query_string</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/jobs/upload-media-from-url?apiKey={{YOUR_API_KEY}}'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{"sourceUrl" : "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4","transcriptionType":"transcription","jobType":"direct","language":"nl"}'</span> <span class="se">\</span>
+</code></pre></div>
+<blockquote>
+<p>Example: Response to a POST request:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"jobStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"jobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JOB_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">82800000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nrAudioSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"translatedSubtitles"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file_name.mp3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"perfect"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sourceJobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOURCE_JOB_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">present</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">translated</span><span class="w"> </span><span class="err">subtitles</span><span class="w"> </span><span class="err">jobs.</span><span class="w">
+    </span><span class="nl">"targetLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="err">translatedSubtitles</span><span class="w"> </span><span class="err">only</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /jobs/upload-media-from-url</code></p>
+<h3 id='request-body-parameters'>Request Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description/Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>language</td>
+<td><code>en</code></td>
+<td><code>af-za</code>, <code>sq-al</code>, <code>am-et</code>, <code>ar</code>, <code>hy-am</code>, <code>az-az</code>, <code>id-id</code>, <code>eu-es</code>, <code>bn-bd</code>, <code>bn-in</code>, <code>bs-ba</code>, <code>bg</code>, <code>my-mm</code>, <code>ca</code>, <code>cmn</code>, <code>hr</code>, <code>cs</code>, <code>da</code>, <code>nl</code>, <code>en-au</code>, <code>en-uk</code>, <code>en</code>, <code>et-ee</code>, <code>fa-ir</code>, <code>fil-ph</code>, <code>fi</code>, <code>nl-be</code>, <code>fr-ca</code>, <code>fr</code>, <code>gl-es</code>, <code>ka-ge</code>, <code>de-at</code>, <code>de-ch</code>, <code>de</code>, <code>el</code>, <code>gu-in</code>, <code>iw-il</code>, <code>hi</code>, <code>hu</code>, <code>is-is</code>, <code>it</code>, <code>ja</code>, <code>jv-id</code>, <code>kn-in</code>, <code>km-kh</code>, <code>ko</code>, <code>lo-la</code>, <code>lv</code>, <code>lt</code>, <code>mk-mk</code>, <code>ms</code>, <code>ml-in</code>, <code>mr-in</code>, <code>mn-mn</code>, <code>ne-np</code>, <code>no</code>, <code>pl</code>, <code>pt-br</code>, <code>pt</code>, <code>pa-guru-in</code>, <code>ro</code>, <code>ru</code>, <code>sr-rs</code>, <code>si-lk</code>, <code>sk</code>, <code>sl</code>, <code>es</code>, <code>su-id</code>, <code>sw-ke</code>, <code>sw-tz</code>, <code>sv</code>, <code>ta-in</code>, <code>ta-my</code>, <code>ta-sg</code>, <code>ta-lk</code>, <code>te-in</code>, <code>th-th</code>, <code>tr</code>, <code>uk-ua</code>, <code>ur-in</code>, <code>ur-pk</code>, <code>uz-uz</code>, <code>vi-vn</code>, <code>zu-za</code>, <code>auto</code></td>
+</tr>
+<tr>
+<td>transcriptionType</td>
+<td><code>transcription</code></td>
+<td><code>transcription</code>, <code>captions</code>, <code>translatedSubtitles</code></td>
+</tr>
+<tr>
+<td>jobType</td>
+<td><code>direct</code></td>
+<td><code>perfect</code>, <code>direct</code></td>
+</tr>
+<tr>
+<td>numberOfSpeakers</td>
+<td><code>2</code></td>
+<td><code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code></td>
+</tr>
+<tr>
+<td>sourceUrl</td>
+<td>``</td>
+<td>&quot;https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4&quot;</td>
+</tr>
+<tr>
+<td>callbackUrl (OPTIONAL)</td>
+<td>NONE</td>
+<td><code>YOUR_CALLBACK_URL</code></td>
+</tr>
+<tr>
+<td>glossaryId (OPTIONAL)</td>
+<td>NONE</td>
+<td><code>YOUR_GLOSSARY_ID</code></td>
+</tr>
+<tr>
+<td>transcriptionStyle (OPTIONAL - Transcript only)</td>
+<td><code>cleanread</code></td>
+<td><code>cleanread</code>, <code>verbatim</code></td>
+</tr>
+<tr>
+<td>turnaroundTime (OPTIONAL - Perfect only)</td>
+<td><code>FIVE_DAYS</code> - <code>transcription</code>/<code>captions</code>, <code>SEVEN_DAYS</code> - <code>translatedSubtitles</code></td>
+<td>Hint: Get in touch if you need a turnaround time other than the default one.</td>
+</tr>
+<tr>
+<td>targetLanguage (OPTIONAL- TranslatedSubtitle only)</td>
+<td>NONE</td>
+<td>Automatic languages (&#39;direct&#39;)&#39;: <code>da</code>, <code>en</code>, <code>es</code>, <code>fi</code>, <code>fr</code>, <code>it</code>, <code>nl</code>, <code>no</code>, <code>pt</code>, <code>ro</code>, <code>ru</code>, <code>sv</code>, <code>uk</code>   <br>Manual languages (&#39;perfect&#39;): <code>pl</code>, <code>en</code>, <code>ru</code>, <code>fr-ca</code>, <code>ca</code>, <code>zh</code>, <code>ga</code>, <code>hu</code>, <code>pt</code>, <code>da</code>, <code>de-at</code>, <code>fr</code>, <code>nl</code>, <code>en-au</code>, <code>ko</code>, <code>it</code>, <code>de</code>, <code>fi</code>, <code>cmn</code>, <code>ja</code>, <code>de-ch</code>, <code>en-us</code>, <code>ro</code>, <code>pt-br</code>, <code>nl-be</code>, <code>cs</code>, <code>no</code>, <code>sv</code>, <code>en-uk</code>, <code>es</code></td>
+</tr>
+</tbody></table>
+<h3 id='uploading-with-callbackurl-2'>Uploading With <code>callbackUrl</code></h3>
+<ol>
+<li>When you make a request with a <code>callbackUrl</code>, we send the final status of your upload to this url.</li>
+<li>When processing is complete, this status is sent via a <code>POST</code> request (see below).</li>
+</ol>
+
+<ul>
+<li><code>status</code> can either be <code>DONE</code> or <code>ERROR</code>.</li>
+</ul>
+
+<ol>
+<li>Your <code>callbackUrl</code> endpoint should respond with any <code>2xx</code> if you successfully receive the status.</li>
+</ol>
+
+<aside class="notice">
+   What if a callback fails?
+    <ul>
+      <li>When a callback fails, we retry sending the status update every hour.</li>
+      <li>The maximum number of retry attempts is 10.</li>
+    </ul>
+</aside>
+
+<p>There are times when our system can encounter issues with your job. When that is the case, the callback will be sent
+with an ERROR status, and the content of the callback will look like this:</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"jobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JOB_ID"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">82800000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERROR"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"nrAudioSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transcription"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file_name.mp3"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"direct"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"errorMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No speech found"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Otherwise, you will get a callback informing you that your job was successfully transcribed.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"jobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JOB_ID"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">82800000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DONE"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"nrAudioSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"captions"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file_name.mp3"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"direct"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='uploading-without-callbackurl-2'>Uploading Without <code>callbackUrl</code></h3>
+<ol>
+<li>When you make a request without the <code>callbackUrl</code>, store the value of the <code>jobId</code> returned upon a successful call (
+see <code>Example</code> in right pane).</li>
+<li>Use the <code>jobId</code> to periodically check the <a href="#getting-the-status-of-a-transcription">status</a> of the upload request (
+e.g. every 5 mins).</li>
+</ol>
+
+<ul>
+<li><code>status</code> can either be <code>OPEN</code>, <code>DONE</code> or <code>ERROR</code>.</li>
+</ul>
+<h3 id='automatic-language-identification-2'>Automatic language identification</h3>
+<p>You can let the automatic speech recognition engine determine the language of uploaded media automatically. To do so,
+you need to set the value of <code>language</code> request parameter to <code>auto</code>.</p>
+
+<ul>
+<li>Supported languages: English, Dutch, German, French and Italian</li>
+</ul>
+
+<blockquote>
+<p><strong>Note</strong>: Automatic language predictions can be wrong and manual specification is recommended. If you need support or
+have an issue, please get in touch with us via info@amberscript.com.</p>
+</blockquote>
+<h3 id='file-requirements-2'>File requirements:</h3>
+<ul>
+<li>max 16GB</li>
+<li>audio or video file</li>
+<li>supported
+formats: <code>wav</code>, <code>mp3</code>, <code>mp4</code>, <code>aac</code>, <code>m4a</code>, <code>wma</code>, <code>opus</code>, <code>ogg</code>, <code>flac</code>, <code>dss</code>, <code>avi</code>, <code>wmv</code>, <code>mov</code>, <code>m4v</code>, <code>mpg</code>, <code>vob</code></li>
+</ul>
+
+<p><em>If you need support for a different file format, please get in touch with us: info (at) amberscript (dot) com</em></p>
+<h2 id='request-translated-subtitles-for-an-existing-manual-39-perfect-39-captions-job'>Request translated subtitles for an existing manual (&#39;perfect&#39;) captions job</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=SOURCE_JOB_ID&amp;targetLanguage=nl&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">createTranslatedSubtitles</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">sourceJobId</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">SOURCE_JOB_ID</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">targetLanguage</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">nl</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=</span><span class="p">${</span><span class="nx">sourceJobId</span><span class="p">}</span><span class="s2">&amp;targetLanguage=</span><span class="p">${</span><span class="nx">targetLanguage</span><span class="p">}</span><span class="s2">&amp;apiKey=</span><span class="p">${</span><span class="nx">apiKey</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{</span> <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">content-type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span> <span class="p">}</span> <span class="p">});</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.amberscript.com/api/jobs/translatedSubtitles"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"sourceJobId"</span><span class="p">:</span><span class="s">"SOURCE_JOB_ID"</span><span class="p">,</span><span class="s">"targetLanguage"</span><span class="p">:</span><span class="s">"nl"</span><span class="p">,</span><span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/jobs/translatedSubtitles?sourceJobId=SOURCE_JOB_ID&amp;targetLanguage=nl&amp;apiKey=YOUR_API_KEY'</span>
+</code></pre></div>
+<blockquote>
+<p>The command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"jobStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"jobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JOB_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">82800000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUSY"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nrAudioSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"translatedSubtitles"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file_name.mp3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"perfect"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sourceJobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOURCE_JOB_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"targetLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_notes"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Request for translated subtitles with uploaded file. This endpoint only work for manual (&#39;perfect&#39;) job. 
+Translation for Automatic (&#39;direct&#39;) captions must be requested during the initial file submission.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /jobs/translatedSubtitles</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description/Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sourceJobId</td>
+<td>NONE</td>
+<td><code>SOURCE_JOB_ID</code></td>
+</tr>
+<tr>
+<td>targetLanguage</td>
+<td></td>
+<td><code>pl</code>, <code>en</code>, <code>ru</code>, <code>fr-ca</code>, <code>ca</code>, <code>zh</code>, <code>ga</code>, <code>hu</code>, <code>pt</code>, <code>da</code>, <code>de-at</code>, <code>fr</code>, <code>nl</code>, <code>en-au</code>, <code>ko</code>, <code>it</code>, <code>de</code>, <code>fi</code>, <code>cmn</code>, <code>ja</code>, <code>de-ch</code>, <code>en-us</code>, <code>ro</code>, <code>pt-br</code>, <code>nl-be</code>, <code>cs</code>, <code>no</code>, <code>sv</code>, <code>en-uk</code>, <code>es</code></td>
+</tr>
+<tr>
+<td>turnaroundTime (OPTIONAL)</td>
+<td><code>SEVEN_DAYS</code></td>
+<td>Hint: Get in touch if you need a turnaround time other than the default one.</td>
+</tr>
+<tr>
+<td>callbackUrl (OPTIONAL)</td>
+<td>NONE</td>
+<td><code>YOUR_CALLBACK_URL</code></td>
+</tr>
+<tr>
+<td>notes (OPTIONAL)</td>
+<td>NONE</td>
+<td>Job notes</td>
+</tr>
+</tbody></table>
+<h2 id='getting-the-status-of-a-transcription'>Getting The Status Of A Transcription</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/status?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">fetchJobStatus</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">jobId</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">6638de0ba17717297470040c</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`https://api.amberscript.com/api/jobs/status?jobId=</span><span class="p">${</span><span class="nx">jobId</span><span class="p">}</span><span class="s2">&amp;apiKey=</span><span class="p">${</span><span class="nx">apiKey</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span> <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span> <span class="p">}</span> <span class="p">});</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.amberscript.com/api/jobs/status"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"jobId"</span><span class="p">:</span><span class="s">"JOB_ID"</span><span class="p">,</span><span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/jobs/status?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"jobStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"jobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JOB_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">82800000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jobOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"transcriptionStyle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verbatim"</span><span class="w">
+      </span><span class="err">//</span><span class="w"> </span><span class="err">job</span><span class="w"> </span><span class="err">options</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">present</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">explicitly</span><span class="w"> </span><span class="err">requests</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"nrAudioSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transcription"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file_name.mp3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"direct"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sourceJobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SOURCE_JOB_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="err">translatedSubtitles</span><span class="w"> </span><span class="err">only</span><span class="w">
+    </span><span class="nl">"targetLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">OPTIONAL</span><span class="p">,</span><span class="w"> </span><span class="err">translatedSubtitles</span><span class="w"> </span><span class="err">only</span><span class="w">
+    </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_notes"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Retrieve the status of a specific job.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /jobs/status</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description/Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>jobId</td>
+<td>NONE</td>
+<td>YOUR_JOB_ID</td>
+</tr>
+</tbody></table>
+<h1 id='exporting'>Exporting</h1><h2 id='export-to-stl'>Export To STL</h2>
+<aside class="warning">DEPRECATED</aside>
+<div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-stl?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code> <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.amberscript.com/api/jobs/export-stl</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">qs</span><span class="p">:</span> <span class="p">{</span><span class="na">jobId</span><span class="p">:</span> <span class="dl">'</span><span class="s1">JOB_ID</span><span class="dl">'</span><span class="p">,</span> <span class="na">apiKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.amberscript.com/api/jobs/export-stl"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"jobId"</span><span class="p">:</span><span class="s">"JOB_ID"</span> <span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/jobs/export-stl?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns a JSON downloadUrl structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"downloadUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://PROD-SERVER/ebu-stl/FILENAME?X-Amz-Algorithm=HASH_ALGORITHM&amp;X-Amz-Date=CURRENT_DATE&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=TIME_TO_EXPIRATION&amp;X-Amz-Credential=AMZ_CREDENTIAL&amp;X-Amz-Signature=AMZ_SIGNATURE"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Export a finished file to STL.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET /jobs/export-stl</code></p>
+<h3 id='query-parameters-4'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description/Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>jobId</td>
+<td>NONE</td>
+<td>YOUR_JOB_ID</td>
+</tr>
+<tr>
+<td>maxNumberOfRows (OPTIONAL)</td>
+<td>2</td>
+<td>Integer between <code>1</code> and <code>2</code> which sets the maximum number of rows for each subtitle.</td>
+</tr>
+<tr>
+<td>maxScreenTimePerRowSeconds (OPTIONAL)</td>
+<td>2</td>
+<td>Float which sets the maximum number of seconds given for each row of subtitles.</td>
+</tr>
+</tbody></table>
+<h2 id='export-to-srt'>Export To SRT</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-srt?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">exportSRT</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">jobId</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">JOB_ID</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`https://api.amberscript.com/api/jobs/export-srt?jobId=</span><span class="p">${</span><span class="nx">jobId</span><span class="p">}</span><span class="s2">&amp;apiKey=</span><span class="p">${</span><span class="nx">apiKey</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span> <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span> <span class="p">}</span> <span class="p">});</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.amberscript.com/api/jobs/export-srt"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"jobId"</span><span class="p">:</span><span class="s">"JOB_ID"</span> <span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/jobs/export-srt?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY'</span>
+</code></pre></div>
+<blockquote>
+<p>The command returns SRT structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>1
+00:00:00,449 --&gt; 00:00:03,769
+Hi, welcome to Amber script, in this short
+
+2
+00:00:03,869 --&gt; 00:00:07,400
+video, we would like to show you how
+you can use Amber script at its full
+
+3
+00:00:07,500 --&gt; 00:00:10,189
+potential. The first
+function we would like to show
+
+4
+00:00:10,289 --&gt; 00:00:13,639
+you is the edit function.
+This allows you to edit errors
+</code></pre></div>
+<p>Export a finished file to SRT.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET /jobs/export-srt</code></p>
+<h3 id='query-parameters-5'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description/Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>jobId</td>
+<td>NONE</td>
+<td>YOUR_JOB_ID</td>
+</tr>
+<tr>
+<td>maxCharsPerRow (OPTIONAL)</td>
+<td>42</td>
+<td>Integer between <code>30</code> and <code>45</code> which sets the maximum number of characters per row.</td>
+</tr>
+<tr>
+<td>maxNumberOfRows (OPTIONAL)</td>
+<td>2</td>
+<td>Integer between <code>1</code> and <code>2</code> which sets the maximum number of rows for each subtitle.</td>
+</tr>
+<tr>
+<td>maxScreenTimePerRowSeconds (OPTIONAL)</td>
+<td>2</td>
+<td>Float which sets the maximum number of seconds given for each row of subtitles.</td>
+</tr>
+</tbody></table>
+<h2 id='export-to-vtt'>Export To VTT</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-vtt?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">exportVTT</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">jobId</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">JOB_ID</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`https://api.amberscript.com/api/jobs/export-vtt?jobId=</span><span class="p">${</span><span class="nx">jobId</span><span class="p">}</span><span class="s2">&amp;apiKey=</span><span class="p">${</span><span class="nx">apiKey</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span> <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span> <span class="p">}</span> <span class="p">});</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.amberscript.com/api/jobs/export-vtt"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"jobId"</span><span class="p">:</span><span class="s">"JOB_ID"</span> <span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/jobs/export-vtt?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY'</span>
+</code></pre></div>
+<blockquote>
+<p>The command returns VTT structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>WEBVTT - created by www.amberscript.com
+
+1
+00:00:00.449 --&gt; 00:00:03.769
+Hi, welcome to Amber script, in this short
+
+2
+00:00:03.869 --&gt; 00:00:07.400
+video, we would like to show you how
+you can use Amber script at its full
+
+3
+00:00:07.500 --&gt; 00:00:10.189
+potential. The first
+function we would like to show
+
+4
+00:00:10.289 --&gt; 00:00:13.639
+you is the edit function.
+This allows you to edit errors
+</code></pre></div>
+<p>Export a finished file to VTT.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET /jobs/export-vtt</code></p>
+<h3 id='query-parameters-6'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description/Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>jobId</td>
+<td>NONE</td>
+<td>YOUR_JOB_ID</td>
+</tr>
+<tr>
+<td>maxCharsPerRow (OPTIONAL)</td>
+<td>42</td>
+<td>Integer between <code>30</code> and <code>45</code> which sets the maximum number of characters per row.</td>
+</tr>
+<tr>
+<td>maxNumberOfRows (OPTIONAL)</td>
+<td>2</td>
+<td>Integer between <code>1</code> and <code>2</code> which sets the maximum number of rows for each subtitle.</td>
+</tr>
+<tr>
+<td>maxScreenTimePerRowSeconds (OPTIONAL)</td>
+<td>2</td>
+<td>Float which sets the maximum number of seconds given for each row of subtitles.</td>
+</tr>
+</tbody></table>
+<h2 id='export-to-text'>Export To TEXT</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-txt?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">exportTXT</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">jobId</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">JOB_ID</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`https://api.amberscript.com/api/jobs/export-txt?jobId=</span><span class="p">${</span><span class="nx">jobId</span><span class="p">}</span><span class="s2">&amp;apiKey=</span><span class="p">${</span><span class="nx">apiKey</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span> <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span> <span class="p">}</span> <span class="p">});</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.amberscript.com/api/jobs/export-txt"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"jobId"</span><span class="p">:</span><span class="s">"JOB_ID"</span> <span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/jobs/export-txt?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY'</span>
+</code></pre></div>
+<blockquote>
+<p>The command returns TXT structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>00:00:00
+Speaker 1: Hi, welcome to Amber script, in this short video, we would like to show you how you can use Amber script at its full potential. The first function we would like to show you is the edit function. This allows you to edit errors
+</code></pre></div>
+<p>Export a finished file to TEXT.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET /jobs/export-txt</code></p>
+<h3 id='query-parameters-7'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description/Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>jobId</td>
+<td>NONE</td>
+<td>YOUR_JOB_ID</td>
+</tr>
+<tr>
+<td>includeTimestamps (OPTIONAL)</td>
+<td><code>true</code></td>
+<td>Boolean.</td>
+</tr>
+<tr>
+<td>includeSpeakers (OPTIONAL)</td>
+<td><code>true</code></td>
+<td>Boolean.</td>
+</tr>
+<tr>
+<td>highlightsOnly (OPTIONAL)</td>
+<td><code>false</code></td>
+<td>Boolean.</td>
+</tr>
+<tr>
+<td>maxCharsPerRow (OPTIONAL)</td>
+<td>NONE</td>
+<td>Integer which sets the maximum number of characters per row.</td>
+</tr>
+</tbody></table>
+<h2 id='export-to-json'>Export To JSON</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs/export-json?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">exportJSON</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">jobId</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">JOB_ID</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`https://api.amberscript.com/api/jobs/export-json?jobId=</span><span class="p">${</span><span class="nx">jobId</span><span class="p">}</span><span class="s2">&amp;apiKey=</span><span class="p">${</span><span class="nx">apiKey</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span> <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span> <span class="p">}</span> <span class="p">});</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.amberscript.com/api/jobs/export-json"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"jobId"</span><span class="p">:</span><span class="s">"JOB_ID"</span> <span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/jobs/export-json?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY'</span>
+</code></pre></div>
+<blockquote>
+<p>The command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c9e45057103e464a4c6f477"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"recordId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RECORD_ID"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FILENAME"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"startTimeOffset"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"speakers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"spkid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spk1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Speaker 1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"segments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"speaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spk1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"words"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"end"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.08</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.63000005</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi,"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"conf"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"pristine"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.11</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"end"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.65</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.53999996</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"welcome"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"conf"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"pristine"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.65</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"end"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.8</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.14999998</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"to"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"conf"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"pristine"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.8</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"end"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"duration"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.29999995</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amberscript"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"conf"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.65</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"pristine"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"highlights"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Export a finished file to JSON.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET /jobs/export-json</code></p>
+<h3 id='query-parameters-8'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description/Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>jobId</td>
+<td>NONE</td>
+<td>YOUR_JOB_ID</td>
+</tr>
+</tbody></table>
+<h1 id='listing-and-deleting-jobs'>Listing and deleting jobs</h1><h2 id='delete-a-job'>Delete A Job</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">deleteJob</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">jobId</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">JOB_ID</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`https://api.amberscript.com/api/jobs?jobId=</span><span class="p">${</span><span class="nx">jobId</span><span class="p">}</span><span class="s2">&amp;apiKey=</span><span class="p">${</span><span class="nx">apiKey</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span> <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span> <span class="p">}</span> <span class="p">});</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.amberscript.com/api/jobs"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"jobId"</span><span class="p">:</span><span class="s">"JOB_ID"</span> <span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"DELETE"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> DELETE <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/jobs?jobId=JOB_ID&amp;apiKey=YOUR_API_KEY'</span>
+</code></pre></div>
+<blockquote>
+<p>The command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Job deleted"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Delete a specific job.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>DELETE /jobs</code></p>
+<h3 id='query-parameters-9'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description/Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>jobId</td>
+<td>NONE</td>
+<td>YOUR_JOB_ID</td>
+</tr>
+</tbody></table>
+<h2 id='get-list-of-jobs'>Get List Of Jobs</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/jobs?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">listJobs</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`https://api.amberscript.com/api/jobs?apiKey=</span><span class="p">${</span><span class="nx">apiKey</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span> <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span> <span class="p">}</span> <span class="p">});</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.amberscript.com/api/jobs"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/jobs?apiKey=YOUR_API_KEY'</span>
+</code></pre></div>
+<blockquote>
+<p>The command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"jobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f686d2d8c996402a02bbb92"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600679213751</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DONE"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nrAudioSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transcription"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test.mp4"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"perfect"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jobOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"transcriptionStyle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cleanread"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"jobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f686d068c996402a02bbb85"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600679174451</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DONE"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nrAudioSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">191</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transcription"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test.mp4"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"perfect"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jobOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"transcriptionStyle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cleanread"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"jobId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f686d068c996402a02bbb82"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600679174415</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DONE"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nrAudioSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"transcriptionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transcription"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test.mp4"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jobType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"perfect"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jobOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"transcriptionStyle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cleanread"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<p>Get a list of jobs.</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>GET /jobs</code></p>
+<h3 id='query-parameters-10'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description/Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>jobId (OPTIONAL)</td>
+<td>NONE</td>
+<td>YOUR_JOB_ID</td>
+</tr>
+<tr>
+<td>jobType (OPTIONAL)</td>
+<td>NONE</td>
+<td>Type of the job e.g. <code>perfect</code>.</td>
+</tr>
+<tr>
+<td>status (OPTIONAL)</td>
+<td>NONE</td>
+<td><code>OPEN</code>, <code>ERROR</code> or <code>DONE</code>.</td>
+</tr>
+<tr>
+<td>transcriptionType (OPTIONAL)</td>
+<td>NONE</td>
+<td>Type of transcription e.g. <code>transcription</code>.</td>
+</tr>
+<tr>
+<td>page (OPTIONAL)</td>
+<td><code>0</code></td>
+<td>Page to be retrieved.</td>
+</tr>
+<tr>
+<td>pageSize (OPTIONAL)</td>
+<td><code>20</code></td>
+<td>Number of records to be retrieved for each page (maximum: <code>100</code>).</td>
+</tr>
+</tbody></table>
+<h1 id='glossary'>Glossary</h1>
+<p>You can make use of the glossary feature to help improve the quality of your transcription, captions, and translated
+subtitles.
+If you already know the names of people/places/organizations, technical terms, or domain-specific terms that are spoken
+in the media file, these can be added to the glossary to improve the automatic recognition of these terms. Furthermore,
+for manual services, the glossary is used to aid transcribers in perfecting the file.</p>
+
+<ul>
+<li>The “names” attribute is used to specify names of people, places, organizations etc.</li>
+<li>The “items” attribute is used to add technical or domain-specific terms along with their descriptions. By including
+the description of these terms, you provide more clarity and further help our transcribers in making your
+transcription, captions, or translated subtitles perfect.</li>
+</ul>
+
+<p>Best practices for creating a glossary:</p>
+
+<ul>
+<li>Add the exact words that should be in the transcription to the glossary. Stems and various forms of words are not
+supported. For example, if the term “subtitling” is spoken in the media file, specify the term “subtitling” in the
+glossary, not the term “subtitle”.</li>
+<li>Add the names in the same casing (lowercase/uppercase) that should appear in the transcription. For example, for a
+name like “Amberscript”, add the name “Amberscript” to the glossary instead of “amberscript”. Similarly, for an
+acronym like “RSVP”, add the name “RSVP” to the glossary, not “rsvp” or “Rsvp”.</li>
+<li>Avoid including regular words in the glossary such as “the”, “of”, “and” etc., unless they are part of a name such as
+“University of Amsterdam”. You can add multiple words as a single entry if they belong together, e.g., “University of
+Amsterdam”.</li>
+<li>Only add uncommon words such as names or technical terms. Common words such as “climate”, “forest” etc. can be
+avoided.</li>
+<li>The same name or term should not be included more than once.</li>
+</ul>
+<h2 id='get-a-list-of-glossaries'>Get a list of glossaries</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">fetch</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">node-fetch</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">getGlossary</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">https://api.amberscript.com/api/glossary</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">queryParams</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URLSearchParams</span><span class="p">({</span>
+        <span class="na">apiKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span>
+    <span class="p">});</span>
+
+    <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span><span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">},</span>
+    <span class="p">};</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">url</span><span class="p">}</span><span class="s2">?</span><span class="p">${</span><span class="nx">queryParams</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.amberscript.com/api/glossary"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY'</span>
+</code></pre></div>
+<blockquote>
+<p>The command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f686d068c996402a02bbb85"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR_USERNAME"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name of first glossary"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Test name one"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Test name two"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item one name"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of item one"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item two name"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of item two"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600679174451</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f686d068c996402a02bbb86"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR_USERNAME"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name of second glossary"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Test name one"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Test name two"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item one name"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of item one"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item two name"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of item two"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600679175000</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<p>Get a list of glossaries.</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>GET /glossary</code></p>
+<h3 id='query-parameters-11'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description/Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sortBy (OPTIONAL)</td>
+<td>&quot;created&quot;</td>
+<td>Field by which to sort the resulting list of glossaries.</td>
+</tr>
+<tr>
+<td>sortDirection (OPTIONAL)</td>
+<td><code>DESC</code></td>
+<td><code>DESC</code> or <code>ASC</code></td>
+</tr>
+</tbody></table>
+<h2 id='create-a-glossary'>Create a glossary</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">String</span> <span class="n">body</span><span class="o">=</span><span class="s">"{\n"</span><span class="o">+</span>
+  <span class="s">"  \"name\": \"Name of first glossary\",\n"</span><span class="o">+</span>
+  <span class="s">"  \"names\": [\n"</span><span class="o">+</span>
+  <span class="s">"    \"Test name one\",\n"</span><span class="o">+</span>
+  <span class="s">"    \"Test name two\"\n"</span><span class="o">+</span>
+  <span class="s">"  ],\n"</span><span class="o">+</span>
+  <span class="s">"  \"items\": [\n"</span><span class="o">+</span>
+  <span class="s">"    {\n"</span><span class="o">+</span>
+  <span class="s">"      \"name\": \"Item one name\",\n"</span><span class="o">+</span>
+  <span class="s">"      \"description\": \"description of item one\"\n"</span><span class="o">+</span>
+  <span class="s">"    },\n"</span><span class="o">+</span>
+  <span class="s">"    {\n"</span><span class="o">+</span>
+  <span class="s">"      \"name\": \"Item two name\",\n"</span><span class="o">+</span>
+  <span class="s">"      \"description\": \"description of item two\"\n"</span><span class="o">+</span>
+  <span class="s">"    }\n"</span><span class="o">+</span>
+  <span class="s">"  ]\n"</span><span class="o">+</span>
+  <span class="s">"}"</span><span class="o">;</span>
+  <span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span><span class="s">"application/json"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">body</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">createGlossary</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">https://api.amberscript.com/api/glossary</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Name of first glossary</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">names</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="dl">"</span><span class="s2">Test name one</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">Test name two</span><span class="dl">"</span>
+        <span class="p">],</span>
+        <span class="dl">"</span><span class="s2">items</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Item one name</span><span class="dl">"</span><span class="p">,</span>
+                <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">description of item one</span><span class="dl">"</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Item two name</span><span class="dl">"</span><span class="p">,</span>
+                <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">description of item two</span><span class="dl">"</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">};</span>
+
+    <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span><span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">},</span>
+        <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span>
+    <span class="p">};</span>
+
+    <span class="kd">const</span> <span class="nx">queryParams</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URLSearchParams</span><span class="p">({</span>
+        <span class="na">apiKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span>
+    <span class="p">});</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">url</span><span class="p">}</span><span class="s2">?</span><span class="p">${</span><span class="nx">queryParams</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.amberscript.com/api/glossary"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">"{</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"  </span><span class="se">\"</span><span class="s">name</span><span class="se">\"</span><span class="s">: </span><span class="se">\"</span><span class="s">Name of first glossary</span><span class="se">\"</span><span class="s">,</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"  </span><span class="se">\"</span><span class="s">names</span><span class="se">\"</span><span class="s">: [</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"    </span><span class="se">\"</span><span class="s">Test name one</span><span class="se">\"</span><span class="s">,</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"    </span><span class="se">\"</span><span class="s">Test name two</span><span class="se">\"\n</span><span class="s">"</span> \
+          <span class="s">"  ],</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"  </span><span class="se">\"</span><span class="s">items</span><span class="se">\"</span><span class="s">: [</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"    {</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"      </span><span class="se">\"</span><span class="s">name</span><span class="se">\"</span><span class="s">: </span><span class="se">\"</span><span class="s">Item one name</span><span class="se">\"</span><span class="s">,</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"      </span><span class="se">\"</span><span class="s">description</span><span class="se">\"</span><span class="s">: </span><span class="se">\"</span><span class="s">description of item one</span><span class="se">\"\n</span><span class="s">"</span> \
+          <span class="s">"    },</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"    {</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"      </span><span class="se">\"</span><span class="s">name</span><span class="se">\"</span><span class="s">: </span><span class="se">\"</span><span class="s">Item two name</span><span class="se">\"</span><span class="s">,</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"      </span><span class="se">\"</span><span class="s">description</span><span class="se">\"</span><span class="s">: </span><span class="se">\"</span><span class="s">description of item two</span><span class="se">\"\n</span><span class="s">"</span> \
+          <span class="s">"    }</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"  ]</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"}"</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/glossary?apiKey=YOUR_API_KEY'</span> <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">--data-raw</span> <span class="s1">'{
+    "name":"Name of first glossary",
+    "names": [
+      "Test name one",
+      "Test name two"
+    ],
+    "items":[
+        {
+            "name":{{glossaryItem1Name}},
+            "description":{{glossaryItem1Description}}
+        },
+        {
+            "name":"{{glossaryItem2Name}}",
+            "description":{{glossaryItem2Description}}
+        }
+    ]
+}'</span>
+</code></pre></div>
+<blockquote>
+<p>The command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f686d068c996402a02bbb85"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR_USERNAME"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name of first glossary"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Test name one"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Test name two"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item one name"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of item one"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item two name"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of item two"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600679174451</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Create a glossary.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>POST /glossary</code></p>
+<h3 id='body-json'>Body JSON</h3><h3 id='userglossary'>UserGlossary</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string <br><small>maxLength: 60</small></td>
+<td>Name of the glossary.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>names</td>
+<td>[string] <br><small>maxItems: 250</small> <br><small>maxItemLength: 20</small></td>
+<td>Array of names.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>items</td>
+<td>[object] <br><small>maxItems: 750</small></td>
+<td>Array of glossary items. <strong>GlossaryItem</strong> format is described in the table below.</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h3 id='glossaryitem'>GlossaryItem</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>item.name</td>
+<td>string <br><small>maxLength: 60</small></td>
+<td>Term which is being described.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>item.description</td>
+<td>string <br><small>maxLength: 200</small></td>
+<td>Description of the term.</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-glossary'>Update a glossary</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">String</span> <span class="n">body</span><span class="o">=</span><span class="s">"{\n"</span><span class="o">+</span>
+  <span class="s">"  \"name\": \"Name of first glossary\",\n"</span><span class="o">+</span>
+  <span class="s">"  \"names\": [\n"</span><span class="o">+</span>
+  <span class="s">"    \"Test name one\",\n"</span><span class="o">+</span>
+  <span class="s">"    \"Test name two\"\n"</span><span class="o">+</span>
+  <span class="s">"  ],\n"</span><span class="o">+</span>
+  <span class="s">"  \"items\": [\n"</span><span class="o">+</span>
+  <span class="s">"    {\n"</span><span class="o">+</span>
+  <span class="s">"      \"name\": \"Item one name\",\n"</span><span class="o">+</span>
+  <span class="s">"      \"description\": \"description of item one\"\n"</span><span class="o">+</span>
+  <span class="s">"    },\n"</span><span class="o">+</span>
+  <span class="s">"    {\n"</span><span class="o">+</span>
+  <span class="s">"      \"name\": \"Item two name\",\n"</span><span class="o">+</span>
+  <span class="s">"      \"description\": \"description of item two\"\n"</span><span class="o">+</span>
+  <span class="s">"    }\n"</span><span class="o">+</span>
+  <span class="s">"  ]\n"</span><span class="o">+</span>
+  <span class="s">"}"</span><span class="o">;</span>
+  <span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">header</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span><span class="s">"application/json"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">body</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">updateGlossary</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">https://api.amberscript.com/api/glossary/GLOSSARY_ID</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">body</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Name of first glossary</span><span class="dl">"</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">names</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="dl">"</span><span class="s2">Test name one</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">Test name two</span><span class="dl">"</span>
+        <span class="p">],</span>
+        <span class="dl">"</span><span class="s2">items</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Item one name</span><span class="dl">"</span><span class="p">,</span>
+                <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">description of item one</span><span class="dl">"</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Item two name</span><span class="dl">"</span><span class="p">,</span>
+                <span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">description of item two</span><span class="dl">"</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">};</span>
+
+    <span class="kd">const</span> <span class="nx">queryParams</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URLSearchParams</span><span class="p">({</span>
+        <span class="na">apiKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span>
+    <span class="p">});</span>
+
+    <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">PUT</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span><span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">},</span>
+        <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span>
+    <span class="p">};</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">url</span><span class="p">}</span><span class="s2">?</span><span class="p">${</span><span class="nx">queryParams</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.amberscript.com/api/glossary/GLOSSARY_ID"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">"{</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"  </span><span class="se">\"</span><span class="s">name</span><span class="se">\"</span><span class="s">: </span><span class="se">\"</span><span class="s">Name of first glossary</span><span class="se">\"</span><span class="s">,</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"  </span><span class="se">\"</span><span class="s">names</span><span class="se">\"</span><span class="s">: [</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"    </span><span class="se">\"</span><span class="s">Test name one</span><span class="se">\"</span><span class="s">,</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"    </span><span class="se">\"</span><span class="s">Test name two</span><span class="se">\"\n</span><span class="s">"</span> \
+          <span class="s">"  ],</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"  </span><span class="se">\"</span><span class="s">items</span><span class="se">\"</span><span class="s">: [</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"    {</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"      </span><span class="se">\"</span><span class="s">name</span><span class="se">\"</span><span class="s">: </span><span class="se">\"</span><span class="s">Item one name</span><span class="se">\"</span><span class="s">,</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"      </span><span class="se">\"</span><span class="s">description</span><span class="se">\"</span><span class="s">: </span><span class="se">\"</span><span class="s">description of item one</span><span class="se">\"\n</span><span class="s">"</span> \
+          <span class="s">"    },</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"    {</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"      </span><span class="se">\"</span><span class="s">name</span><span class="se">\"</span><span class="s">: </span><span class="se">\"</span><span class="s">Item two name</span><span class="se">\"</span><span class="s">,</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"      </span><span class="se">\"</span><span class="s">description</span><span class="se">\"</span><span class="s">: </span><span class="se">\"</span><span class="s">description of item two</span><span class="se">\"\n</span><span class="s">"</span> \
+          <span class="s">"    }</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"  ]</span><span class="se">\n</span><span class="s">"</span> \
+          <span class="s">"}"</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"PUT"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> PUT <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY'</span> <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">--data-raw</span> <span class="s1">'{
+    "name":"Name of first glossary",
+    "names": [
+      "Test name one",
+      "Test name two"
+    ],
+    "items":[
+        {
+            "name":{{glossaryItem1Name}},
+            "description":{{glossaryItem1Description}}
+        },
+        {
+            "name":"{{glossaryItem2Name}}",
+            "description":{{glossaryItem2Description}}
+        }
+    ]
+}'</span>
+</code></pre></div>
+<blockquote>
+<p>The command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f686d068c996402a02bbb85"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YOUR_USERNAME"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name of first glossary"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Test name one"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Test name two"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item one name"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of item one"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item two name"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of item two"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600679174451</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Update a specific glossary.</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>PUT /glossary/GLOSSARY_ID</code></p>
+<h3 id='body-json-2'>Body JSON</h3><h3 id='userglossary-2'>UserGlossary</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string <br><small>maxLength: 60</small></td>
+<td>Name of the glossary.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>names</td>
+<td>[string] <br><small>maxItems: 250</small> <br><small>maxItemLength: 20</small></td>
+<td>Array of names.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>items</td>
+<td>[object] <br><small>maxItems: 750</small></td>
+<td>Array of glossary items. <strong>GlossaryItem</strong> format is described in the table below.</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h3 id='glossaryitem-2'>GlossaryItem</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>item.name</td>
+<td>string <br><small>maxLength: 60</small></td>
+<td>Term which is being described.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>item.description</td>
+<td>string <br><small>maxLength: 200</small></td>
+<td>Description of the term.</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-glossary'>Delete a glossary</h2><div class="highlight"><pre class="highlight java tab-java"><code><span class="nc">HttpResponse</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">response</span><span class="o">=</span><span class="nc">Unirest</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">asString</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">deleteGlossary</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">https://api.amberscript.com/api/glossary/6638e42835d0580edd5e35c2</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">queryParams</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URLSearchParams</span><span class="p">({</span>
+        <span class="na">apiKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span>
+    <span class="p">});</span>
+
+    <span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">DELETE</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span><span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">},</span>
+    <span class="p">};</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">url</span><span class="p">}</span><span class="s2">?</span><span class="p">${</span><span class="nx">queryParams</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.amberscript.com/api/glossary/GLOSSARY_ID"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"apiKey"</span><span class="p">:</span><span class="s">"YOUR_API_KEY"</span><span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">"DELETE"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> DELETE <span class="nt">--url</span> <span class="s1">'https://api.amberscript.com/api/glossary/GLOSSARY_ID?apiKey=YOUR_API_KEY'</span>
+</code></pre></div>
+<p>Delete a specific glossary.</p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>DELETE /glossary/GLOSSARY_ID</code></p>
+<h1 id='support'>Support</h1>
+<p>If you need any technical assistance, feel free to contact <code>info (at) amberscript (dot) com</code></p>
+<h1 id='errors'>Errors</h1>
+<p>Amberscript API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid. Please check your request body and/or parameters.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- Your API key is invalid.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- You do have access to requested resource.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The requested resource could not be found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- You tried to access a resource with an invalid method.</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone -- The resource requested has been removed from our servers.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- Rate limit reached</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="javascript">NodeJS</a>
+                <a href="#" data-language-name="java">Java</a>
+                <a href="#" data-language-name="python">Python</a>
+                <a href="#" data-language-name="shell">cURL</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
