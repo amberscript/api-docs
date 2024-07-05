@@ -7,7 +7,8 @@ Error Code | Meaning
 ---------- | -------
 400 | Bad Request -- Your request is invalid. Please check your request body and/or parameters.
 401 | Unauthorized -- Your API key is invalid.
-403 | Forbidden -- You do have access to requested resource.
+402 | Payment Required -- Insufficient balance for manual or machine services.
+403 | Forbidden -- You do not have access to requested resource.
 404 | Not Found -- The requested resource could not be found.
 405 | Method Not Allowed -- You tried to access a resource with an invalid method.
 406 | Not Acceptable -- You requested a format that isn't json.
