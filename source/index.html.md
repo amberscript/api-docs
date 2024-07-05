@@ -26,7 +26,7 @@ code_clipboard: true
 Welcome to Amberscript's Transcription API!
 
 The `API_KEY` can be generated on the [Account Page](https://app.amberscript.com/account).
-Please contact us if you to update your balance for processing manual jobs.
+Please contact us if you need to update your balance for processing manual jobs.
 
 When you [upload](#uploading-a-file) a file, our transcribers or automatic speech recognition engines will get to work
 and create a transcript or subtitles.
