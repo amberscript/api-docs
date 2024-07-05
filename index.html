@@ -404,7 +404,8 @@
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to Amberscript&#39;s Transcription API!</p>
 
-<p>We will provide you with an <code>API_KEY</code> required to access our endpoints.</p>
+<p>The <code>API_KEY</code> can be generated on the <a href="https://app.amberscript.com/account">Account Page</a>.
+Please contact us if you need to update your balance for processing manual jobs.</p>
 
 <p>When you <a href="#uploading-a-file">upload</a> a file, our transcribers or automatic speech recognition engines will get to work
 and create a transcript or subtitles.</p>
@@ -2488,8 +2489,12 @@ avoided.</li>
 <td>Unauthorized -- Your API key is invalid.</td>
 </tr>
 <tr>
+<td>402</td>
+<td>Payment Required -- Insufficient balance for manual or machine services.</td>
+</tr>
+<tr>
 <td>403</td>
-<td>Forbidden -- You do have access to requested resource.</td>
+<td>Forbidden -- You do not have access to requested resource.</td>
 </tr>
 <tr>
 <td>404</td>
