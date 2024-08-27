@@ -318,9 +318,9 @@ or
 
 ### Number of speaker
 
-If you know the number of speakers present in your audio file, you can define ite by using a number between 1 and 5. It is the most accurate approach to recognize each speaker;
-If you do not know the number of speakers, please use the value '0';
-If your file contains several channels and each speaker is assigned to a specific channel, you can use the value '-1'.
+- If you know the number of speakers present in your audio file, you can define ite by using a number between 1 and 5. It is the most accurate approach to recognize each speaker;
+- If you do not know the number of speakers, please use the value '0';
+- If your file contains several channels and each speaker is assigned to a specific channel, you can use the value '-1'.
 
 ### Automatic language identification
 
@@ -509,9 +509,9 @@ Otherwise, you will get a callback informing you that your job was successfully 
 
 ### Number of speaker
 
-If you know the number of speakers present in your audio file, you can define ite by using a number between 1 and 5. It is the most accurate approach to recognize each speaker;
-If you do not know the number of speakers, please use the value '0';
-If your file contains several channels and each speaker is assigned to a specific channel, you can use the value '-1'.
+- If you know the number of speakers present in your audio file, you can define ite by using a number between 1 and 5. It is the most accurate approach to recognize each speaker;
+- If you do not know the number of speakers, please use the value '0';
+- If your file contains several channels and each speaker is assigned to a specific channel, you can use the value '-1'.
 
 ### Automatic language identification
 
