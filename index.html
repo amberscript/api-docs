@@ -875,7 +875,7 @@ endpoints.</li>
 <tr>
 <td>numberOfSpeakers</td>
 <td><code>2</code></td>
-<td><code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code></td>
+<td><code>-1</code>, <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code></td>
 </tr>
 <tr>
 <td>callbackUrl (OPTIONAL)</td>
@@ -975,6 +975,10 @@ used. <a href="#glossary">Read here</a> for more information on how to work with
 <li><a href="#get-a-list-of-glossaries">List your previously created glossaries</a> and pick an <code>id</code> of the glossary that you want to
 use as <code>glossaryId</code> in your upload request.</li>
 </ul>
+<h3 id='number-of-speaker'>Number of speaker</h3>
+<p>If you know the number of speakers present in your audio file, you can define ite by using a number between 1 and 5. It is the most accurate approach to recognize each speaker;
+If you do not know the number of speakers, please use the value &#39;0&#39;;
+If your file contains several channels and each speaker is assigned to a specific channel, you can use the value &#39;-1&#39;.</p>
 <h3 id='automatic-language-identification'>Automatic language identification</h3>
 <p>You can let the automatic speech recognition engine determine the language of uploaded media automatically. To do so,
 you need to set the value of <code>language</code> request parameter to <code>auto</code>.</p>
@@ -1099,7 +1103,7 @@ a URL or it has to be presigned download URL.</p>
 <tr>
 <td>numberOfSpeakers</td>
 <td><code>2</code></td>
-<td><code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code></td>
+<td><code>-1</code>, <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code></td>
 </tr>
 <tr>
 <td>sourceUrl</td>
@@ -1190,6 +1194,10 @@ e.g. every 5 mins).</li>
 <ul>
 <li><code>status</code> can either be <code>OPEN</code>, <code>DONE</code> or <code>ERROR</code>.</li>
 </ul>
+<h3 id='number-of-speaker-2'>Number of speaker</h3>
+<p>If you know the number of speakers present in your audio file, you can define ite by using a number between 1 and 5. It is the most accurate approach to recognize each speaker;
+If you do not know the number of speakers, please use the value &#39;0&#39;;
+If your file contains several channels and each speaker is assigned to a specific channel, you can use the value &#39;-1&#39;.</p>
 <h3 id='automatic-language-identification-2'>Automatic language identification</h3>
 <p>You can let the automatic speech recognition engine determine the language of uploaded media automatically. To do so,
 you need to set the value of <code>language</code> request parameter to <code>auto</code>.</p>
