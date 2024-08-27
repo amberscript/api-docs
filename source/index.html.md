@@ -316,9 +316,9 @@ or
 - [List your previously created glossaries](#get-a-list-of-glossaries) and pick an `id` of the glossary that you want to
   use as `glossaryId` in your upload request.
 
-### Number of speaker
+### Number of speakers
 
-- If you know the number of speakers present in your audio file, you can define ite by using a number between 1 and 5. It is the most accurate approach to recognize each speaker;
+- If you know the number of speakers present in your audio file, you can define it by using a number between 1 and 5. It is the most accurate approach to recognize each speaker;
 - If you do not know the number of speakers, please use the value '0';
 - If your file contains several channels and each speaker is assigned to a specific channel, you can use the value '-1'.
 
@@ -507,9 +507,9 @@ Otherwise, you will get a callback informing you that your job was successfully 
 
 - `status` can either be `OPEN`, `DONE` or `ERROR`.
 
-### Number of speaker
+### Number of speakers
 
-- If you know the number of speakers present in your audio file, you can define ite by using a number between 1 and 5. It is the most accurate approach to recognize each speaker;
+- If you know the number of speakers present in your audio file, you can define it by using a number between 1 and 5. It is the most accurate approach to recognize each speaker;
 - If you do not know the number of speakers, please use the value '0';
 - If your file contains several channels and each speaker is assigned to a specific channel, you can use the value '-1'.
 
