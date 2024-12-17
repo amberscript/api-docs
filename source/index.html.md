@@ -52,19 +52,22 @@ and create a transcript or subtitles.
 
 | Language                 | Code       |
 |--------------------------|------------|
+| Automatic selection      | auto       |
 | Afrikaans                | af-za      |
 | Albanian                 | sq-al      |
 | Amharic                  | am-et      |
 | Arabic                   | ar         |
 | Armenian                 | hy-am      |
 | Azerbaijani              | az-az      |
-| Bahasa Indonesia         | id-id      |
+| Bahasa (Indonesia)       | id-id      |
+| Bashkir                  | ba         |
 | Basque                   | eu-es      |
 | Bengali (Bangladesh)     | bn-bd      |
 | Bengali (India)          | bn-in      |
 | Bosnian                  | bs-ba      |
 | Bulgarian                | bg         |
 | Burmese                  | my-mm      |
+| Cantonese                | yue        |
 | Catalan                  | ca         |
 | Chinese (Mandarin)       | cmn        |
 | Croatian                 | hr         |
@@ -75,6 +78,7 @@ and create a transcript or subtitles.
 | English (United Kingdom) | en-uk      |
 | English (United States)  | en-us      |
 | English (all accents)    | en         |
+| Esperanto                | eo         |
 | Estonian                 | et-ee      |
 | Farsi (Iran)             | fa-ir      |
 | Filipino                 | fil-ph     |
@@ -85,8 +89,10 @@ and create a transcript or subtitles.
 | Galician                 | gl-es      |
 | Georgian                 | ka-ge      |
 | German (Austria)         | de-at      |
+| German (Germany)         | de-ot      |
 | German (Switzerland)     | de-ch      |
-| German                   | de         |
+| German (Swiss Mundart)   | de-gsw     |
+| German (all accents)     | de         |
 | Greek                    | el         |
 | Gujarati                 | gu-in      |
 | Hebrew                   | iw-il      |
@@ -105,6 +111,7 @@ and create a transcript or subtitles.
 | Macedonian               | mk-mk      |
 | Malay                    | ms         |
 | Malayalam                | ml-in      |
+| Maltese                  | mt         |
 | Marathi                  | mr-in      |
 | Mongolian                | mn-mn      |
 | Nepali (Nepal)           | ne-np      |
@@ -120,6 +127,7 @@ and create a transcript or subtitles.
 | Slovakian                | sk         |
 | Slovenian                | sl         |
 | Spanish                  | es         |
+| Spanish (LATAM)          | es-la      |
 | Sundanese                | su-id      |
 | Swahili (Kenya)          | sw-ke      |
 | Swahili (Tanzania)       | sw-tz      |
@@ -131,11 +139,13 @@ and create a transcript or subtitles.
 | Telugu                   | te-in      |
 | Thai                     | th-th      |
 | Turkish                  | tr         |
-| Ukrainian                | uk-ua      |
+| Ukrainian                | uk         |
 | Urdu (India)             | ur-in      |
 | Urdu (Pakistan)          | ur-pk      |
+| Uyghur                   | ug         |
 | Uzbek                    | uz-uz      |
 | Vietnamese               | vi-vn      |
+| Welsh                    | cy         |
 | Zulu                     | zu-za      |
 
 # Uploading and status
@@ -236,7 +246,7 @@ Upload a file for transcription.
 
 | Parameter                     | Default                                                                        | Description/Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |-------------------------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| language                      | `en`                                                                           | `af-za`, `sq-al`, `am-et`, `ar`, `hy-am`, `az-az`, `id-id`, `eu-es`, `bn-bd`, `bn-in`, `bs-ba`, `bg`, `my-mm`, `ca`, `cmn`, `hr`, `cs`, `da`, `nl`, `en-au`, `en-uk`, `en`, `et-ee`, `fa-ir`, `fil-ph`, `fi`, `nl-be`, `fr-ca`, `fr`, `gl-es`, `ka-ge`, `de-at`, `de-ch`, `de`, `el`, `gu-in`, `iw-il`, `hi`, `hu`, `is-is`, `it`, `ja`, `jv-id`, `kn-in`, `km-kh`, `ko`, `lo-la`, `lv`, `lt`, `mk-mk`, `ms`, `ml-in`, `mr-in`, `mn-mn`, `ne-np`, `no`, `pl`, `pt-br`, `pt`, `pa-guru-in`, `ro`, `ru`, `sr-rs`, `si-lk`, `sk`, `sl`, `es`, `su-id`, `sw-ke`, `sw-tz`, `sv`, `ta-in`, `ta-my`, `ta-sg`, `ta-lk`, `te-in`, `th-th`, `tr`, `uk-ua`, `ur-in`, `ur-pk`, `uz-uz`, `vi-vn`, `zu-za`, `auto` |
+| language                      | `en`                                                                           | Please refer to language code section for the full list |
 | transcriptionType             | `transcription`                                                                | `transcription`, `captions`, `translatedSubtitles`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | jobType                       | `direct`                                                                       | `perfect`, `direct`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | numberOfSpeakers              | `2`                                                                            | `-1`, `0`, `1`, `2`, `3`, `4`, `5`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
@@ -437,7 +447,7 @@ curl --request POST --url 'https://api.amberscript.com/api/jobs/upload-media-fro
 
 | Parameter                     | Default                                                                        | Description/Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |-------------------------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| language                      | `en`                                                                           | `af-za`, `sq-al`, `am-et`, `ar`, `hy-am`, `az-az`, `id-id`, `eu-es`, `bn-bd`, `bn-in`, `bs-ba`, `bg`, `my-mm`, `ca`, `cmn`, `hr`, `cs`, `da`, `nl`, `en-au`, `en-uk`, `en`, `et-ee`, `fa-ir`, `fil-ph`, `fi`, `nl-be`, `fr-ca`, `fr`, `gl-es`, `ka-ge`, `de-at`, `de-ch`, `de`, `el`, `gu-in`, `iw-il`, `hi`, `hu`, `is-is`, `it`, `ja`, `jv-id`, `kn-in`, `km-kh`, `ko`, `lo-la`, `lv`, `lt`, `mk-mk`, `ms`, `ml-in`, `mr-in`, `mn-mn`, `ne-np`, `no`, `pl`, `pt-br`, `pt`, `pa-guru-in`, `ro`, `ru`, `sr-rs`, `si-lk`, `sk`, `sl`, `es`, `su-id`, `sw-ke`, `sw-tz`, `sv`, `ta-in`, `ta-my`, `ta-sg`, `ta-lk`, `te-in`, `th-th`, `tr`, `uk-ua`, `ur-in`, `ur-pk`, `uz-uz`, `vi-vn`, `zu-za`, `auto` |
+| language                      | `en`                                                                           | Please refer to language code section for the full list |
 | transcriptionType             | `transcription`                                                                | `transcription`, `captions`, `translatedSubtitles`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | jobType                       | `direct`                                                                       | `perfect`, `direct`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | numberOfSpeakers              | `2`                                                                            | `-1`, `0`, `1`, `2`, `3`, `4`, `5`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
